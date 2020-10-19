@@ -1,0 +1,1507 @@
+/*The CSS code is property to Mr. You (Kristiyan Valchev) and can only be viewed*/
+/*If you want to use part of the code, please first contact me: mr.youdevelopment@gmail.com*/
+
+html
+{
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body
+{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    background-color: #fefefe;/* #fb601e */
+    overflow-x: hidden;
+}
+
+/*#region Scrow bar */
+::-webkit-scrollbar
+{
+	width: 10px;
+}
+
+::-webkit-scrollbar-track
+{
+    background-color: #f5f3f9;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background: #9078bc;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+    background: #8067ab;
+}
+/*#endregion Scrow bar */
+
+/*#region Right click menu */
+.rightClickMenu
+{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+
+    z-index: 10;
+
+    animation: dropDown .1s ease-out forwards;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.rightClickMenu .rightClickMenuBox
+{
+    position: absolute;
+    width: 320px;
+    height: auto;
+    top: 0;
+    left: 0;
+    background-color: #402367;
+    border-radius: 15px;
+    padding-bottom: 10px;
+}
+
+.rightClickMenu .rightClickMenuBox a
+{
+    display: block;
+    position: relative;
+    width: calc(100% - 30px);
+    top: 0;
+    left: 15;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 20px;
+    color: #fefefe;
+    padding-top: 10px;
+}
+
+.rightClickMenu .rightClickMenuBox a:hover
+{
+    font-weight: 700;
+}
+
+.rightClickMenu .rightClickMenuBox a.Unactive, .rightClickMenu .rightClickMenuBox a.Unactive:hover
+{
+    color: #fefefe60;
+    font-weight: 100;
+    cursor: context-menu;
+}
+
+.rightClickMenu .rightClickMenuBox .lineDevider
+{
+    position: relative;
+    width: 100%;
+    height: 2px;
+    top: 0;
+    left: 0;
+    background-color: #fefefe80;
+    margin-top: 10px;
+}
+/*#endregion Right click menu */
+
+/*#region Top bar */
+.topBarName
+{
+    position: absolute;
+    top: 30;
+    left: 120;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 32px;
+    color: #111111;
+
+    animation: dropDown .5s ease-out forwards .5s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.topBarName::before
+{
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 3px;
+    bottom: -10px;
+    left: 5%;
+    background-color: #a089cd;
+    visibility: hidden;
+    transform: scaleX(0);
+    
+    transition: ease .3s;
+}
+
+.topBarName:hover::before
+{
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.topBarName i
+{
+    color: #fb601e;
+    margin-right: 10px;
+}
+
+.threeLineButton
+{
+    position: absolute;
+    width: 60px;
+    height: 20px;
+    top: 40;
+    left: 340;
+
+    animation: dropDown .5s ease-out forwards .5s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.threeLineButton div
+{
+    position: absolute;
+    height: 4px;
+    left: 0;
+    background-color: #11111180;
+    border-radius: 999px;
+}
+
+.threeLineButton div:nth-child(1)
+{
+    width: 100%;
+    top: 0;
+}
+
+.threeLineButton div:nth-child(2)
+{
+    width: 60%;
+    bottom: 0;
+}
+
+.threeLineButton:hover div
+{
+    width: 100%;
+    background-color: #a089cd;
+}
+/*#endregion Top bar */
+
+/*#region Side menu */
+.sideMenu
+{
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 92px);
+    top: 92;
+    left: 0;
+    background-color: #fefefe;
+
+    z-index: 2;
+
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+
+.sideMenu .optionsList
+{
+    position: absolute;
+    width: calc(100% - 280px);
+    height: auto;
+    top: 30;
+    left: 140;
+    background-color: #f5f3f9;
+    border-radius: 30px;
+    padding-bottom: 20px;
+}
+
+.sideMenu .optionsList a
+{
+    display: block;
+    position: relative;
+    top: 0;
+    left: 30;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 22px;
+    color: #111111;
+    padding-top: 20px;
+}
+
+.sideMenu .optionsList a.Active
+{
+    font-weight: 900;
+}
+
+.sideMenu .optionsList a:hover
+{
+    color: #fb601e;
+}
+
+.sideMenu .switch
+{
+    float: right;
+    position: absolute;
+    width: 60px;
+    height: 34px;
+    bottom: 10;
+    right: 30;
+}
+
+.sideMenu .switch input
+{ 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sideMenu .switch .slider
+{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fb601e;
+    border-radius: 34px;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.sideMenu .switch .slider:before
+{
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fefefe;
+    border-radius: 50%;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.sideMenu .switch input:checked + .slider
+{
+    background-color: #a089cd;
+}
+  
+.sideMenu .switch input:focus + .slider
+{
+    box-shadow: 0 0 1px #a089cd;
+}
+  
+.sideMenu .switch input:checked + .slider:before
+{
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+/*#endregion Side menu */
+
+/*#region Main things */
+.mainTextsHolder
+{
+    position: absolute;
+    width: 400px;
+    top: 200;
+    left: 120;
+}
+
+.mainTitle
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 55px;
+    font-weight: 900;
+    line-height: 59px;
+    color: #111111;
+    margin-bottom: 40px;
+
+    animation: dropDown .5s ease-out forwards .6s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.mainText
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 26px;
+    color: #11111180;
+    margin-bottom: 60px;
+
+    animation: dropDown .5s ease-out forwards .7s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.mainButtin
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 26px;
+    color: #fefefe;
+    background-color: #fb601e;
+    border-radius: 30px;
+    padding: 10px 30px;
+
+    animation: dropDown .5s ease-out forwards .9s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.mainButtin:hover
+{
+    filter: brightness(.9);
+}
+
+.secondlyButtin
+{
+    position: relative;
+    top: 0;
+    left: 30;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #111111;
+    background-color: transparent;
+    border-radius: 30px;
+    padding: 10px 30px;
+
+    animation: dropDown .5s ease-out forwards .95s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.secondlyButtin::before
+{
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 3px;
+    bottom: 0px;
+    left: 5%;
+    background-color: #fb601e;
+    visibility: hidden;
+    transform: scaleX(0);
+    
+    transition: ease .3s;
+}
+
+.secondlyButtin:hover::before
+{
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.mainImage
+{
+    float: right;
+    position: absolute;
+    width: 540px;
+    top: 200;
+    right: 120;
+
+    z-index: 1;
+
+    animation: dropDown .5s ease-out forwards .7s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+/*#endregion Main things */
+
+/*#region Sign form */
+.signForm
+{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #111111c0;
+
+    z-index: 1;
+
+    animation: fadeIn .3s ease-out forwards;
+    opacity: 0;
+}
+
+.signForm .signFormBox
+{
+    position: absolute;
+    width: 500px;
+    height: 310px;
+    top: calc(50% - 155px);
+    left: calc(50% - 250px);
+    background-color: #a089cd;
+    border-radius: 30px;
+
+    animation: dropDown .5s ease-out forwards .1s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.signForm .signFormBox .signFormBoxCloseButton
+{
+    float: right;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 20;
+    right: 30;
+    background-color: transparent;
+}
+
+.signForm .signFormBox .signFormBoxCloseButton div
+{
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    top: calc(50% - 2px);
+    left: 0;
+    background-color: #fefefe;
+}
+
+.signForm .signFormBox .signFormBoxCloseButton div:nth-child(1)
+{
+    transform: rotate(45deg);
+}
+
+.signForm .signFormBox .signFormBoxCloseButton div:nth-child(2)
+{
+    transform: rotate(-45deg);
+}
+
+.signForm .signFormBox .signFormBoxCloseButton:hover div
+{
+    background-color: #fb601e;
+}
+
+.signForm .signFormBox .signText
+{
+    position: absolute;
+    width: calc(100% - 60px - 62px);
+    top: 20;
+    left: 30;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 32px;
+    color: #fefefe;
+}
+
+.inputField
+{
+    position: absolute;
+    width: calc(100% - 60px);
+    left: 30;
+    padding: 15px 0 0;
+}
+
+.inputField.E
+{
+    top: 70;
+}
+
+.inputField.P
+{
+    top: 150;
+}
+  
+.inputFieldText
+{
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #fefefe;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #fefefe;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.inputFieldText::placeholder
+{
+    color: transparent;
+}
+
+.inputFieldText:placeholder-shown ~ .inputFieldLabel
+{
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+}
+  
+.inputFieldLabel
+{
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #fefefe80;
+}
+  
+.inputFieldText:focus
+{
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #fb601e, #a089cd);
+    border-image-slice: 1;
+}
+
+.inputFieldText:focus ~ .inputFieldLabel
+{
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #fb601e;
+    font-weight: 700;
+}
+
+.inputFieldText:required, .inputFieldText:invalid
+{
+    box-shadow: none;
+}
+
+.signForm .signFormBox .signButton
+{
+    position: absolute;
+    width: calc(100% - 60px);
+    bottom: 20;
+    left: 30;
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    line-height: 24px;
+    color: #111111;
+    background-color: #fefefe;
+    border-radius: 30px;
+    padding: 12px 0px;
+}
+
+.signForm .signFormBox .signButton:hover
+{
+    filter: brightness(.9);
+}
+/*#endregion Sign form */
+
+/*#region Messages */
+.messageHolder
+{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+
+    z-index: 5;
+}
+
+.messageHolder .errorHolder, .messageHolder .correctnessHolder
+{
+    display: none;
+    position: relative;
+    width: calc(100% - 30px);
+    height: auto;
+    top: 0;
+    left: 15;
+    border-radius: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    animation: dropDown .5s ease-out forwards;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.messageHolder .errorHolder
+{
+    background-color: red;
+}
+
+.messageHolder .correctnessHolder
+{
+    background-color: green;
+}
+
+.messageHolder .errorHolder p, .messageHolder .correctnessHolder p
+{
+    position: relative;
+    width: calc(100% - 30px);
+    height: auto;
+    top: 0;
+    left: 15;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    line-height: 20px;
+    color: #fefefe;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/*#endregion Messages */
+
+/*#region Page content */
+.pageContent
+{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 900;
+    left: 0;
+    background-color: transparent;
+}
+
+.pageContent .pageContentSection
+{
+    position: relative;
+    width: calc(100% - 240px);
+    height: auto;
+    top: 0;
+    left: 120;
+    background-color: #f5f3f9;
+    border-radius: 30px;
+    margin-bottom: 100px;
+    padding-bottom: 0px;
+
+    animation: dropDown .5s ease-out forwards 1s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContent .pageContentSection.withButtonEnd
+{
+    padding-bottom: 50px;
+}
+
+.pageContent .pageContentSection .pageContentSectionTitle
+{
+    position: relative;
+    width: calc(100% - 60px);
+    top: 0;
+    left: 30;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #111111;
+    padding-top: 30px;
+    margin-bottom: 30px;
+
+    animation: dropDown .5s ease-out forwards 1.1s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContent .pageContentSection .pageContentSectionText
+{
+    position: relative;
+    width: calc(100% - 60px);
+    top: 0;
+    left: 30;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    color: #111111a0;
+    margin-bottom: 30px;
+
+    animation: dropDown .5s ease-out forwards 1.2s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContent .pageContentSection .pageContentSectionText linkText
+{
+    color: #a089cd;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.pageContent .pageContentSection .pageContentSectionText linkText:hover
+{
+    color: #9078bc;
+}
+
+.pageContent .pageContentSection .pageContentSectionButton
+{
+    float: left;
+    position: relative;
+    width: calc(100% - 60px);
+    top: 0;
+    left: 30;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 35px;
+    color: #fefefe;
+    background-color: #fb601e;
+    border-radius: 30px;
+    margin-top: 0px;
+
+    animation: dropDown .5s ease-out forwards 1.5s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContent .pageContentSection .pageContentSectionButton.Unavailable, .pageContent .pageContentSection .pageContentSectionButton.Unavailable:hover
+{
+    background-color: #fb601e60;
+    filter: brightness(1);
+}
+
+.pageContent .pageContentSection .pageContentSectionButton:hover
+{
+    filter: brightness(.9);
+}
+
+.pageContent .pageContentSection .pageContentSectionImage
+{
+    position: relative;
+    width: 500px;
+    top: 0;
+    left: calc(50% - 250px);
+    margin-bottom: 30px;
+
+    animation: dropDown .5s ease-out forwards 1.3s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContent .pageContentSection .twoChoiseButtonsHolder
+{
+    position: relative;
+    width: calc(100% - 60px);
+    height: 35px;
+    top: 0;
+    left: 30;
+    background-color: transparent;
+    border-radius: 30px;
+    padding-bottom: 15px;
+
+    animation: dropDown .5s ease-out forwards 1.5s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContent .pageContentSection .twoChoiseButtonsHolder a
+{
+    position: relative;
+    width: calc(50% - 15px);
+    top: 0;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 35px;
+    color: #fefefe;
+    background-color: #fb601e;
+    border-radius: 30px;
+}
+
+.pageContent .pageContentSection .twoChoiseButtonsHolder a:nth-child(1)
+{
+    float: left;
+    left: 0;
+}
+
+.pageContent .pageContentSection .twoChoiseButtonsHolder a:nth-child(2)
+{
+    float: right;
+    right: 0;
+}
+
+.pageContent .pageContentSection .twoChoiseButtonsHolder a:hover
+{
+    filter: brightness(.9);
+}
+
+.pageContent .pageContentSection .pageContentSectionList
+{
+    position: relative;
+    width: 100%;
+    height: 340px;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-bottom: 30px;
+
+    animation: dropDown .5s ease-out forwards 1.4s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContent .pageContentSection .pageContentSectionList::-webkit-scrollbar
+{
+    height: 5px;
+}
+
+.pageContent .pageContentSection .pageContentSectionList .listBox
+{
+    display: inline-block;
+    position: relative;
+    width: 260px;
+    height: 300px;
+    top: 0;
+    left: 30;
+    background-color: #a089cd20;
+    border-radius: 30px;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.pageContent .pageContentSection .pageContentSectionList .listBox:hover .bigNumber
+{
+    letter-spacing: 2px;
+}
+
+.pageContent .pageContentSection .pageContentSectionList .listBox.Active
+{
+    background-color: #a089cd40;
+}
+
+.pageContent .pageContentSection .pageContentSectionList .listBox.Active svg#svg01
+{
+    fill: #a089cd50;
+}
+
+.pageContent .pageContentSection .pageContentSectionList .listBox.Active svg#svg02
+{
+    fill: #fb601e25;
+}
+
+.pageContent .pageContentSection .pageContentSectionList .listBox.Last
+{
+    margin-right: 60px;
+}
+
+.pageContent .pageContentSection .pageContentSectionList .listBox .bigNumber
+{
+    position: absolute;
+    width: calc(100% - 30px);
+    top: calc(50% - 50px);
+    left: 15;
+    font-size: 50px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 50px;
+    color: #111111;
+    white-space: normal;
+}
+
+.pageContent .pageContentSection .pageContentSectionList .listBox svg#svg01
+{
+    position: absolute;
+    width: 100%;
+    bottom: 100;
+    left: -100;
+    fill: #a089cd10;
+    transform: scale(2, 10);
+
+    z-index: 0;
+}
+
+.pageContent .pageContentSection .pageContentSectionList .listBox svg#svg02
+{
+    position: absolute;
+    width: 100%;
+    top: 20;
+    left: -100;
+    fill: #fb601e05;
+    transform: scale(2, 5);
+
+    z-index: 0;
+}
+/*#endregion Page content */
+
+/*#region Bottom bar */
+.bottomBar
+{
+    position: relative;
+    width: 100%;
+    height: 250px;
+    top: 0;
+    left: 0;
+    background-color: #604589;
+
+    animation: dropDown .5s ease-out forwards 1.5s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.bottomBar .directionButton
+{
+    position: absolute;
+    width: 33%;
+    height: 50px;
+    top: 60;
+    background-color: transparent;
+
+    animation: fadeIn .3s ease-out forwards 1.8s;
+    opacity: 0;
+}
+
+.bottomBar .directionButton.N
+{
+    left: 0;
+}
+
+.bottomBar .directionButton.Z
+{
+    left: 33%;
+}
+
+.bottomBar .directionButton.M
+{
+    left: 66%;
+}
+
+.bottomBar a
+{
+    position: absolute;
+    width: 100%;
+    top: calc(50% - 18px);
+    left: 0;
+    font-size: 30px;
+    font-weight: normal;
+    text-decoration: none;
+    text-align: center;
+    color: #fefefe;
+    opacity: .7;
+}
+
+.bottomBar a:hover
+{
+    color: #fb601e;
+    opacity: 1;
+}
+
+.bottomBar a.Active
+{
+    font-weight: 900;
+}
+
+.bottomBar .Credits
+{
+    position: absolute;
+    width: 100%;
+    top: auto;
+    bottom: 10;
+    text-align: center;
+    color: #e5e5e540;
+}
+
+.bottomBar .Credits powerd:hover company
+{
+    color: #61da7d;
+    transition: ease .3s;
+}
+
+.bottomBar .Credits managed:hover my
+{
+    color: #028bc2;
+    transition: ease .3s;
+}
+/*#endregion Bottom bar */
+
+/*#region Decoration */
+.bigSideBoxHolder
+{
+    position: absolute;
+    width: 100%;
+    height: 700px;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    
+    z-index: -1;
+}
+
+.bigSideBoxHolder div
+{
+    position: absolute;
+    width: 600px;
+    height: 1100px;
+    top: 0;
+    left: 50%;
+    background-color: #604589;
+    transform: rotate(-50deg);
+    transform-origin: top left;
+
+    animation: fadeIn .7s ease-out forwards .3s;
+    opacity: 0;
+}
+/*#endregion Decoration */
+
+img
+{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+}
+
+a
+{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    transition: ease .3s;
+}
+
+p, div, h1, h2, h3, h4, h5, h6, i, img
+{
+    padding: 0;
+    margin: 0;
+    transition: ease .3s;
+}
+
+/*#region Animations */
+@keyframes popUp
+{
+    0%
+    {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    100%
+    {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes dropDown
+{
+    0%
+    {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    100%
+    {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn
+{
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut
+{
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes defaultAnimation
+{
+    0%
+    {
+
+    }
+
+    100%
+    {
+
+    }
+}
+/*#endregion Animations */
+
+/*#region Media 1300-1000 */
+@media screen and (max-width: 1300px)
+{
+
+}
+
+@media screen and (max-width: 1200px)
+{
+    .mainImage
+    {
+        width: 350px;
+        top: 400;
+        right: 80;
+    }
+}
+
+@media screen and (max-width: 1100px)
+{
+
+}
+
+@media screen and (max-width: 1000px)
+{
+    .mainImage
+    {
+        top: 600;
+    }
+
+    .pageContent
+    {
+        top: 1000;
+    }
+}
+/*#endregion Media 1300-1000 */
+
+/*#region Media 900-800 */
+@media screen and (max-width: 900px)
+{
+    .topBarName
+    {
+        left: 60;
+        padding: 0;
+    }
+
+    .threeLineButton
+    {
+        left: 260;
+    }
+
+    .sideMenu .optionsList
+    {
+        width: calc(100% - 120px);
+        left: 60;
+    }
+
+    .mainTextsHolder
+    {
+        left: 60;
+    }
+
+    .pageContent .pageContentSection
+    {
+        width: calc(100% - 120px);
+        left: 60;
+    }
+
+    .pageContent .pageContentSection.withButtonEnd
+    {
+        padding-bottom: 45px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionTitle
+    {
+        font-size: 24px;
+        line-height: 24px;
+        padding-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionText
+    {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionImage
+    {
+        width: 300px;
+        left: calc(50% - 150px);
+    }
+
+    .pageContent .pageContentSection .pageContentSectionButton, .pageContent .pageContentSection .twoChoiseButtonsHolder a
+    {
+        font-size: 20px;
+        line-height: 20px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionList
+    {
+        height: 220px;
+        margin-bottom: 30px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionList .listBox
+    {
+        width: 160px;
+        height: 200px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionList .listBox svg#svg01
+    {
+        transform: scale(3, 10);
+    }
+
+    .pageContent .pageContentSection .pageContentSectionList .listBox svg#svg02
+    {
+        transform: scale(3, 5);
+    }
+
+    .pageContent .pageContentSection .pageContentSectionList .listBox .bigNumber
+    {
+        top: calc(50% - 30px);
+        font-size: 40px;
+        line-height: 30px;
+    }
+
+    .bottomBar a
+    {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 800px)
+{
+    .bottomBar .Credits
+    {
+        width: calc(100% - 30px);
+        bottom: 10;
+        left: 15;
+        font-size: 12px;
+    }
+}
+/*#endregion Media 900-800 */
+
+/*#region Media 700-600 */
+@media screen and (max-width: 700px)
+{
+    .signForm .signFormBox
+    {
+        width: calc(100% - 60px);
+        height: 270px;
+        top: calc(50% - 135px);
+        left: 30;
+    }
+
+    .signForm .signFormBox .signText
+    {
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    .inputField.E
+    {
+        top: 60;
+    }
+
+    .inputField.P
+    {
+        top: 130;
+    }
+
+    .signForm .signFormBox .signButton
+    {
+        bottom: 10;
+        font-size: 20px;
+        line-height: 20px;
+        padding: 8px 0px;
+    }
+}
+
+@media screen and (max-width: 600px)
+{
+
+}
+/*#endregion Media 700-600 */
+
+/*#region Media 500-400 */
+@media screen and (max-width: 500px)
+{
+    .topBarName
+    {
+        left: 30;
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    .threeLineButton
+    {
+        float: right;
+        width: 50px;
+        height: 15px;
+        top: 35;
+        left: auto;
+        right: 30;
+    }
+
+    .threeLineButton div:nth-child(2)
+    {
+        float: right;
+        left: auto;
+        right: 0;
+    }
+
+    .sideMenu
+    {
+        top: 84;
+    }
+
+    .sideMenu .optionsList
+    {
+        width: calc(100% - 60px);
+        left: 30;
+    }
+
+    .sideMenu .optionsList a
+    {
+        font-size: 18px;
+        line-height: 20px;
+        padding-top: 10px;
+    }
+
+    .mainTextsHolder
+    {
+        width: calc(100% - 60px);
+        top: 140;
+        left: 30;
+    }
+
+    .mainTitle
+    {
+        font-size: 40px;
+        line-height: 44px;
+        margin-bottom: 30px;
+    }
+
+    .mainText
+    {
+        width: 100%;
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 50px;
+    }
+
+    .mainButtin
+    {
+        font-size: 20px;
+        line-height: 20px;
+        padding: 5px 20px;
+    }
+
+    .secondlyButtin
+    {
+        left: 5;
+        font-size: 16px;
+        line-height: 16px;
+        padding: 5px 20px;
+    }
+
+    .mainImage
+    {
+        width: 220px;
+        top: 480;
+        right: 30;
+    }
+
+    .pageContent
+    {
+        top: 840;
+    }
+
+    .pageContent .pageContentSection
+    {
+        width: calc(100% - 60px);
+        left: 30;
+    }
+
+    .pageContent .pageContentSection.aditionalPadding
+    {
+        padding-bottom: 66px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionImage
+    {
+        width: 200px;
+        left: calc(50% - 100px);
+    }
+
+    .pageContent .pageContentSection .pageContentSectionList .listBox
+    {
+        width: 120px;
+        height: 200px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionList .listBox .bigNumber
+    {
+        top: calc(50% - 25px);
+        font-size: 30px;
+        line-height: 25px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionButton, .pageContent .pageContentSection .twoChoiseButtonsHolder a
+    {
+        font-size: 16px;
+        line-height: 20px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .pageContent .pageContentSection .twoChoiseButtonsHolder a
+    {
+        width: calc(50% - 5px);
+    }
+
+    /*#region Bottom bar */
+    .bottomBar
+    {
+        height: 200px;
+    }
+
+    .bottomBar .directionButton
+    {
+        top: 30;
+        width: 100%;
+        height: 35px;
+    }
+
+    .bottomBar .directionButton.N, .bottomBar .directionButton.Z, .bottomBar .directionButton.M
+    {
+        left: 0;
+    }
+
+    .bottomBar .directionButton.Z
+    {
+        top: 70;
+    }
+
+    .bottomBar .directionButton.M
+    {
+        top: 110;
+    }
+    /*#endregion Bottom bar */
+}
+
+@media screen and (max-width: 400px)
+{
+
+}
+/*#endregion Media 500-400 */
+
+/*#region Media 350 */
+@media screen and (max-width: 350px)
+{
+
+}
+/*#endregion Media 350 */
