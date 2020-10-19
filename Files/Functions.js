@@ -13,6 +13,7 @@ function openCloseSideMenu()
     {
         document.getElementById("topBarName").style.color = "#fefefe";
         sideMenu.style.clipPath = "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
+        sideMenu.style.webkitClipPath = "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
         bigSideBox.style.top = 92;
         bigSideBox.style.left = 0;
         bigSideBox.style.height = "3000px";
@@ -30,6 +31,7 @@ function openCloseSideMenu()
     {
         document.getElementById("topBarName").style.color = "#111111";
         sideMenu.style.clipPath = "polygon(0 0, 100% 0, 100% 0, 0 0)"
+        sideMenu.style.webkitClipPath = "polygon(0 0, 100% 0, 100% 0, 0 0)"
         bigSideBox.style.top = 0;
         bigSideBox.style.left = "50%";
         bigSideBox.style.height = "1100px";
@@ -46,6 +48,7 @@ window.onscroll = function(e)
 
     document.getElementById("topBarName").style.color = "#111111";
     document.getElementById("sideMenu").style.clipPath = "polygon(0 0, 100% 0, 100% 0, 0 0)"
+    document.getElementById("sideMenu").style.webkitClipPath = "polygon(0 0, 100% 0, 100% 0, 0 0)"
     bigSideBox.style.top = 0;
     bigSideBox.style.left = "50%";
     bigSideBox.style.height = "1100px";
