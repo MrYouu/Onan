@@ -457,6 +457,12 @@ body
     opacity: 0;
 }
 
+.signForm .signFormBox.Up
+{
+    height: 470px;
+    top: calc(50% - 235px);
+}
+
 .signForm .signFormBox .signFormBoxCloseButton
 {
     float: right;
@@ -514,16 +520,26 @@ body
     padding: 15px 0 0;
 }
 
-.inputField.E
+.inputField.in1
 {
-    top: 70;
+    top: 80;
 }
 
-.inputField.P
+.inputField.in2
 {
-    top: 150;
+    top: 160;
 }
-  
+
+.inputField.in3
+{
+    top: 240;
+}
+
+.inputField.in4
+{
+    top: 320;
+}
+
 .inputFieldText
 {
     font-family: inherit;
@@ -576,7 +592,7 @@ body
 .inputFieldText:focus ~ .inputFieldLabel
 {
     position: absolute;
-    top: 0;
+    top: -8; /* The label height when active textbox */
     display: block;
     transition: 0.2s;
     font-size: 1rem;
@@ -937,6 +953,101 @@ body
     transform: scale(2, 5);
 
     z-index: 0;
+}
+
+.pageContent .pageContentSection .inputField
+{
+    position: relative;
+    width: calc(100% - 60px);
+    left: 30;
+    padding: 15 0 0;
+    margin-bottom: 30px;
+}
+  
+.pageContent .pageContentSection .inputFieldText
+{
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #111111;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #111111;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.pageContent .pageContentSection .inputFieldText::placeholder
+{
+    color: transparent;
+}
+
+.pageContent .pageContentSection .inputFieldText:placeholder-shown ~ .inputFieldLabel
+{
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+}
+  
+.pageContent .pageContentSection .inputFieldLabel
+{
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11111180;
+}
+  
+.pageContent .pageContentSection .inputFieldText:focus
+{
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #fb601e, #a089cd);
+    border-bottom: 2px solid #111111;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-image-slice: 1;
+}
+
+.pageContent .pageContentSection .inputFieldText:focus ~ .inputFieldLabel
+{
+    position: absolute;
+    top: -8;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #fb601e;
+    font-weight: 700;
+}
+
+.pageContent .pageContentSection .inputFieldText:required, .inputFieldText:invalid
+{
+    box-shadow: none;
+}
+
+.pageContent .pageContentSection .signForm .signFormBox .signButton
+{
+    position: absolute;
+    width: calc(100% - 60px);
+    bottom: 20;
+    left: 30;
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    line-height: 24px;
+    color: #111111;
+    background-color: #fefefe;
+    border-radius: 30px;
+    padding: 12px 0px;
+}
+
+.pageContent .pageContentSection .signForm .signFormBox .signButton:hover
+{
+    filter: brightness(.9);
 }
 /*#endregion Page content */
 
@@ -1299,20 +1410,36 @@ p, div, h1, h2, h3, h4, h5, h6, i, img
         left: 30;
     }
 
+    .signForm .signFormBox.Up
+    {
+        height: 430px;
+        top: calc(50% - 215px);
+    }
+
     .signForm .signFormBox .signText
     {
         font-size: 24px;
         line-height: 24px;
     }
 
-    .inputField.E
+    .inputField.in1
     {
         top: 60;
     }
 
-    .inputField.P
+    .inputField.in2
     {
-        top: 130;
+        top: 140;
+    }
+
+    .inputField.in3
+    {
+        top: 220;
+    }
+
+    .inputField.in4
+    {
+        top: 300;
     }
 
     .signForm .signFormBox .signButton
@@ -1333,6 +1460,11 @@ p, div, h1, h2, h3, h4, h5, h6, i, img
 /*#region Media 500-400 */
 @media screen and (max-width: 500px)
 {
+    .rightClickMenu .rightClickMenuBox
+    {
+        width: 200px;
+    }
+
     .topBarName
     {
         left: 30;
@@ -1450,7 +1582,7 @@ p, div, h1, h2, h3, h4, h5, h6, i, img
     .pageContent .pageContentSection .pageContentSectionList .listBox .bigNumber
     {
         top: calc(50% - 25px);
-        font-size: 30px;
+        font-size: 28px;
         line-height: 25px;
     }
 

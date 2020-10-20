@@ -74,8 +74,9 @@ function signFormPopUp(signFormID)
     document.getElementById(signFormID).style.display = "unset";
 }
 
-function signFormHide(signFormID, emailField, passwordField, emailFieldLabel, passwordFieldLabel)
+function signFormHide(signFormID, emailField, passwordField, emailFieldLabel, passwordFieldLabel, FNField, IDCodeField, FNFieldLabel, IDCodeFieldLabel)
 {
+    document.getElementById("Error invalidFN").style.display = "none";
     document.getElementById("Error invalidEmail").style.display = "none";
     document.getElementById("Error existingEmail").style.display = "none";
     document.getElementById("Error invalidPassword").style.display = "none";
@@ -83,13 +84,27 @@ function signFormHide(signFormID, emailField, passwordField, emailFieldLabel, pa
     document.getElementById("Error nonExistingUser").style.display = "none";
     document.getElementById("Error toManyRequests").style.display = "none";
 
+    try
+    {
+        document.getElementById(FNField).value = "";
+        document.getElementById(IDCodeField).value = "";
+    } catch {}
+
     document.getElementById(emailField).value = "";
     document.getElementById(passwordField).value = "";
 
+    try
+    {
+        document.getElementById(FNField).style.borderBottomColor = "#fefefe";
+        document.getElementById(FNFieldLabel).style.color = "#fefefe80";
+        document.getElementById(IDCodeField).style.borderBottomColor = "#fefefe";
+        document.getElementById(IDCodeFieldLabel).style.color = "#fefefe80";
+    } catch {}
+
     document.getElementById(emailField).style.borderBottomColor = "#fefefe";
-    document.getElementById(emailFieldLabel).style.color = "#fefefe";
+    document.getElementById(emailFieldLabel).style.color = "#fefefe80";
     document.getElementById(passwordField).style.borderBottomColor = "#fefefe";
-    document.getElementById(passwordFieldLabel).style.color = "#fefefe";
+    document.getElementById(passwordFieldLabel).style.color = "#fefefe80";
 
     document.getElementById(signFormID).style.display = "none";
 }
