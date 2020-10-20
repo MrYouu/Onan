@@ -1,0 +1,183 @@
+<!--The HTML code is property to Mr. You (Kristiyan Valchev) and can only be viewed-->
+<!--If you want to use part of the code, please first contact me: mr.youdevelopment@gmail.com-->
+
+<html id = "html">
+    <head>
+        <link href = "https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel = "stylesheet">
+        <link type = "text/css" rel = "stylesheet" href = "Files/Style.css">
+        <link rel = "icon" href = "Images/Logo.png" type = "image" sizes = "16x16">
+
+        <meta charset = "utf-8">
+        <meta name = "description" content = "This is a website for ...">
+        <meta name = "keywords" content = "..., ...">
+        <meta name = "author" content = "Kristiyan Valchev">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        
+        <script type = "text/javascript" src = "Files/Functions.js"></script>
+        <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
+
+        <title id = "Title">Онан - Акаунт</title>  
+    </head>
+
+    <body id = "body" onload = "loadUserData()">
+        <!-- #region Default -->
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+        <script type = "text/javascript" src = "Files/logInForm.js"></script>
+
+        <script>
+            window.scroll(
+            {
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+
+            if (document.addEventListener)
+            {
+                document.addEventListener('contextmenu', function(e)
+                {
+                    document.getElementById("rightClickMenu").style.display = "block";
+                    document.getElementById("rightClickMenuBox").style.top = e.clientY;
+                    document.getElementById("rightClickMenuBox").style.left = e.clientX;
+                    checkIfSelectedText();
+                    e.preventDefault();
+                }, false);
+            }
+            else
+            {
+                document.attachEvent('oncontextmenu', function()
+                {
+                    document.getElementById("rightClickMenu").style.display = "block";
+                    document.getElementById("rightClickMenuBox").style.top = event.clientY;
+                    document.getElementById("rightClickMenuBox").style.left = event.clientX;
+                    checkIfSelectedText();
+                    window.event.returnValue = false;
+                });
+            }
+		</script>
+        <!-- #endregion Default -->
+
+        <div onclick = "closeRightClickMenu()" class = "rightClickMenu" id = "rightClickMenu">
+            <div class = "rightClickMenuBox" id = "rightClickMenuBox">
+                <a href = "javascript:history.go(-1)">Back</a>
+                <a href = "javascript:history.go(+1)">Forword</a>
+                <a href = "javascript:history.go(0)">Reload</a>
+                <div class = "lineDevider"></div>
+                <a onclick = "copySelectedText()" class = "Unactive" id = "rightClickMenuCopyTextButton">Copy text</a>
+            </div>
+        </div>
+
+        <div class = "bigSideBoxHolder" id = "bigSideBoxHolder"><div id = "bigSideBox"></div></div>
+
+        <a href = "indexAccount.html" class = "topBarName" id = "topBarName"><i class = "fas fa-graduation-cap"></i> Онан</a>
+        <a onclick = "openCloseSideMenu()" class = "threeLineButton" id = "sideMenuButton"><div id = "firstLine"></div><div id = "secondLine"></div></a>
+
+        <div class = "sideMenu" id = "sideMenu">
+            <div class = "optionsList">
+                <a href = "#" class = "Active">Начало</a>
+                <a href = "#">Урочно съдържание</a>
+                <a href = "#">Упражнения</a>
+                <a href = "#">Изпитване</a>
+                <a href = "#">Купи & продай</a>
+                <a href = "#">Защо Онан?</a>
+                <a href = "#">Контакти</a>
+            </div>
+
+            <!--<label class = "switch">
+                <input type = "checkbox" id = "darkModeSwitch" onclick = "darkModeToggle()">
+                <span class = "slider round"></span>
+            </label>-->
+        </div>
+
+        <div class = "mainTextsHolder">
+            <h1 class = "mainTitle">Акаунта на <br><name id = "mainTitleUserName">...</name></h1>
+            <p class = "mainText">
+                Това си ти. Може да видиш успеваемостта си и да се похвалиш
+                на останалите, дори да не си с висок резултат
+            </p>
+            <a onclick = "signOut()" class = "mainButtin">Sign out</a>
+        </div>
+
+        <img src = "Images/socialUser.svg" alt = "Boy, looking at a screen" class = "mainImage">
+
+        <div class = "messageHolder">
+            <!-- Correctnesses -->
+            <div class = "correctnessHolder" id = "correctness userSighedUp">
+                <p>Successfully Signed Up!</p>
+            </div>
+            <div class = "correctnessHolder" id = "correctness userSighedIn">
+                <p>Successfully Signed In!</p>
+            </div>
+            <div class = "correctnessHolder" id = "correctness userSighedOut">
+                <p>User Signed Out.</p>
+            </div>
+            <div class = "correctnessHolder" id = "correctness userDataSaved">
+                <p>Information saved Successfully!</p>
+            </div>
+
+            <!-- Errors -->
+            <div class = "errorHolder" id = "Error invalidEmail">
+                <p>The email is invalid.</p>
+            </div>
+            <div class = "errorHolder" id = "Error existingEmail">
+                <p>This email user is already existing.</p>
+            </div>
+            <div class = "errorHolder" id = "Error invalidPassword">
+                <p>The password is invalid. It should be 6 characters long of higher.</p>
+            </div>
+            <div class = "errorHolder" id = "Error invalidFN">
+                <p>The First Name is invalid.</p>
+            </div>
+            <div class = "errorHolder" id = "Error wrongPassword">
+                <p>The password is wrong.</p>
+            </div>
+            <div class = "errorHolder" id = "Error nonExistingUser">
+                <p>There is no user found.</p>
+            </div>
+            <div class = "errorHolder" id = "Error toManyRequests">
+                <p>Access to this account has been temporarily disabled. Try again in 30 seconds.</p>
+            </div>
+            <div class = "errorHolder" id = "Error FNEmailFieladEmpty">
+                <p>You cannot leave First Name and/or Email fields empty. Also, First and Last names cannot exceed 15 characters.</p>
+            </div>
+        </div>
+
+        <div class = "pageContent">
+            <div class = "pageContentSection withButtonEnd">
+                <h1 class = "pageContentSectionTitle">Информация</h1>
+
+                <div class = "inputField">
+                    <input type = "text" placeholder = "First Name" class = "inputFieldText" id = "informationFNInputFieldText">
+                    <label for = "name" class = "inputFieldLabel" id = "informationFNInputFieldLabel">First Name</label>
+                </div>
+                <div class = "inputField">
+                    <input type = "text" placeholder = "Last Name" class = "inputFieldText" id = "informationLNInputFieldText">
+                    <label for = "name" class = "inputFieldLabel" id = "informationLNInputFieldLabel">Last Name</label>
+                </div>
+                <div class = "inputField">
+                    <input type = "number" placeholder = "number" class = "inputFieldText" id = "informationGradeInputFieldText" min = "5" max = "12">
+                    <label for = "name" class = "inputFieldLabel" id = "informationGradeInputFieldLabel">Grade</label>
+                </div>
+                <div class = "inputField">
+                    <input type = "email" placeholder = "email" class = "inputFieldText" id = "informationEmailInputFieldText" disabled>
+                    <label for = "name" class = "inputFieldLabel" id = "informationEmailInputFieldLabel">Email</label>
+                </div>
+
+                <a onclick = "saveChangedUserData()" class = "pageContentSectionButton">Запази</a>
+            </div>
+            
+            <div class = "bottomBar">
+                <div class = "directionButton N"><a href = "index.html" class = "Active">Начало</a></div>
+                <div class = "directionButton Z"><a href = "#">Защо Онан?</a></div>
+                <div class = "directionButton M"><a href = "#">Контакти</a></div>
+    
+                <p class = "Credits">
+                    <powerd>Site powered by <company>Mr. You Development</company>.</powerd>
+                    <managed> Managed by <my>Kristiyan Valchecv</my></managed>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

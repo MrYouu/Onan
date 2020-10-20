@@ -16,13 +16,14 @@
         <script type = "text/javascript" src = "Files/Functions.js"></script>
         <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
 
-        <title>Онан</title>
+        <title id = "Title">Онан</title>
     </head>
 
     <body id = "body">
         <!-- #region Default -->
         <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
         <script type = "text/javascript" src = "Files/logInForm.js"></script>
 
         <script>
@@ -105,11 +106,11 @@
             <div class = "signFormBox">
                 <h1 class = "signText">Sign In</h1>
                 <div onclick = "signFormHide('signInForm', 'signInEmailInputFieldText', 'signInPasswordInputFieldText', 'signInEmailInputFieldLabel', 'signInPasswordInputFieldLabel')" class = "signFormBoxCloseButton"><div></div><div></div></div>
-                <div class = "inputField E">
+                <div class = "inputField in1">
                     <input type = "email" placeholder = "email" class = "inputFieldText" id = "signInEmailInputFieldText">
                     <label for = "name" class = "inputFieldLabel" id = "signInEmailInputFieldLabel">Email</label>
                 </div>
-                <div class = "inputField P">
+                <div class = "inputField in2">
                     <input type = "password" placeholder = "password" class = "inputFieldText" id = "signInPasswordInputFieldText">
                     <label for = "name" class = "inputFieldLabel" id = "signInPasswordInputFieldLabel">Password</label>
                 </div>
@@ -118,14 +119,22 @@
         </div>
 
         <div class = "signForm" id = "signUpForm">
-            <div class = "signFormBox">
+            <div class = "signFormBox Up">
                 <h1 class = "signText">Sign Up</h1>
-                <div onclick = "signFormHide('signUpForm', 'signUpEmailInputFieldText', 'signUpPasswordInputFieldText', 'signUpEmailInputFieldLabel', 'signUpPasswordInputFieldLabel')" class = "signFormBoxCloseButton"><div></div><div></div></div>
-                <div class = "inputField E">
+                <div onclick = "signFormHide('signUpForm', 'signUpEmailInputFieldText', 'signUpPasswordInputFieldText', 'signUpEmailInputFieldLabel', 'signUpPasswordInputFieldLabel', 'signUpFNInputFieldText', 'signUpCodeInputFieldText', 'signUpFNInputFieldLabel', 'signUpCodeInputFieldLabel')" class = "signFormBoxCloseButton"><div></div><div></div></div>
+                <div class = "inputField in1">
+                    <input type = "text" placeholder = "First Name" class = "inputFieldText" id = "signUpFNInputFieldText">
+                    <label for = "name" class = "inputFieldLabel" id = "signUpFNInputFieldLabel">First Name</label>
+                </div>
+                <div class = "inputField in2">
+                    <input type = "text" placeholder = "code" class = "inputFieldText" id = "signUpCodeInputFieldText">
+                    <label for = "name" class = "inputFieldLabel" id = "signUpCodeInputFieldLabel">Code</label>
+                </div>
+                <div class = "inputField in3">
                     <input type = "email" placeholder = "email" class = "inputFieldText" id = "signUpEmailInputFieldText">
                     <label for = "name" class = "inputFieldLabel" id = "signUpEmailInputFieldLabel">Email</label>
                 </div>
-                <div class = "inputField P">
+                <div class = "inputField in4">
                     <input type = "password" placeholder = "password" class = "inputFieldText" id = "signUpPasswordInputFieldText">
                     <label for = "name" class = "inputFieldLabel" id = "signUpPasswordInputFieldLabel">Password</label>
                 </div>
@@ -144,6 +153,9 @@
             <div class = "correctnessHolder" id = "correctness userSighedOut">
                 <p>User Signed Out.</p>
             </div>
+            <div class = "correctnessHolder" id = "correctness userDataSaved">
+                <p>Information saved Successfully!</p>
+            </div>
 
             <!-- Errors -->
             <div class = "errorHolder" id = "Error invalidEmail">
@@ -155,6 +167,9 @@
             <div class = "errorHolder" id = "Error invalidPassword">
                 <p>The password is invalid. It should be 6 characters long of higher.</p>
             </div>
+            <div class = "errorHolder" id = "Error invalidFN">
+                <p>The First Name is invalid.</p>
+            </div>
             <div class = "errorHolder" id = "Error wrongPassword">
                 <p>The password is wrong.</p>
             </div>
@@ -163,6 +178,9 @@
             </div>
             <div class = "errorHolder" id = "Error toManyRequests">
                 <p>Access to this account has been temporarily disabled. Try again in 30 seconds.</p>
+            </div>
+            <div class = "errorHolder" id = "Error FNEmailFieladEmpty">
+                <p>You cannot leave First Name and/or Email fields empty. Also, First and Last names cannot exceed 15 characters.</p>
             </div>
         </div>
 
