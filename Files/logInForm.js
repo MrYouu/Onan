@@ -19,7 +19,6 @@ function signUp()
 {
     var canSignUp;
     var firstName = document.getElementById("signUpFNInputFieldText");
-    var IDCode = document.getElementById("signUpCodeInputFieldText");
     var Email = document.getElementById("signUpEmailInputFieldText");
     var Password = document.getElementById("signUpPasswordInputFieldText");
 
@@ -67,7 +66,8 @@ function signUp()
         
             document.getElementById("correctness userSighedUp").style.display = "block";
             desableElement("correctness userSighedUp", 2.5);
-            signFormHide('signUpForm', 'signUpEmailInputFieldText', 'signUpPasswordInputFieldText', 'signUpEmailInputFieldLabel', 'signUpPasswordInputFieldLabel', 'signUpFNInputFieldText', 'signUpCodeInputFieldText', 'signUpFNInputFieldLabel', 'signUpCodeInputFieldLabel')        }).catch(function(error)
+            signFormHide('signUpForm', 'signUpEmailInputFieldText', 'signUpPasswordInputFieldText', 'signUpEmailInputFieldLabel', 'signUpPasswordInputFieldLabel', 'signUpFNInputFieldText', 'signUpCodeInputFieldText', 'signUpFNInputFieldLabel', 'signUpCodeInputFieldLabel')
+        }).catch(function(error)
         {
             if (error)
             {
@@ -258,7 +258,7 @@ function loadUserData()
                     console.log("Got an Error: " +  error);
                 })
             }
-            else
+            else if (document.getElementById("Title").innerHTML == "Онан - Начало")
             {
                 cloudData.doc("users/" + user.uid).get().then(function(doc)
                 {
@@ -267,14 +267,22 @@ function loadUserData()
                         const userData = doc.data();
                         userFN = userData.firstName;
                         userLN = userData.lastName;
+                        userGrade = userData.Grade;
                         userEmail = userData.Email;
                         
                         document.getElementById("accountButton").innerHTML = userFN;
+
+                        if (userGrade != "")
+                            document.getElementById("gradeList").style.display = "none";
                     }
                 }).catch(function(error)
                 {
                     console.log("Got an Error: " +  error);
                 })
+            }
+            else
+            {
+
             }
         }
         else

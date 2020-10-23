@@ -66,7 +66,8 @@ function setActiveGrade(setActiveGradeBoxID)
     allGradeBoxes[allGradeBoxes.length - 1].className += " Last";
 
     document.getElementById(setActiveGradeBoxID).className += " Active";
-    document.getElementById("afterGradeSelectionButton").className = "pageContentSectionButton"
+    document.getElementById("afterGradeSelectionButton").setAttribute("href", "#");
+    document.getElementById("afterGradeSelectionButton").className = "pageContentSectionButton";
 }
 
 function signFormPopUp(signFormID)

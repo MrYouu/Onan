@@ -17,6 +17,12 @@ body
 
     background-color: #fefefe;/* #fb601e */
     overflow-x: hidden;
+
+    /*user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;*/
 }
 
 /*#region Scrow bar */
@@ -370,6 +376,12 @@ body
     filter: brightness(.9);
 }
 
+.mainButtin.Unavailable, .mainButtin.Unavailable:hover
+{
+    background-color: #fb601e60;
+    filter: brightness(1);
+}
+
 .secondlyButtin
 {
     position: relative;
@@ -434,11 +446,12 @@ body
     height: 100%;
     top: 0;
     left: 0;
-    background-color: #111111c0;
+    background-color: #111111d0;
 
     z-index: 1;
 
     animation: fadeIn .3s ease-out forwards;
+    animation-delay: 0s;
     opacity: 0;
 }
 
@@ -459,8 +472,8 @@ body
 
 .signForm .signFormBox.Up
 {
-    height: 470px;
-    top: calc(50% - 235px);
+    height: 390px;
+    top: calc(50% - 390px / 2);
 }
 
 .signForm .signFormBox .signFormBoxCloseButton
@@ -1197,6 +1210,19 @@ p, div, h1, h2, h3, h4, h5, h6, i, img
 }
 
 /*#region Animations */
+@keyframes slideUp
+{
+    0%
+    {
+        transform: translateY(100%);
+    }
+
+    100%
+    {
+        transform: translateY(0%);
+    }
+}
+
 @keyframes popUp
 {
     0%
@@ -1404,22 +1430,36 @@ p, div, h1, h2, h3, h4, h5, h6, i, img
 {
     .signForm .signFormBox
     {
-        width: calc(100% - 60px);
-        height: 270px;
-        top: calc(50% - 135px);
-        left: 30;
+        width: 100%;
+        height: 50%;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        animation: slideUp .3s ease-out forwards;
+        transform: translateY(100%);
+        opacity: 1;
     }
 
+    
     .signForm .signFormBox.Up
     {
-        height: 430px;
-        top: calc(50% - 215px);
+        height: calc(50% + 80px);
+        top: auto;
+        bottom: 0;
     }
 
     .signForm .signFormBox .signText
     {
         font-size: 24px;
         line-height: 24px;
+    }
+
+    .signForm .signFormBox .signFormBoxText
+    {
+        top: 210;
     }
 
     .inputField.in1
@@ -1444,10 +1484,18 @@ p, div, h1, h2, h3, h4, h5, h6, i, img
 
     .signForm .signFormBox .signButton
     {
-        bottom: 10;
+        width: calc(100% - 30px);
+        bottom: 15;
+        left: 15;
         font-size: 20px;
         line-height: 20px;
         padding: 8px 0px;
+    }
+
+    .inputField
+    {
+        width: calc(100% - 30px);
+        left: 15;
     }
 }
 
