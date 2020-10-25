@@ -9,6 +9,10 @@ function openCloseSideMenu()
     var firstLine = document.getElementById("firstLine");
     var secondLine = document.getElementById("secondLine");
 
+    var dropdownList01 = document.getElementById("урочноСъдържаниеList");
+    var dropdownList02 = document.getElementById("упражненияList");
+    var dropdownList03 = document.getElementById("изпитванеList");
+
     if (sideMenuState == 0)
     {
         document.getElementById("topBarName").style.color = "#fefefe";
@@ -36,8 +40,20 @@ function openCloseSideMenu()
         bigSideBox.style.transform = "rotate(-50deg)";
         document.getElementById("sideMenuButton").innerHTML = '<div id = "firstLine"></div><div id = "secondLine"></div>';
 
+        dropdownList01.style.display = "none";
+        dropdownList02.style.display = "none";
+        dropdownList03.style.display = "none";
+
         sideMenuState = 0;
     }
+}
+
+function openCloseSideMenuDropdown(sideMenuDropdownID)
+{
+    if (document.getElementById(sideMenuDropdownID).getAttribute("style") == "display: inline-block;")
+        document.getElementById(sideMenuDropdownID).style.display = "none";
+    else if (document.getElementById(sideMenuDropdownID).getAttribute("style") == "display: none;" || document.getElementById(sideMenuDropdownID).getAttribute("style") == null)
+        document.getElementById(sideMenuDropdownID).style.display = "inline-block";
 }
 
 window.onscroll = function(e)
@@ -52,6 +68,10 @@ window.onscroll = function(e)
     bigSideBox.style.transform = "rotate(-50deg)";
     document.getElementById("sideMenuButton").innerHTML = '<div id = "firstLine"></div><div id = "secondLine"></div>';
 
+    document.getElementById("урочноСъдържаниеList").style.display = "none";
+    document.getElementById("упражненияList").style.display = "none";
+    document.getElementById("изпитванеList").style.display = "none";
+
     sideMenuState = 0;
 
     closeRightClickMenu();
@@ -59,6 +79,9 @@ window.onscroll = function(e)
 
 function setActiveGrade(setActiveGradeBoxID)
 {
+    var gradePath = "урочноСъдържание/" + setActiveGradeBoxID.toString() + ".html";
+    console.log(gradePath);
+    
     var allGradeBoxes = document.getElementsByClassName("listBox");
     for (i = 0; i < allGradeBoxes.length; i++)
         allGradeBoxes[i].className = "listBox";
@@ -66,7 +89,7 @@ function setActiveGrade(setActiveGradeBoxID)
     allGradeBoxes[allGradeBoxes.length - 1].className += " Last";
 
     document.getElementById(setActiveGradeBoxID).className += " Active";
-    document.getElementById("afterGradeSelectionButton").setAttribute("href", "#");
+    document.getElementById("afterGradeSelectionButton").setAttribute("href", gradePath);
     document.getElementById("afterGradeSelectionButton").className = "pageContentSectionButton";
 }
 

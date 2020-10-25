@@ -249,66 +249,26 @@ body
     color: #fb601e;
 }
 
-.sideMenu .switch
+.sideMenu .sideMenuDropdown
 {
-    float: right;
-    position: absolute;
-    width: 60px;
-    height: 34px;
-    bottom: 10;
-    right: 30;
-}
-
-.sideMenu .switch input
-{ 
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.sideMenu .switch .slider
-{
-    position: absolute;
-    cursor: pointer;
+    display: none;
+    position: relative;
+    width: 100%;
+    height: auto;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #fb601e;
-    border-radius: 34px;
-    -webkit-transition: .4s;
-    transition: .4s;
+    background-color: #f1e8f5;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    
+    animation: sideMenuDropdownAnimation .5s ease-out forwards;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 }
-  
-.sideMenu .switch .slider:before
+
+.sideMenu .sideMenuDropdown a
 {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: #fefefe;
-    border-radius: 50%;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-  
-.sideMenu .switch input:checked + .slider
-{
-    background-color: #a089cd;
-}
-  
-.sideMenu .switch input:focus + .slider
-{
-    box-shadow: 0 0 1px #a089cd;
-}
-  
-.sideMenu .switch input:checked + .slider:before
-{
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    left: 50;
 }
 /*#endregion Side menu */
 
@@ -764,6 +724,7 @@ body
     opacity: 0;
 }
 
+/*#region Table */
 .pageContent .pageContentSection .pageContentSectionTable
 {
     position: relative;
@@ -771,6 +732,9 @@ body
     top: 0;
     left: 30;
     border-collapse: collapse;
+    animation: dropDown .5s ease-out forwards 1.2s;
+    transform: translateY(-50px);
+    opacity: 0;
 }
 
 .pageContent .pageContentSection .pageContentSectionTable .pageContentSectionTableLine.Last th
@@ -816,6 +780,7 @@ body
 {
     color: #111111a0;
 }
+/*#endregion Table */
 
 .pageContent .pageContentSection .pageContentSectionText linkText
 {
@@ -921,6 +886,7 @@ body
     filter: brightness(.9);
 }
 
+/*#region List */
 .pageContent .pageContentSection .pageContentSectionList
 {
     position: relative;
@@ -1020,7 +986,9 @@ body
 
     z-index: 0;
 }
+/*#endregion List */
 
+/*#region Input field */
 .pageContent .pageContentSection .inputField
 {
     position: relative;
@@ -1094,6 +1062,7 @@ body
 {
     box-shadow: none;
 }
+/*#endregion Input field */
 
 .pageContent .pageContentSection .signForm .signFormBox .signButton
 {
@@ -1130,6 +1099,10 @@ body
     overflow-y: hidden;
     white-space: nowrap;
     margin-bottom: 100px;
+
+    animation: dropDown .5s ease-out forwards 1.1s;
+    transform: translateY(-50px);
+    opacity: 0;
 }
 
 .scrollSectionHolder.Top
@@ -1137,6 +1110,10 @@ body
     display: none;
     position: absolute;
     top: 450;
+
+    animation: dropDown .5s ease-out forwards .9s;
+    transform: translateY(-50px);
+    opacity: 0;
 }
 
 .scrollSectionHolder::-webkit-scrollbar
@@ -1323,6 +1300,21 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th
 }
 
 /*#region Animations */
+@keyframes sideMenuDropdownAnimation
+{
+    0%
+    {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    100%
+    {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
 @keyframes slideUp
 {
     0%
