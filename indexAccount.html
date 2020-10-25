@@ -76,19 +76,35 @@
 
         <div class = "sideMenu" id = "sideMenu">
             <div class = "optionsList">
-                <a href = "#" class = "Active">Начало</a>
-                <a href = "#">Урочно съдържание</a>
-                <a href = "#">Упражнения</a>
-                <a href = "#">Изпитване</a>
-                <a href = "#">Купи & продай</a>
-                <a href = "#">Защо Онан?</a>
-                <a href = "#">Контакти</a>
+                <a href = "indexAccount.html" class = "sideMenuOption Active">Начало</a>
+                <a onclick = "openCloseSideMenuDropdown('урочноСъдържаниеList')" class = "sideMenuOption">Урочно съдържание</a>
+                <div class = "sideMenuDropdown" id = "урочноСъдържаниеList">
+                    <a href = "урочноСъдържание/Клас5.html" class = "sideMenuDropdownOption">5-ти клас</a>
+                    <a href = "урочноСъдържание/Клас6.html" class = "sideMenuDropdownOption">6-ти клас</a>
+                    <a href = "урочноСъдържание/Клас7.html" class = "sideMenuDropdownOption">7-ми клас</a>
+                    <a href = "урочноСъдържание/Клас8.html" class = "sideMenuDropdownOption">8-ми клас</a>
+                    <a href = "урочноСъдържание/Клас9.html" class = "sideMenuDropdownOption">9-ти клас</a>
+                    <a href = "урочноСъдържание/Клас10.html" class = "sideMenuDropdownOption">10-ти клас</a>
+                    <a href = "урочноСъдържание/Клас11.html" class = "sideMenuDropdownOption">11-ти клас</a>
+                    <a href = "урочноСъдържание/Клас12.html" class = "sideMenuDropdownOption">12-ти клас</a>
+                </div>
+                <a href = "#" class = "sideMenuOption">Научи нещо ново</a>
+                <a onclick = "openCloseSideMenuDropdown('упражненияList')" class = "sideMenuOption">Упражнения</a>
+                <div class = "sideMenuDropdown" id = "упражненияList">
+                    <a href = "#" class = "sideMenuDropdownOption">Български език</a>
+                    <a href = "#" class = "sideMenuDropdownOption">Литератута</a>
+                    <a href = "#" class = "sideMenuDropdownOption">Общо</a>
+                </div>
+                <a onclick = "openCloseSideMenuDropdown('изпитванеList')" class = "sideMenuOption">Изпитване</a>
+                <div class = "sideMenuDropdown" id = "изпитванеList">
+                    <a href = "#" class = "sideMenuDropdownOption">Български език</a>
+                    <a href = "#" class = "sideMenuDropdownOption">Литератута</a>
+                    <a href = "#" class = "sideMenuDropdownOption">Общо</a>
+                </div>
+                <a href = "#" class = "sideMenuOption">Купи & продай</a>
+                <a href = "#" class = "sideMenuOption">Защо Онан?</a>
+                <a href = "#" class = "sideMenuOption">Контакти</a>
             </div>
-
-            <!--<label class = "switch">
-                <input type = "checkbox" id = "darkModeSwitch" onclick = "darkModeToggle()">
-                <span class = "slider round"></span>
-            </label>-->
         </div>
 
         <div class = "mainTextsHolder">
@@ -292,7 +308,7 @@
             </div>
 
             <div class = "bottomBar">
-                <div class = "directionButton N"><a href = "index.html" class = "Active">Начало</a></div>
+                <div class = "directionButton N"><a href = "indexAccount.html" class = "Active">Начало</a></div>
                 <div class = "directionButton Z"><a href = "#">Защо Онан?</a></div>
                 <div class = "directionButton M"><a href = "#">Контакти</a></div>
     
