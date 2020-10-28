@@ -181,6 +181,140 @@ function copySelectedText()
     else document.getElementById("rightClickMenuCopyTextButton").className = "Unactive";
 }
 
+function timerCheckBoxChange()
+{
+    if (document.getElementById("timerCheckBox").hasAttribute("checked"))
+    {
+        document.getElementById("timerCheckBox").removeAttribute("checked")
+        document.getElementById("pageContentSectionRadioList").className = "pageContentSectionRadioList Unavailable";
+        document.getElementById("radio30Sek").setAttribute("disabled", "D")
+        document.getElementById("radio60Sek").setAttribute("disabled", "D")
+        document.getElementById("radio120Sek").setAttribute("disabled", "D")
+        document.getElementById("radio180Sek").setAttribute("disabled", "D")
+    }
+    else if (!document.getElementById("timerCheckBox").hasAttribute("checked"))
+    {
+        document.getElementById("timerCheckBox").setAttribute("checked", "checked")
+        document.getElementById("pageContentSectionRadioList").className = "pageContentSectionRadioList";
+        document.getElementById("radio30Sek").removeAttribute("disabled");
+        document.getElementById("radio60Sek").removeAttribute("disabled");
+        document.getElementById("radio120Sek").removeAttribute("disabled");
+        document.getElementById("radio180Sek").removeAttribute("disabled");
+    }
+}
+
+var maxQuestionsNumber = 4;
+function startTest(questionNumberID, Path, endTestTitle)
+{
+    var questionNumber = document.getElementById(questionNumberID).value;
+    
+    if (questionNumber < 5) sessionStorage.setItem("questionNumber", 5);
+    else if (questionNumber > 30) sessionStorage.setItem("questionNumber", 30);
+    else sessionStorage.setItem("questionNumber", questionNumber);
+
+    sessionStorage.setItem("currentQuestions", 0);
+    sessionStorage.setItem("endTestTitle", endTestTitle);
+
+    location.replace(Path);
+}
+
+function loadTestData()
+{
+    var questionNumber = sessionStorage.getItem("questionNumber");
+    var currentQuestions = sessionStorage.getItem("currentQuestions");
+
+    if (questionNumber != null && currentQuestions == 0)
+    {
+        var Data = dataList;
+    
+        currentQuestions++;
+        
+        var questionID = Math.floor((Math.random() * maxQuestionsNumber) + 1);
+        document.getElementById("Question").innerHTML = Data[questionID - 1]["Question"];
+        document.getElementById("AnswerA").innerHTML = Data[questionID - 1]["AnswerA"];
+        document.getElementById("AnswerB").innerHTML = Data[questionID - 1]["AnswerB"];
+        document.getElementById("AnswerC").innerHTML = Data[questionID - 1]["AnswerC"];
+        document.getElementById("AnswerD").innerHTML = Data[questionID - 1]["AnswerD"];
+
+        document.getElementById("testQuestionNumberTextInd").innerHTML = currentQuestions;
+        document.getElementById("maximumTestQuestionsTextInd").innerHTML = questionNumber;
+        sessionStorage.setItem("currentQuestions", currentQuestions);
+        sessionStorage.setItem("rightAnswer", Data[questionID - 1]["rightAnswer"]);
+        sessionStorage.setItem("rightAnswersCounter", 0);
+    }
+    else
+    {
+        clearTestData();
+        location.replace("../Упражнения/БългарскиЕзик.html");
+    }
+}
+
+function nextQuestion()
+{
+    var Data = dataList;
+    var questionNumber = sessionStorage.getItem("questionNumber");
+    var currentQuestions = sessionStorage.getItem("currentQuestions");
+    var rightAnswer = sessionStorage.getItem("rightAnswer");
+    var rightAnswersCounter = sessionStorage.getItem("rightAnswersCounter");
+    var checkedAnwer = null;
+    
+    if (currentQuestions < questionNumber)
+    {
+        if (document.getElementById("AnswerAInput").checked)
+            checkedAnwer = "AnswerA";
+        else if (document.getElementById("AnswerBInput").checked)
+            checkedAnwer = "AnswerB";
+        else if (document.getElementById("AnswerCInput").checked)
+            checkedAnwer = "AnswerC";
+        else if (document.getElementById("AnswerDInput").checked)
+            checkedAnwer = "AnswerD";
+        
+        if (checkedAnwer != null)
+        {
+            if (checkedAnwer == rightAnswer)
+            {
+                rightAnswersCounter++;
+                sessionStorage.setItem("rightAnswersCounter", rightAnswersCounter);
+            }
+
+            var questionID = Math.floor((Math.random() * maxQuestionsNumber) + 1);
+            document.getElementById("Question").innerHTML = Data[questionID - 1]["Question"];
+            document.getElementById("AnswerA").innerHTML = Data[questionID - 1]["AnswerA"];
+            document.getElementById("AnswerB").innerHTML = Data[questionID - 1]["AnswerB"];
+            document.getElementById("AnswerC").innerHTML = Data[questionID - 1]["AnswerC"];
+            document.getElementById("AnswerD").innerHTML = Data[questionID - 1]["AnswerD"];
+
+            document.getElementById("AnswerAInput").checked = false;
+            document.getElementById("AnswerBInput").checked = false;
+            document.getElementById("AnswerCInput").checked = false;
+            document.getElementById("AnswerDInput").checked = false;
+            checkedAnwer = null;
+    
+            currentQuestions++;
+            document.getElementById("testQuestionNumberTextInd").innerHTML = currentQuestions;
+            sessionStorage.setItem("currentQuestions", currentQuestions);
+            sessionStorage.setItem("rightAnswer", Data[questionID - 1]["rightAnswer"]);
+        }
+    }
+    else
+    {
+        sessionStorage.setItem("testFinished", "true");
+        location.replace("тестРезултат.html")
+    }
+}
+
+function clearTestData()
+{
+    sessionStorage.removeItem("questionNumber");
+    sessionStorage.removeItem("currentQuestions");
+    sessionStorage.removeItem("haveQuestuneTime");
+    sessionStorage.removeItem("questionTime");
+    sessionStorage.removeItem("rightAnswer");
+    sessionStorage.removeItem("testFinished");
+    sessionStorage.removeItem("rightAnswersCounter");
+    sessionStorage.removeItem("endTestTitle");
+}
+
 function defaultFunction()
 {
 
