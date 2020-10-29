@@ -163,6 +163,11 @@ body.Flicker
     margin-right: 10px;
 }
 
+.topBarName.Test i
+{
+    color: #111111;
+}
+
 .threeLineButton
 {
     position: absolute;
@@ -213,7 +218,7 @@ body.Flicker
     font-size: 32px;
     font-weight: 900;
     line-height: 32px;
-    color: #fefefe;
+    color: #111111;
 }
 /*#endregion Top bar */
 
@@ -1306,7 +1311,7 @@ body.Flicker
     height: auto;
     top: 0;
     left: 120;
-    background-color: #f5f3f9;
+    background-color: #f5f3f9f0;
     border-radius: 30px;
     margin-bottom: 100px;
     padding-bottom: 70px;
@@ -1449,6 +1454,43 @@ body.Flicker
 {
     filter: brightness(.9);
 }
+
+/*#region Waves */
+.wrapper
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to top, red 0%, #ff6600 50%);
+    overflow: hidden;
+}
+  
+.wave
+{
+    position: absolute;
+    width: 2450px;
+    height: 2200px;
+    top: -1200;
+    left: calc(50% - 1100px);
+    border-radius: 35%;
+    background-color: #fefefe;
+    animation: wave 15s infinite linear, timerAnimation 30s infinite linear;
+}
+  
+@keyframes wave
+{
+    from { transform: rotate(0deg); }
+    from { transform: rotate(360deg); }
+}
+
+@keyframes timerAnimation
+{
+    from { top: -1200; }
+    to { top: -2400; }
+}
+/*#endregion Waves */
 
 .resultContent
 {

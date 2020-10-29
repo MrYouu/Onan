@@ -203,26 +203,49 @@ function timerCheckBoxChange()
     }
 }
 
-var maxQuestionsNumber = 4;
-function startTest(questionNumberID, Path, endTestTitle)
+function checkTimerCheckBox()
 {
+    if (document.getElementById("timerBoolCheckBox").checked)
+    {
+        document.getElementById("questionsTimeInputField").className = "inputField";
+        document.getElementById("questionsTimeInputFieldText").removeAttribute("disabled");
+    }
+    else
+    {
+        document.getElementById("questionsTimeInputField").className = "inputField Unavailable";
+        document.getElementById("questionsTimeInputFieldText").setAttribute("disabled", "D");
+    }
+}
+
+var maxQuestionsNumber = 4;
+function startBGTest(questionTimerBoolID, questionTimeID, questionNumberID, endTestTitle)
+{
+    var questionTime = document.getElementById(questionTimeID).value;
     var questionNumber = document.getElementById(questionNumberID).value;
     
+    if (questionTime < 30) sessionStorage.setItem("questionTime", 30);
+    else if (questionTime > 180) sessionStorage.setItem("questionTime", 180);
+    else sessionStorage.setItem("questionTime", questionTime);
+
     if (questionNumber < 5) sessionStorage.setItem("questionNumber", 5);
     else if (questionNumber > 30) sessionStorage.setItem("questionNumber", 30);
     else sessionStorage.setItem("questionNumber", questionNumber);
 
+    if (document.getElementById(questionTimerBoolID).checked) sessionStorage.setItem("haveQuestionTimer", 1);
+    else sessionStorage.setItem("haveQuestionTimer", 0);
     sessionStorage.setItem("currentQuestions", 0);
     sessionStorage.setItem("endTestTitle", endTestTitle);
 
-    location.replace(Path);
+    location.replace("../Тест/ТестБългарскиЕзик.html");
 }
 
 function loadTestData()
 {
+    var haveQuestionTimer = sessionStorage.getItem("haveQuestionTimer");
+    var questionTime = sessionStorage.getItem("questionTime");
     var questionNumber = sessionStorage.getItem("questionNumber");
     var currentQuestions = sessionStorage.getItem("currentQuestions");
-
+    
     if (questionNumber != null && currentQuestions == 0)
     {
         var Data = dataList;
@@ -238,9 +261,21 @@ function loadTestData()
 
         document.getElementById("testQuestionNumberTextInd").innerHTML = currentQuestions;
         document.getElementById("maximumTestQuestionsTextInd").innerHTML = questionNumber;
+
         sessionStorage.setItem("currentQuestions", currentQuestions);
         sessionStorage.setItem("rightAnswer", Data[questionID - 1]["rightAnswer"]);
         sessionStorage.setItem("rightAnswersCounter", 0);
+
+        if (haveQuestionTimer == 0)
+            document.getElementById("waveHolder").style.display = "none";
+        else
+        {
+            document.getElementById("Wave").style.animation = "wave 15s infinite linear, timerAnimation " + questionTime.toString() + "s infinite linear";
+            Timer = setTimeout(function()
+            {
+                nextQuestion();
+            }, questionTime * 1000);
+        }
     }
     else
     {
@@ -249,70 +284,80 @@ function loadTestData()
     }
 }
 
+var Timer;
 function nextQuestion()
 {
-    var Data = dataList;
+    var haveQuestionTimer = sessionStorage.getItem("haveQuestionTimer");
+    var questionTime = sessionStorage.getItem("questionTime");
     var questionNumber = sessionStorage.getItem("questionNumber");
     var currentQuestions = sessionStorage.getItem("currentQuestions");
     var rightAnswer = sessionStorage.getItem("rightAnswer");
     var rightAnswersCounter = sessionStorage.getItem("rightAnswersCounter");
-    var checkedAnwer = null;
-    
-    if (currentQuestions < questionNumber)
+
+    clearTimeout(Timer);
+
+    if (currentQuestions == questionNumber)
     {
-        if (document.getElementById("AnswerAInput").checked)
-            checkedAnwer = "AnswerA";
-        else if (document.getElementById("AnswerBInput").checked)
-            checkedAnwer = "AnswerB";
-        else if (document.getElementById("AnswerCInput").checked)
-            checkedAnwer = "AnswerC";
-        else if (document.getElementById("AnswerDInput").checked)
-            checkedAnwer = "AnswerD";
-        
-        if (checkedAnwer != null)
-        {
-            if (checkedAnwer == rightAnswer)
-            {
-                rightAnswersCounter++;
-                sessionStorage.setItem("rightAnswersCounter", rightAnswersCounter);
-            }
-
-            var questionID = Math.floor((Math.random() * maxQuestionsNumber) + 1);
-            document.getElementById("Question").innerHTML = Data[questionID - 1]["Question"];
-            document.getElementById("AnswerA").innerHTML = Data[questionID - 1]["AnswerA"];
-            document.getElementById("AnswerB").innerHTML = Data[questionID - 1]["AnswerB"];
-            document.getElementById("AnswerC").innerHTML = Data[questionID - 1]["AnswerC"];
-            document.getElementById("AnswerD").innerHTML = Data[questionID - 1]["AnswerD"];
-
-            document.getElementById("AnswerAInput").checked = false;
-            document.getElementById("AnswerBInput").checked = false;
-            document.getElementById("AnswerCInput").checked = false;
-            document.getElementById("AnswerDInput").checked = false;
-            checkedAnwer = null;
-    
-            currentQuestions++;
-            document.getElementById("testQuestionNumberTextInd").innerHTML = currentQuestions;
-            sessionStorage.setItem("currentQuestions", currentQuestions);
-            sessionStorage.setItem("rightAnswer", Data[questionID - 1]["rightAnswer"]);
-        }
+        if (sessionStorage.getItem("canTestEnd") == 1)
+            location.replace("../Тест/тестРезултат.html");
     }
     else
     {
-        sessionStorage.setItem("testFinished", "true");
-        location.replace("тестРезултат.html")
+        if (haveQuestionTimer == 1)
+        {
+            document.getElementById("Wave").style.animation = "none";
+            setTimeout(function()
+            {
+                document.getElementById("Wave").style.animation = "wave 15s infinite linear, timerAnimation " + questionTime.toString() + "s infinite linear";
+            }, 100);
+
+            Timer = setTimeout(function()
+            {
+                nextQuestion();
+            }, questionTime * 1000);
+        }
+
+        if (document.getElementById("AnswerAInput").checked && rightAnswer == "AnswerA") rightAnswersCounter++;
+        else if (document.getElementById("AnswerBInput").checked && rightAnswer == "AnswerB") rightAnswersCounter++;
+        else if (document.getElementById("AnswerCInput").checked && rightAnswer == "AnswerC") rightAnswersCounter++;
+        else if (document.getElementById("AnswerDInput").checked && rightAnswer == "AnswerD") rightAnswersCounter++;
+
+        document.getElementById("AnswerAInput").checked = false;
+        document.getElementById("AnswerBInput").checked = false;
+        document.getElementById("AnswerCInput").checked = false;
+        document.getElementById("AnswerDInput").checked = false;
+
+        var Data = dataList;
+
+        currentQuestions++;
+
+        var questionID = Math.floor((Math.random() * maxQuestionsNumber) + 1);
+        document.getElementById("Question").innerHTML = Data[questionID - 1]["Question"];
+        document.getElementById("AnswerA").innerHTML = Data[questionID - 1]["AnswerA"];
+        document.getElementById("AnswerB").innerHTML = Data[questionID - 1]["AnswerB"];
+        document.getElementById("AnswerC").innerHTML = Data[questionID - 1]["AnswerC"];
+        document.getElementById("AnswerD").innerHTML = Data[questionID - 1]["AnswerD"];
+
+        document.getElementById("testQuestionNumberTextInd").innerHTML = currentQuestions;
+
+        sessionStorage.setItem("currentQuestions", currentQuestions);
+        sessionStorage.setItem("rightAnswer", Data[questionID - 1]["rightAnswer"]);
+        sessionStorage.setItem("rightAnswersCounter", rightAnswersCounter);
+
+        if (currentQuestions == questionNumber) sessionStorage.setItem("canTestEnd", 1);
     }
 }
 
 function clearTestData()
 {
+    sessionStorage.removeItem("haveQuestionTimer");
+    sessionStorage.removeItem("questionTime");
     sessionStorage.removeItem("questionNumber");
     sessionStorage.removeItem("currentQuestions");
-    sessionStorage.removeItem("haveQuestuneTime");
-    sessionStorage.removeItem("questionTime");
     sessionStorage.removeItem("rightAnswer");
-    sessionStorage.removeItem("testFinished");
     sessionStorage.removeItem("rightAnswersCounter");
     sessionStorage.removeItem("endTestTitle");
+    sessionStorage.removeItem("canTestEnd");
 }
 
 function defaultFunction()
