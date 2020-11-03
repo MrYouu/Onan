@@ -8,8 +8,8 @@
         <link rel = "icon" href = "Images/Logo.png" type = "image" sizes = "16x16">
 
         <meta charset = "utf-8">
-        <meta name = "description" content = "This is a website for ...">
-        <meta name = "keywords" content = "..., ...">
+        <meta name = "description" content = "Образователна платформа за упражнение и обучение по български език и литература. А кой е Онан? Ела да разбереш.">
+        <meta name = "keywords" content = "Български, Език, Литература, Упражнения, Уптажнение, Тест, Тестове, Изпит, Изпитване, Онан, Учи, Учене, Образование, Купи, Продай, Стари, Учебници, Стар, Учебник, Магазин, Учебна, Ученик">
         <meta name = "author" content = "Kristiyan Valchev">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         
@@ -25,6 +25,8 @@
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
         <script type = "text/javascript" src = "Files/logInForm.js"></script>
+
+        <img src = "Images/Thumbnails/Main.png" alt = "Link image" style = "display: none;">
 
         <script>
             window.scroll(
@@ -79,27 +81,21 @@
                 <a href = "indexAccount.html" class = "sideMenuOption Active">Начало</a>
                 <a onclick = "openCloseSideMenuDropdown('урочноСъдържаниеList')" class = "sideMenuOption">Урочно съдържание</a>
                 <div class = "sideMenuDropdown" id = "урочноСъдържаниеList">
-                    <a href = "урочноСъдържание/Клас5.html" class = "sideMenuDropdownOption">5-ти клас</a>
-                    <a href = "урочноСъдържание/Клас6.html" class = "sideMenuDropdownOption">6-ти клас</a>
-                    <a href = "урочноСъдържание/Клас7.html" class = "sideMenuDropdownOption">7-ми клас</a>
-                    <a href = "урочноСъдържание/Клас8.html" class = "sideMenuDropdownOption">8-ми клас</a>
-                    <a href = "урочноСъдържание/Клас9.html" class = "sideMenuDropdownOption">9-ти клас</a>
-                    <a href = "урочноСъдържание/Клас10.html" class = "sideMenuDropdownOption">10-ти клас</a>
-                    <a href = "урочноСъдържание/Клас11.html" class = "sideMenuDropdownOption">11-ти клас</a>
-                    <a href = "урочноСъдържание/Клас12.html" class = "sideMenuDropdownOption">12-ти клас</a>
+                    <a href = "schoolProgram/Class5.html" class = "sideMenuDropdownOption">5-ти клас</a>
+                    <a href = "schoolProgram/Class6.html" class = "sideMenuDropdownOption">6-ти клас</a>
+                    <a href = "schoolProgram/Class7.html" class = "sideMenuDropdownOption">7-ми клас</a>
+                    <a href = "schoolProgram/Class8.html" class = "sideMenuDropdownOption">8-ми клас</a>
+                    <a href = "schoolProgram/Class9.html" class = "sideMenuDropdownOption">9-ти клас</a>
+                    <a href = "schoolProgram/Class10.html" class = "sideMenuDropdownOption">10-ти клас</a>
+                    <a href = "schoolProgram/Class11.html" class = "sideMenuDropdownOption">11-ти клас</a>
+                    <a href = "schoolProgram/Class12.html" class = "sideMenuDropdownOption">12-ти клас</a>
                 </div>
                 <a href = "#" class = "sideMenuOption">Научи нещо ново</a>
-                <a onclick = "openCloseSideMenuDropdown('упражненияList')" class = "sideMenuOption">Упражнения</a>
-                <div class = "sideMenuDropdown" id = "упражненияList">
-                    <a href = "Упражнения/БългарскиЕзик.html" class = "sideMenuDropdownOption">Български език</a>
-                    <a href = "Упражнения/Литература.html" class = "sideMenuDropdownOption">Литератута</a>
-                    <a href = "Упражнения/БългарскиЕзикИЛитература.html" class = "sideMenuDropdownOption">Общо</a>
-                </div>
                 <a onclick = "openCloseSideMenuDropdown('изпитванеList')" class = "sideMenuOption">Изпитване</a>
                 <div class = "sideMenuDropdown" id = "изпитванеList">
-                    <a href = "#" class = "sideMenuDropdownOption">Български език</a>
-                    <a href = "#" class = "sideMenuDropdownOption">Литератута</a>
-                    <a href = "#" class = "sideMenuDropdownOption">Общо</a>
+                    <a href = "Task/bulgarianLanguage.html" class = "sideMenuDropdownOption">Български език</a>
+                    <a href = "Task/Literature.html" class = "sideMenuDropdownOption">Литератута</a>
+                    <a href = "Task/commonTest.html" class = "sideMenuDropdownOption">Общо</a>
                 </div>
                 <a href = "#" class = "sideMenuOption">Купи & продай</a>
                 <a href = "#" class = "sideMenuOption">Защо Онан?</a>
@@ -207,8 +203,8 @@
                     и да прочетеш набързо резюмираните версии на произведенията.
                 </p>
                 <div class = "pageContentSectionList">
-                    <a onclick = "setActiveGrade('Клас5')">
-                        <div class = "listBox" id = "Клас5">
+                    <a onclick = "setActiveGrade('Class5')">
+                        <div class = "listBox" id = "Class5">
                             <h1 class = "bigNumber">5-ти клас</h1>
                             <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 1440 320" id = "svg02">
                                 <path fill-opacity = "1" d = "M0,128L26.7,122.7C53.3,117,107,107,160,101.3C213.3,96,267,96,320,85.3C373.3,75,427,53,480,64C533.3,75,587,117,640,128C693.3,139,747,117,800,128C853.3,139,907,181,960,192C1013.3,203,1067,181,1120,176C1173.3,171,1227,181,1280,176C1333.3,171,1387,149,1413,138.7L1440,128L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z" data-darkreader-inline-fill = "" style = "--darkreader-inline-fill:#fb601e20;"></path>
@@ -219,8 +215,8 @@
                         </div>
                     </a>
 
-                    <a onclick = "setActiveGrade('Клас6')">
-                        <div class = "listBox" id = "Клас6">
+                    <a onclick = "setActiveGrade('Class6')">
+                        <div class = "listBox" id = "Class6">
                             <h1 class = "bigNumber">6-ти клас</h1>
                             <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 1440 320" id = "svg02">
                                 <path fill-opacity = "1" d = "M0,128L26.7,138.7C53.3,149,107,171,160,160C213.3,149,267,107,320,96C373.3,85,427,107,480,133.3C533.3,160,587,192,640,192C693.3,192,747,160,800,170.7C853.3,181,907,235,960,234.7C1013.3,235,1067,181,1120,138.7C1173.3,96,1227,64,1280,96C1333.3,128,1387,224,1413,272L1440,320L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z" data-darkreader-inline-fill = "" style = "--darkreader-inline-fill:#fb601e20;"></path>
@@ -231,8 +227,8 @@
                         </div>
                     </a>
 
-                    <a onclick = "setActiveGrade('Клас7')">
-                        <div class = "listBox" id = "Клас7">
+                    <a onclick = "setActiveGrade('Class7')">
+                        <div class = "listBox" id = "Class7">
                             <h1 class = "bigNumber">7-ми клас</h1>
                             <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 1440 320" id = "svg02">
                                 <path fill-opacity = "1" d = "M0,32L26.7,80C53.3,128,107,224,160,224C213.3,224,267,128,320,117.3C373.3,107,427,181,480,202.7C533.3,224,587,192,640,197.3C693.3,203,747,245,800,256C853.3,267,907,245,960,213.3C1013.3,181,1067,139,1120,149.3C1173.3,160,1227,224,1280,213.3C1333.3,203,1387,117,1413,74.7L1440,32L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z" data-darkreader-inline-fill = "" style = "--darkreader-inline-fill:#fb601e20;"></path>
@@ -243,8 +239,8 @@
                         </div>
                     </a>
 
-                    <a onclick = "setActiveGrade('Клас8')">
-                        <div class = "listBox" id = "Клас8">
+                    <a onclick = "setActiveGrade('Class8')">
+                        <div class = "listBox" id = "Class8">
                             <h1 class = "bigNumber">8-ми клас</h1>
                             <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 1440 320" id = "svg02">
                                 <path fill-opacity = "1" d = "M0,128L26.7,122.7C53.3,117,107,107,160,101.3C213.3,96,267,96,320,85.3C373.3,75,427,53,480,64C533.3,75,587,117,640,128C693.3,139,747,117,800,128C853.3,139,907,181,960,192C1013.3,203,1067,181,1120,176C1173.3,171,1227,181,1280,176C1333.3,171,1387,149,1413,138.7L1440,128L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z" data-darkreader-inline-fill = "" style = "--darkreader-inline-fill:#fb601e20;"></path>
@@ -255,8 +251,8 @@
                         </div>
                     </a>
 
-                    <a onclick = "setActiveGrade('Клас9')">
-                        <div class = "listBox" id = "Клас9">
+                    <a onclick = "setActiveGrade('Class9')">
+                        <div class = "listBox" id = "Class9">
                             <h1 class = "bigNumber">9-ти клас</h1>
                             <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 1440 320" id = "svg02">
                                 <path fill-opacity = "1" d = "M0,224L26.7,218.7C53.3,213,107,203,160,170.7C213.3,139,267,85,320,69.3C373.3,53,427,75,480,101.3C533.3,128,587,160,640,165.3C693.3,171,747,149,800,165.3C853.3,181,907,235,960,229.3C1013.3,224,1067,160,1120,117.3C1173.3,75,1227,53,1280,80C1333.3,107,1387,181,1413,218.7L1440,256L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z" data-darkreader-inline-fill = "" style = "--darkreader-inline-fill:#fb601e20;"></path>
@@ -267,8 +263,8 @@
                         </div>
                     </a>
 
-                    <a onclick = "setActiveGrade('Клас10')">
-                        <div class = "listBox" id = "Клас10">
+                    <a onclick = "setActiveGrade('Class10')">
+                        <div class = "listBox" id = "Class10">
                             <h1 class = "bigNumber">10-ти клас</h1>
                             <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 1440 320" id = "svg02">
                                 <path fill-opacity = "1" d = "M0,32L26.7,80C53.3,128,107,224,160,224C213.3,224,267,128,320,117.3C373.3,107,427,181,480,202.7C533.3,224,587,192,640,197.3C693.3,203,747,245,800,256C853.3,267,907,245,960,213.3C1013.3,181,1067,139,1120,149.3C1173.3,160,1227,224,1280,213.3C1333.3,203,1387,117,1413,74.7L1440,32L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z" data-darkreader-inline-fill = "" style = "--darkreader-inline-fill:#fb601e20;"></path>
@@ -279,8 +275,8 @@
                         </div>
                     </a>
 
-                    <a onclick = "setActiveGrade('Клас11')">
-                        <div class = "listBox" id = "Клас11">
+                    <a onclick = "setActiveGrade('Class11')">
+                        <div class = "listBox" id = "Class11">
                             <h1 class = "bigNumber">11-ти клас</h1>
                             <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 1440 320" id = "svg02">
                                 <path fill-opacity = "1" d = "M0,224L26.7,224C53.3,224,107,224,160,213.3C213.3,203,267,181,320,149.3C373.3,117,427,75,480,74.7C533.3,75,587,117,640,122.7C693.3,128,747,96,800,85.3C853.3,75,907,85,960,122.7C1013.3,160,1067,224,1120,234.7C1173.3,245,1227,203,1280,181.3C1333.3,160,1387,160,1413,160L1440,160L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z" data-darkreader-inline-fill = "" style = "--darkreader-inline-fill:#fb601e20;"></path>
@@ -291,8 +287,8 @@
                         </div>
                     </a>
 
-                    <a onclick = "setActiveGrade('Клас12')">
-                        <div class = "listBox Last" id = "Клас12">
+                    <a onclick = "setActiveGrade('Class12')">
+                        <div class = "listBox Last" id = "Class12">
                             <h1 class = "bigNumber">12-ти клас</h1>
                             <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 1440 320" id = "svg02">
                                 <path fill-opacity = "1" d = "M0,128L26.7,138.7C53.3,149,107,171,160,160C213.3,149,267,107,320,96C373.3,85,427,107,480,133.3C533.3,160,587,192,640,192C693.3,192,747,160,800,170.7C853.3,181,907,235,960,234.7C1013.3,235,1067,181,1120,138.7C1173.3,96,1227,64,1280,96C1333.3,128,1387,224,1413,272L1440,320L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z" data-darkreader-inline-fill = "" style = "--darkreader-inline-fill:#fb601e20;"></path>

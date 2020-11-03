@@ -8,8 +8,8 @@
         <link rel = "icon" href = "Images/Logo.png" type = "image" sizes = "16x16">
 
         <meta charset = "utf-8">
-        <meta name = "description" content = "This is a website for ...">
-        <meta name = "keywords" content = "..., ...">
+        <meta name = "description" content = "Образователна платформа за упражнение и обучение по български език и литература. А кой е Онан? Ела да разбереш.">
+        <meta name = "keywords" content = "Български, Език, Литература, Упражнения, Уптажнение, Тест, Тестове, Изпит, Изпитване, Онан, Учи, Учене, Образование, Купи, Продай, Стари, Учебници, Стар, Учебник, Магазин, Учебна, Ученик">
         <meta name = "author" content = "Kristiyan Valchev">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         
@@ -25,6 +25,8 @@
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
         <script type = "text/javascript" src = "Files/logInForm.js"></script>
+
+        <img src = "Images/Thumbnails/Main.png" alt = "Link image" style = "display: none;">
 
         <script>
             window.scroll(
@@ -79,27 +81,21 @@
                 <a href = "indexAccount.html" class = "sideMenuOption Active">Начало</a>
                 <a onclick = "openCloseSideMenuDropdown('урочноСъдържаниеList')" class = "sideMenuOption">Урочно съдържание</a>
                 <div class = "sideMenuDropdown" id = "урочноСъдържаниеList">
-                    <a href = "урочноСъдържание/Клас5.html" class = "sideMenuDropdownOption">5-ти клас</a>
-                    <a href = "урочноСъдържание/Клас6.html" class = "sideMenuDropdownOption">6-ти клас</a>
-                    <a href = "урочноСъдържание/Клас7.html" class = "sideMenuDropdownOption">7-ми клас</a>
-                    <a href = "урочноСъдържание/Клас8.html" class = "sideMenuDropdownOption">8-ми клас</a>
-                    <a href = "урочноСъдържание/Клас9.html" class = "sideMenuDropdownOption">9-ти клас</a>
-                    <a href = "урочноСъдържание/Клас10.html" class = "sideMenuDropdownOption">10-ти клас</a>
-                    <a href = "урочноСъдържание/Клас11.html" class = "sideMenuDropdownOption">11-ти клас</a>
-                    <a href = "урочноСъдържание/Клас12.html" class = "sideMenuDropdownOption">12-ти клас</a>
+                    <a href = "schoolProgram/Class5.html" class = "sideMenuDropdownOption">5-ти клас</a>
+                    <a href = "schoolProgram/Class6.html" class = "sideMenuDropdownOption">6-ти клас</a>
+                    <a href = "schoolProgram/Class7.html" class = "sideMenuDropdownOption">7-ми клас</a>
+                    <a href = "schoolProgram/Class8.html" class = "sideMenuDropdownOption">8-ми клас</a>
+                    <a href = "schoolProgram/Class9.html" class = "sideMenuDropdownOption">9-ти клас</a>
+                    <a href = "schoolProgram/Class10.html" class = "sideMenuDropdownOption">10-ти клас</a>
+                    <a href = "schoolProgram/Class11.html" class = "sideMenuDropdownOption">11-ти клас</a>
+                    <a href = "schoolProgram/Class12.html" class = "sideMenuDropdownOption">12-ти клас</a>
                 </div>
                 <a href = "#" class = "sideMenuOption">Научи нещо ново</a>
-                <a onclick = "openCloseSideMenuDropdown('упражненияList')" class = "sideMenuOption">Упражнения</a>
-                <div class = "sideMenuDropdown" id = "упражненияList">
-                    <a href = "Упражнения/БългарскиЕзик.html" class = "sideMenuDropdownOption">Български език</a>
-                    <a href = "Упражнения/Литература.html" class = "sideMenuDropdownOption">Литератута</a>
-                    <a href = "Упражнения/БългарскиЕзикИЛитература.html" class = "sideMenuDropdownOption">Общо</a>
-                </div>
                 <a onclick = "openCloseSideMenuDropdown('изпитванеList')" class = "sideMenuOption">Изпитване</a>
                 <div class = "sideMenuDropdown" id = "изпитванеList">
-                    <a href = "#" class = "sideMenuDropdownOption">Български език</a>
-                    <a href = "#" class = "sideMenuDropdownOption">Литератута</a>
-                    <a href = "#" class = "sideMenuDropdownOption">Общо</a>
+                    <a href = "Task/bulgarianLanguage.html" class = "sideMenuDropdownOption">Български език</a>
+                    <a href = "Task/Literature.html" class = "sideMenuDropdownOption">Литератута</a>
+                    <a href = "Task/commonTest.html" class = "sideMenuDropdownOption">Общо</a>
                 </div>
                 <a href = "#" class = "sideMenuOption">Купи & продай</a>
                 <a href = "#" class = "sideMenuOption">Защо Онан?</a>
