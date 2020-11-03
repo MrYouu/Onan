@@ -10,8 +10,7 @@ function openCloseSideMenu()
     var secondLine = document.getElementById("secondLine");
 
     var dropdownList01 = document.getElementById("урочноСъдържаниеList");
-    var dropdownList02 = document.getElementById("упражненияList");
-    var dropdownList03 = document.getElementById("изпитванеList");
+    var dropdownList02 = document.getElementById("изпитванеList");
 
     if (sideMenuState == 0)
     {
@@ -42,7 +41,6 @@ function openCloseSideMenu()
 
         dropdownList01.style.display = "none";
         dropdownList02.style.display = "none";
-        dropdownList03.style.display = "none";
 
         sideMenuState = 0;
     }
@@ -69,7 +67,6 @@ window.onscroll = function(e)
     document.getElementById("sideMenuButton").innerHTML = '<div id = "firstLine"></div><div id = "secondLine"></div>';
 
     document.getElementById("урочноСъдържаниеList").style.display = "none";
-    document.getElementById("упражненияList").style.display = "none";
     document.getElementById("изпитванеList").style.display = "none";
 
     sideMenuState = 0;
