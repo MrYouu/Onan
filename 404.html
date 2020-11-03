@@ -1,0 +1,204 @@
+<html>
+	<head>
+		<link rel = "icon" href = "Images/tabIcon.png" type = "image" sizes = "16x16">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		
+		<title>Error 404</title>
+		
+		<style>
+			*
+			{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			
+			body
+			{
+				font-family: 'Open Sans', sans-serif;
+				background-image: linear-gradient(to bottom right, #fefefe, #604589);
+				
+				overflow-x: hidden;
+				overflow-y: hidden;
+			}
+			
+			.pageWrap
+			{
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+			}
+			
+			h1
+			{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: -1;
+				opacity: .2;
+				
+				color: 11111105;
+				font-size: 320px;
+				font-weight: 900;
+				
+				animation: fadein .8s ease-out 1.5s forwards;
+				opacity: 0;
+			}
+			
+			h2
+			{
+				color: #111111;
+				text-align: center;
+				font-size: 48px;
+				font-weight: 700;
+				margin-bottom: 100px;
+				
+				animation: slidedown 1s ease-out .5s forwards;
+				transform: translateY(-200px);
+				opacity: 0;
+			}
+			
+			.content
+			{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			
+			.Button
+			{
+				display: inline-block;
+				padding: 20px 40px;
+				background-color: #fb601e;
+				color: fefefe;
+				font-weight: 700;
+				text-decoration: none;
+				border-radius: 999px;
+				font-size: 28px;
+				transition: .3s ease-out;
+				
+				animation: slideup 1s ease-out .5s forwards;
+				transform: translateY(200px);
+				opacity: 0;
+			}
+			
+			.Button:hover
+			{
+				filter: brightness(.9);
+			}
+			
+			@keyframes fadein
+			{
+				0%
+				{
+					opacity: 0;
+					font-weight: 200px;
+				}
+				
+				100%
+				{
+					opacity: .2;
+				}
+			}
+			
+			@keyframes slidedown
+			{
+				0%
+				{
+					transform: translateY(-200px);
+					opacity: 0;
+				}
+				
+				100%
+				{
+					transform: translateY(50px);
+					opacity: 1;
+				}
+			}
+			
+			@keyframes slideup
+			{
+				0%
+				{
+					transform: translateY(200px);
+					opacity: 0;
+				}
+				
+				100%
+				{
+					transform: translateY(0px);
+					opacity: 1;
+				}
+			}
+			
+			@media screen and (max-width: 650px)
+			{
+				h1
+				{
+					font-size: 150px;
+				}
+				
+				h2
+				{
+					font-size: 28px;
+				}
+				
+				.Button
+				{
+					font-size: 18px;
+				}
+				
+				@keyframes slidedown
+				{
+					0%
+					{
+						transform: translateY(-200px);
+						opacity: 0;
+					}
+					
+					100%
+					{
+						transform: translateY(90px);
+						opacity: 1;
+					}
+				}
+				
+				@keyframes slideup
+				{
+					0%
+					{
+						transform: translateY(200px);
+						opacity: 0;
+					}
+					
+					100%
+					{
+						transform: translateY(50px);
+						opacity: 1;
+					}
+				}
+			}
+		</style>
+	</head>
+	
+	<body id = "main">
+		<div class = "pageWrap">
+			<h1>
+				404
+			</h1>
+			
+			<div class = "Content">
+				<h2>
+					Looks like you have gooten youself lost
+				</h2>
+				
+				<a href = "https://onan.netlify.app" class = "Button">
+					 GO TO MAIN PAGE
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
