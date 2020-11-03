@@ -79,7 +79,7 @@ window.onscroll = function(e)
 
 function setActiveGrade(setActiveGradeBoxID)
 {
-    var gradePath = "урочноСъдържание/" + setActiveGradeBoxID.toString() + ".html";
+    var gradePath = "schoolProgram/" + setActiveGradeBoxID.toString() + ".html";
     console.log(gradePath);
     
     var allGradeBoxes = document.getElementsByClassName("listBox");
@@ -236,7 +236,7 @@ function startBGTest(questionTimerBoolID, questionTimeID, questionNumberID, endT
     sessionStorage.setItem("currentQuestions", 0);
     sessionStorage.setItem("endTestTitle", endTestTitle);
 
-    location.replace("../Тест/ТестБългарскиЕзик.html");
+    location.replace("../Test/bulgarianLanguage.html");
 }
 
 function loadTestData()
@@ -280,7 +280,7 @@ function loadTestData()
     else
     {
         clearTestData();
-        location.replace("../Упражнения/БългарскиЕзик.html");
+        location.replace("../Task/bulgarianLanguage.html");
     }
 }
 
@@ -303,9 +303,9 @@ function nextQuestion()
         else if (document.getElementById("AnswerCInput").checked && rightAnswer == "AnswerC") rightAnswersCounter++;
         else if (document.getElementById("AnswerDInput").checked && rightAnswer == "AnswerD") rightAnswersCounter++;
         sessionStorage.setItem("rightAnswersCounter", rightAnswersCounter);
-        
+
         if (sessionStorage.getItem("canTestEnd") == 1)
-            location.replace("../Тест/тестРезултат.html");
+            location.replace("../Test/testResult.html");
     }
     else
     {
