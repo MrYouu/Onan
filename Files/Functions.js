@@ -217,7 +217,7 @@ function checkTimerCheckBox()
     }
 }
 
-var maxQuestionsNumber = 4;
+var maxQuestionsNumber = 22;
 function startBGTest(questionTimerBoolID, questionTimeID, questionNumberID, endTestTitle)
 {
     var questionTime = document.getElementById(questionTimeID).value;

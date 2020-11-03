@@ -30,6 +30,15 @@ body.Flicker
     animation: flikerAnimation 5s infinite;
 }
 
+:root
+{
+    --White: #fefefe;
+    --Black: #111111;
+    --Orange: #fb601e;
+    --Purple-Light: #a089cd;
+    --Purple-Dark: #604589;
+}
+
 /*#region Scrow bar */
 ::-webkit-scrollbar
 {
@@ -1313,7 +1322,7 @@ body.Flicker
     left: 120;
     background-color: #f5f3f9f0;
     border-radius: 30px;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     padding-bottom: 70px;
 
     animation: dropDown .5s ease-out forwards .7s;
@@ -1382,6 +1391,8 @@ body.Flicker
 .testContent .testContentQuestion .Answer input
 {
     position: absolute;
+    top: 0;
+    left: 0;
     cursor: pointer;
     opacity: 0;
 }
@@ -2439,6 +2450,11 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .scrollSectionHolder.Top a.Last
     {
         margin-right: 30px;
+    }
+
+    .testContent .testContentQuestion .Answer
+    {
+        left: 0;
     }
 
     /*#region Bottom bar */
