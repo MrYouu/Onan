@@ -298,6 +298,12 @@ function nextQuestion()
 
     if (currentQuestions == questionNumber)
     {
+        if (document.getElementById("AnswerAInput").checked && rightAnswer == "AnswerA") rightAnswersCounter++;
+        else if (document.getElementById("AnswerBInput").checked && rightAnswer == "AnswerB") rightAnswersCounter++;
+        else if (document.getElementById("AnswerCInput").checked && rightAnswer == "AnswerC") rightAnswersCounter++;
+        else if (document.getElementById("AnswerDInput").checked && rightAnswer == "AnswerD") rightAnswersCounter++;
+        sessionStorage.setItem("rightAnswersCounter", rightAnswersCounter);
+        
         if (sessionStorage.getItem("canTestEnd") == 1)
             location.replace("../Тест/тестРезултат.html");
     }
