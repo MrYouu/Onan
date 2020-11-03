@@ -1,1 +1,193 @@
+<!--The HTML code is property to Mr. You (Kristiyan Valchev) and can only be viewed-->
+<!--If you want to use part of the code, please first contact me: mr.youdevelopment@gmail.com-->
 
+<html id = "html">
+    <head>
+        <link href = "https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel = "stylesheet">
+        <link type = "text/css" rel = "stylesheet" href = "../Files/Style.css">
+        <link rel = "icon" href = "../Images/Logo.png" type = "image" sizes = "16x16">
+
+        <meta charset = "utf-8">
+        <meta name = "description" content = "Започни теста си като просто зададеш колко въпроса искаш. След като минеш всички въпроси ще бъдеш оценен.">
+        <meta name = "keywords" content = "Български, Език, Литература, Упражнения, Уптажнение, Тест, Тестове, Изпит, Изпитване, Онан, Учи, Учене, Образование, Купи, Продай, Стари, Учебници, Стар, Учебник, Магазин, Учебна, Ученик">
+        <meta name = "author" content = "Kristiyan Valchev">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        
+        <script type = "text/javascript" src = "../Files/Functions.js"></script>
+        <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
+
+        <title id = "Title">Тест по български език</title>
+    </head>
+
+    <body id = "body">
+        <!-- #region Default -->
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+        <script type = "text/javascript" src = "../Files/logInForm.js"></script>
+
+        <img src = "Images/Thumbnails/taskBL.png" alt = "Link image" style = "display: none;">
+
+        <script>
+            window.scroll(
+            {
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+
+            if (document.addEventListener)
+            {
+                document.addEventListener('contextmenu', function(e)
+                {
+                    document.getElementById("rightClickMenu").style.display = "block";
+                    document.getElementById("rightClickMenuBox").style.top = e.clientY;
+                    document.getElementById("rightClickMenuBox").style.left = e.clientX;
+                    checkIfSelectedText();
+                    e.preventDefault();
+                }, false);
+            }
+            else
+            {
+                document.attachEvent('oncontextmenu', function()
+                {
+                    document.getElementById("rightClickMenu").style.display = "block";
+                    document.getElementById("rightClickMenuBox").style.top = event.clientY;
+                    document.getElementById("rightClickMenuBox").style.left = event.clientX;
+                    checkIfSelectedText();
+                    window.event.returnValue = false;
+                });
+            }
+		</script>
+        <!-- #endregion Default -->
+
+        <div onclick = "closeRightClickMenu()" class = "rightClickMenu" id = "rightClickMenu">
+            <div class = "rightClickMenuBox" id = "rightClickMenuBox">
+                <a href = "javascript:history.go(-1)">Back</a>
+                <a href = "javascript:history.go(+1)">Forword</a>
+                <a href = "javascript:history.go(0)">Reload</a>
+                <div class = "lineDevider"></div>
+                <a onclick = "copySelectedText()" class = "Unactive" id = "rightClickMenuCopyTextButton">Copy text</a>
+            </div>
+        </div>
+
+        <div class = "bigSideBoxHolder" id = "bigSideBoxHolder"><div id = "bigSideBox"></div></div>
+
+        <a href = "../indexAccount.html" class = "topBarName" id = "topBarName"><i class = "fas fa-graduation-cap"></i> Онан</a>
+        <a onclick = "openCloseSideMenu()" class = "threeLineButton" id = "sideMenuButton"><div id = "firstLine"></div><div id = "secondLine"></div></a>
+
+        <div class = "sideMenu" id = "sideMenu">
+            <div class = "optionsList">
+                <a href = "../indexAccount.html" class = "sideMenuOption">Начало</a>
+                <a onclick = "openCloseSideMenuDropdown('урочноСъдържаниеList')" class = "sideMenuOption">Урочно съдържание</a>
+                <div class = "sideMenuDropdown" id = "урочноСъдържаниеList">
+                    <a href = "../schoolProgram/Class5.html" class = "sideMenuDropdownOption">5-ти клас</a>
+                    <a href = "../schoolProgram/Class6.html" class = "sideMenuDropdownOption">6-ти клас</a>
+                    <a href = "../schoolProgram/Class7.html" class = "sideMenuDropdownOption">7-ми клас</a>
+                    <a href = "../schoolProgram/Class8.html" class = "sideMenuDropdownOption">8-ми клас</a>
+                    <a href = "../schoolProgram/Class9.html" class = "sideMenuDropdownOption">9-ти клас</a>
+                    <a href = "../schoolProgram/Class10.html" class = "sideMenuDropdownOption">10-ти клас</a>
+                    <a href = "../schoolProgram/Class11.html" class = "sideMenuDropdownOption">11-ти клас</a>
+                    <a href = "../schoolProgram/Class12.html" class = "sideMenuDropdownOption">12-ти клас</a>
+                </div>
+                <a href = "#" class = "sideMenuOption">Научи нещо ново</a>
+                <a onclick = "openCloseSideMenuDropdown('изпитванеList')" class = "sideMenuOption Active">Изпитване</a>
+                <div class = "sideMenuDropdown" id = "изпитванеList">
+                    <a href = "bulgarianLanguage.html" class = "sideMenuDropdownOption Active">Български език</a>
+                    <a href = "Literature.html" class = "sideMenuDropdownOption">Литератута</a>
+                    <a href = "commonTest.html" class = "sideMenuDropdownOption">Общо</a>
+                </div>
+                <a href = "#" class = "sideMenuOption">Купи & продай</a>
+                <a href = "#" class = "sideMenuOption">Защо Онан?</a>
+                <a href = "#" class = "sideMenuOption">Контакти</a>
+            </div>
+        </div>
+
+        <div class = "mainTextsHolder">
+            <h1 class = "mainTitle">Тест по<br> български език</h1>
+            <p class = "mainText">
+                Помогни си с българския език като се упражняваш тук.
+            </p>
+        </div>
+
+        <img src = "../Images/learningImage.svg" alt = "Girl, sitting on books and learning" class = "mainImage">
+
+        <div class = "messageHolder">
+            <!-- Correctnesses -->
+            <div class = "correctnessHolder" id = "correctness userSighedUp">
+                <p>Successfully Signed Up!</p>
+            </div>
+            <div class = "correctnessHolder" id = "correctness userSighedIn">
+                <p>Successfully Signed In!</p>
+            </div>
+            <div class = "correctnessHolder" id = "correctness userSighedOut">
+                <p>User Signed Out.</p>
+            </div>
+            <div class = "correctnessHolder" id = "correctness userDataSaved">
+                <p>Information saved Successfully!</p>
+            </div>
+
+            <!-- Errors -->
+            <div class = "errorHolder" id = "Error invalidEmail">
+                <p>The email is invalid.</p>
+            </div>
+            <div class = "errorHolder" id = "Error existingEmail">
+                <p>This email user is already existing.</p>
+            </div>
+            <div class = "errorHolder" id = "Error invalidPassword">
+                <p>The password is invalid. It should be 6 characters long of higher.</p>
+            </div>
+            <div class = "errorHolder" id = "Error invalidFN">
+                <p>The First Name is invalid.</p>
+            </div>
+            <div class = "errorHolder" id = "Error wrongPassword">
+                <p>The password is wrong.</p>
+            </div>
+            <div class = "errorHolder" id = "Error nonExistingUser">
+                <p>There is no user found.</p>
+            </div>
+            <div class = "errorHolder" id = "Error toManyRequests">
+                <p>Access to this account has been temporarily disabled. Try again in 30 seconds.</p>
+            </div>
+            <div class = "errorHolder" id = "Error FNEmailFieladEmpty">
+                <p>You cannot leave First Name and/or Email fields empty. Also, First and Last names cannot exceed 15 characters.</p>
+            </div>
+        </div>
+
+        <div class = "pageContent">
+            <div class = "pageContentSection withButtonEnd">
+                <h1 class = "pageContentSectionTitle">Задай предпочитанията си</h1>
+
+                <label class = "pageContentSectionCheckBox" onclick = "checkTimerCheckBox()">
+                    <p>Време на въпрос</p>
+                    <input type = "checkbox" id = "timerBoolCheckBox">
+                    <span class = "checkBox"></span>
+                </label>
+                <div class = "inputField Unavailable" style = "width: 200px;" id = "questionsTimeInputField">
+                    <input type = "number" placeholder = "Questions time" class = "inputFieldText" id = "questionsTimeInputFieldText" min = "30" max = "180" value = "60" disabled>
+                    <label for = "name" class = "inputFieldLabel" id = "questionsTimeInputFieldLabel">Таймер в секунди</label>
+                </div>
+                <div class = "inputField" style = "width: 200px;">
+                    <input type = "number" placeholder = "Questions number" class = "inputFieldText" id = "questionsNumberInputFieldText" min = "5" max = "30" value = "5">
+                    <label for = "name" class = "inputFieldLabel" id = "questionsNumberInputFieldLabel">Брой въпроси</label>
+                </div>
+
+                <p class = "pageContentSectionText">
+                    Въпросите, включени в теста са на цялостния материал от 8-ми до 12-ти клас.
+                </p>
+                <a onclick = "startBGTest('timerBoolCheckBox', 'questionsTimeInputFieldText', 'questionsNumberInputFieldText', 'Поздравления, резултатът ти от теста по български език е следният');" class = "pageContentSectionButton">Започни</a>
+            </div>
+
+            <div class = "bottomBar">
+                <div class = "directionButton N"><a href = "../indexAccount.html">Начало</a></div>
+                <div class = "directionButton Z"><a href = "#">Защо Онан?</a></div>
+                <div class = "directionButton M"><a href = "#">Контакти</a></div>
+    
+                <p class = "Credits">
+                    <powerd>Site powered by <company>Mr. You Development</company>.</powerd>
+                    <managed> Managed by <my>Kristiyan Valchecv</my></managed>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
