@@ -84,6 +84,7 @@
             <h1 class = "resultContentTitle" id = "resultContentTitle">Име на теста</h1>
             <p class = "resultContentText">Правилни отговори: <rightAnswers id = "rightAnswersText">0</rightAnswers></p>
             <p class = "resultContentText">Грешни отговори: <wrongAnswers id = "wrongAnswersText">0</wrongAnswers></p>
+            <p class = "resultContentText">Оценка: <testMark id = "Mark">2</testMark></p>
             <a href = "../indexAccount.html" onclick = "clearTestData()" class = "resultContentButton">Обратно към началото</a>
         </div>
 
@@ -94,6 +95,7 @@
             document.getElementById("resultContentTitle").innerHTML = sessionStorage.getItem("endTestTitle").toString();
             document.getElementById("rightAnswersText").innerHTML = sessionStorage.getItem("rightAnswersCounter").toString();
             document.getElementById("wrongAnswersText").innerHTML = (sessionStorage.getItem("questionNumber") - sessionStorage.getItem("rightAnswersCounter")).toString();
+            document.getElementById("Mark").innerHTML = ((4 * sessionStorage.getItem("rightAnswersCounter") / sessionStorage.getItem("questionNumber")) + 2).toString();
 
             (function ()
             {
