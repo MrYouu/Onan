@@ -884,25 +884,20 @@ body.Flicker
 /*#region Check box */
 .pageContent .pageContentSection .pageContentSectionCheckBox
 {
+    display: block;
     position: relative;
-    width: calc(100% - 60px);
-    top: 0;
-    left: 30;
     font-size: 24px;
     font-weight: 700;
     line-height: 28px;
     color: #111111a0;
+    margin-bottom: 30px;
+    padding-left: 65px;
+    cursor: pointer;
 
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.pageContent .pageContentSection .pageContentSectionCheckBox p
-{
-    margin-left: 40px;
-    margin-bottom: 30px;
 }
 
 .pageContent .pageContentSection .pageContentSectionCheckBox input
@@ -917,10 +912,10 @@ body.Flicker
 .pageContent .pageContentSection .pageContentSectionCheckBox .checkBox
 {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 25px;
     height: 25px;
+    top: 0;
+    left: 30;
     background-color: #a089cd60;
 }
 
@@ -936,9 +931,9 @@ body.Flicker
 
 .pageContent .pageContentSection .pageContentSectionCheckBox .checkBox:after
 {
-    content: "";
     display: none;
     position: absolute;
+    content: "";
 }
 
 .pageContent .pageContentSection .pageContentSectionCheckBox input:checked ~ .checkBox:after
@@ -953,8 +948,8 @@ body.Flicker
     top: 5px;
     left: 9px;
     border: solid #fefefe;
-    border-width: 0 3px 3px 0;
 
+    border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -2111,12 +2106,9 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .pageContent .pageContentSection .pageContentSectionCheckBox
     {
         font-size: 16px;
-        line-height: 20px;
-    }
-
-    .pageContent .pageContentSection .pageContentSectionCheckBox p
-    {
-        margin-left: 30px;
+        line-height: 22px;
+        margin-bottom: 20px;
+        padding-left: 60px;
     }
 
     .pageContent .pageContentSection .pageContentSectionCheckBox .checkBox
