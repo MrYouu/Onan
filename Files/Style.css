@@ -709,7 +709,7 @@ body.Flicker
     background-color: #f5f3f9;
     border-radius: 30px;
     margin-bottom: 100px;
-    padding-bottom: 0px;
+    padding-bottom: 1px;
 
     animation: dropDown .5s ease-out forwards 1s;
     transform: translateY(-50px);
@@ -754,6 +754,12 @@ body.Flicker
     animation: dropDown .5s ease-out forwards 1.2s;
     transform: translateY(-50px);
     opacity: 0;
+}
+
+.pageContent .pageContentSection .pageContentSectionText.Indent
+{
+    width: calc(100% - 60px - 30px);
+    left: 60px;
 }
 
 .pageContent .pageContentSection .pageContentSectionText linkText

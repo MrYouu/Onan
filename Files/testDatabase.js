@@ -1,4 +1,4 @@
-var dataList =
+var BLdataList =
 [
     { // 1
         id: "byeD2kyL",
@@ -197,6 +197,198 @@ var dataList =
         AnswerC: 'югоизточна Европа, Морзова азбука, Балзакова героиня',
         AnswerD: "Хердерова награда, Стар завет, Жана Д'арк",
         rightAnswer: "AnswerC"
+    },
+
+
+    { // 
+        id: "",
+        Question: "",
+        AnswerA: '',
+        AnswerB: '',
+        AnswerC: '',
+        AnswerD: '',
+        rightAnswer: "Answer"
+    },
+];
+
+var LdataList5 =
+[
+    { // 1
+        id: "",
+        Question: "l5 Question",
+        AnswerA: 'l5 Answer A',
+        AnswerB: 'l5 Answer B',
+        AnswerC: 'l5 Answer C',
+        AnswerD: 'l5 Answer D',
+        rightAnswer: "AnswerA"
+    },
+
+
+    { // 
+        id: "",
+        Question: "",
+        AnswerA: '',
+        AnswerB: '',
+        AnswerC: '',
+        AnswerD: '',
+        rightAnswer: "Answer"
+    },
+];
+
+var LdataList6 =
+[
+    { // 1
+        id: "",
+        Question: "l6 Question",
+        AnswerA: 'l6 Answer A',
+        AnswerB: 'l6 Answer B',
+        AnswerC: 'l6 Answer C',
+        AnswerD: 'l6 Answer D',
+        rightAnswer: "AnswerA"
+    },
+
+
+    { // 
+        id: "",
+        Question: "",
+        AnswerA: '',
+        AnswerB: '',
+        AnswerC: '',
+        AnswerD: '',
+        rightAnswer: "Answer"
+    },
+];
+
+var LdataList7 =
+[
+    { // 1
+        id: "",
+        Question: "l7 Question",
+        AnswerA: 'l7 Answer A',
+        AnswerB: 'l7 Answer B',
+        AnswerC: 'l7 Answer C',
+        AnswerD: 'l7 Answer D',
+        rightAnswer: "AnswerA"
+    },
+
+
+    { // 
+        id: "",
+        Question: "",
+        AnswerA: '',
+        AnswerB: '',
+        AnswerC: '',
+        AnswerD: '',
+        rightAnswer: "Answer"
+    },
+];
+
+var LdataList8 =
+[
+    { // 1
+        id: "",
+        Question: "l8 Question",
+        AnswerA: 'l8 Answer A',
+        AnswerB: 'l8 Answer B',
+        AnswerC: 'l8 Answer C',
+        AnswerD: 'l8 Answer D',
+        rightAnswer: "AnswerA"
+    },
+
+
+    { // 
+        id: "",
+        Question: "",
+        AnswerA: '',
+        AnswerB: '',
+        AnswerC: '',
+        AnswerD: '',
+        rightAnswer: "Answer"
+    },
+];
+
+var LdataList9 =
+[
+    { // 1
+        id: "",
+        Question: "l9 Question",
+        AnswerA: 'l9 Answer A',
+        AnswerB: 'l9 Answer B',
+        AnswerC: 'l9 Answer C',
+        AnswerD: 'l9 Answer D',
+        rightAnswer: "AnswerA"
+    },
+
+
+    { // 
+        id: "",
+        Question: "",
+        AnswerA: '',
+        AnswerB: '',
+        AnswerC: '',
+        AnswerD: '',
+        rightAnswer: "Answer"
+    },
+];
+
+var LdataList10 =
+[
+    { // 1
+        id: "",
+        Question: "l10 Question",
+        AnswerA: 'l10 Answer A',
+        AnswerB: 'l10 Answer B',
+        AnswerC: 'l10 Answer C',
+        AnswerD: 'l10 Answer D',
+        rightAnswer: "AnswerA"
+    },
+
+
+    { // 
+        id: "",
+        Question: "",
+        AnswerA: '',
+        AnswerB: '',
+        AnswerC: '',
+        AnswerD: '',
+        rightAnswer: "Answer"
+    },
+];
+
+var LdataList11 =
+[
+    { // 1
+        id: "",
+        Question: "l11 Question",
+        AnswerA: 'l11 Answer A',
+        AnswerB: 'l11 Answer B',
+        AnswerC: 'l11 Answer C',
+        AnswerD: 'l11 Answer D',
+        rightAnswer: "AnswerA"
+    },
+
+
+    { // 
+        id: "",
+        Question: "",
+        AnswerA: '',
+        AnswerB: '',
+        AnswerC: '',
+        AnswerD: '',
+        rightAnswer: "Answer"
+    },
+];
+
+var LdataList12 =
+[
+    { // 1
+        id: "",
+        Question: "l12 Question",
+        AnswerA: 'l12 Answer A',
+        AnswerB: 'l12 Answer B',
+        AnswerC: 'l12 Answer C',
+        AnswerD: 'l12 Answer D',
+        rightAnswer: "AnswerA"
     },
 
 

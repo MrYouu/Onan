@@ -178,28 +178,6 @@ function copySelectedText()
     else document.getElementById("rightClickMenuCopyTextButton").className = "Unactive";
 }
 
-function timerCheckBoxChange()
-{
-    if (document.getElementById("timerCheckBox").hasAttribute("checked"))
-    {
-        document.getElementById("timerCheckBox").removeAttribute("checked")
-        document.getElementById("pageContentSectionRadioList").className = "pageContentSectionRadioList Unavailable";
-        document.getElementById("radio30Sek").setAttribute("disabled", "D")
-        document.getElementById("radio60Sek").setAttribute("disabled", "D")
-        document.getElementById("radio120Sek").setAttribute("disabled", "D")
-        document.getElementById("radio180Sek").setAttribute("disabled", "D")
-    }
-    else if (!document.getElementById("timerCheckBox").hasAttribute("checked"))
-    {
-        document.getElementById("timerCheckBox").setAttribute("checked", "checked")
-        document.getElementById("pageContentSectionRadioList").className = "pageContentSectionRadioList";
-        document.getElementById("radio30Sek").removeAttribute("disabled");
-        document.getElementById("radio60Sek").removeAttribute("disabled");
-        document.getElementById("radio120Sek").removeAttribute("disabled");
-        document.getElementById("radio180Sek").removeAttribute("disabled");
-    }
-}
-
 function checkTimerCheckBox()
 {
     if (document.getElementById("timerBoolCheckBox").checked)
@@ -214,7 +192,15 @@ function checkTimerCheckBox()
     }
 }
 
-var maxQuestionsNumber = 22;
+var maxBLQuestionsNumber = 22;
+var maxLQuestionsNumber5 = 1;
+var maxLQuestionsNumber6 = 1;
+var maxLQuestionsNumber7 = 1;
+var maxLQuestionsNumber8 = 1;
+var maxLQuestionsNumber9 = 1;
+var maxLQuestionsNumber10 = 1;
+var maxLQuestionsNumber11 = 1;
+var maxLQuestionsNumber12 = 1;
 function startBGTest(questionTimerBoolID, questionTimeID, questionNumberID, endTestTitle)
 {
     var questionTime = document.getElementById(questionTimeID).value;
@@ -231,36 +217,119 @@ function startBGTest(questionTimerBoolID, questionTimeID, questionNumberID, endT
     if (document.getElementById(questionTimerBoolID).checked) sessionStorage.setItem("haveQuestionTimer", 1);
     else sessionStorage.setItem("haveQuestionTimer", 0);
     sessionStorage.setItem("currentQuestions", 0);
+    sessionStorage.setItem("testType", "BL");
     sessionStorage.setItem("endTestTitle", endTestTitle);
 
-    location.replace("../Test/bulgarianLanguage.html");
+    location.replace("../Test/Test.html");
+}
+
+function startLTest(questionTimerBoolID, questionTimeID, gradeID, questionNumberID, endTestTitle)
+{
+    var questionTime = document.getElementById(questionTimeID).value;
+    var Grade = document.getElementById(gradeID).value;
+    var questionNumber = document.getElementById(questionNumberID).value;
+    
+    if (questionTime < 30) sessionStorage.setItem("questionTime", 30);
+    else if (questionTime > 180) sessionStorage.setItem("questionTime", 180);
+    else sessionStorage.setItem("questionTime", questionTime);
+
+    if (Grade < 5) sessionStorage.setItem("Grade", 5);
+    else if (Grade > 12) sessionStorage.setItem("Grade", 12);
+    else sessionStorage.setItem("Grade", Grade);
+
+    if (questionNumber == null) sessionStorage.setItem("questionNumber", 5);
+    else if (questionNumber < 5) sessionStorage.setItem("questionNumber", 5);
+    else if (questionNumber > 30) sessionStorage.setItem("questionNumber", 30);
+    else sessionStorage.setItem("questionNumber", questionNumber);
+
+    if (document.getElementById(questionTimerBoolID).checked) sessionStorage.setItem("haveQuestionTimer", 1);
+    else sessionStorage.setItem("haveQuestionTimer", 0);
+    sessionStorage.setItem("currentQuestions", 0);
+    sessionStorage.setItem("testType", "L");
+    sessionStorage.setItem("endTestTitle", endTestTitle);
+
+    location.replace("../Test/Test.html");
+}
+
+function startCTest(questionTimerBoolID, questionTimeID, gradeID, questionNumberID, endTestTitle)
+{
+    var questionTime = document.getElementById(questionTimeID).value;
+    var Grade = document.getElementById(gradeID).value;
+    var questionNumber = document.getElementById(questionNumberID).value;
+    
+    if (questionTime < 30) sessionStorage.setItem("questionTime", 30);
+    else if (questionTime > 180) sessionStorage.setItem("questionTime", 180);
+    else sessionStorage.setItem("questionTime", questionTime);
+
+    if (Grade < 5) sessionStorage.setItem("Grade", 5);
+    else if (Grade > 12) sessionStorage.setItem("Grade", 12);
+    else sessionStorage.setItem("Grade", Grade);
+
+    if (questionNumber == null) sessionStorage.setItem("questionNumber", 5);
+    else if (questionNumber < 5) sessionStorage.setItem("questionNumber", 5);
+    else if (questionNumber > 30) sessionStorage.setItem("questionNumber", 30);
+    else sessionStorage.setItem("questionNumber", questionNumber);
+
+    if (document.getElementById(questionTimerBoolID).checked) sessionStorage.setItem("haveQuestionTimer", 1);
+    else sessionStorage.setItem("haveQuestionTimer", 0);
+    sessionStorage.setItem("currentQuestions", 0);
+    sessionStorage.setItem("testType", "C");
+    sessionStorage.setItem("endTestTitle", endTestTitle);
+
+    location.replace("../Test/Test.html");
 }
 
 function loadTestData()
 {
+    var testType = sessionStorage.getItem("testType");
     var haveQuestionTimer = sessionStorage.getItem("haveQuestionTimer");
     var questionTime = sessionStorage.getItem("questionTime");
+    var Grade = sessionStorage.getItem("Grade");
     var questionNumber = sessionStorage.getItem("questionNumber");
     var currentQuestions = sessionStorage.getItem("currentQuestions");
     
     if (questionNumber != null && currentQuestions == 0)
     {
-        var Data = dataList;
-    
+        var Data, questionID;
+
         currentQuestions++;
         
-        var questionID = Math.floor((Math.random() * maxQuestionsNumber) + 1);
+        if (testType == "BL")
+        {
+            Data = BLdataList;
+            questionID = Math.floor((Math.random() * maxBLQuestionsNumber) + 1);
+        }
+        else if (testType == "L")
+        {
+            Data = eval("LdataList" + Grade.toString());
+            questionID = Math.floor((Math.random() * eval("maxLQuestionsNumber" + Grade.toString())) + 1);
+        }
+        else if (testType == "C")
+        {
+            var BLorL = Math.floor((Math.random() * 2) + 1);
+            if (BLorL == 1)
+            {
+                Data = eval("LdataList" + Grade.toString());
+                questionID = Math.floor((Math.random() * eval("maxLQuestionsNumber" + Grade.toString())) + 1);
+            }
+            else
+            {
+                Data = BLdataList;
+                questionID = Math.floor((Math.random() * maxBLQuestionsNumber) + 1);
+            }
+        }
+
         document.getElementById("Question").innerHTML = Data[questionID - 1]["Question"];
         document.getElementById("AnswerA").innerHTML = Data[questionID - 1]["AnswerA"];
         document.getElementById("AnswerB").innerHTML = Data[questionID - 1]["AnswerB"];
         document.getElementById("AnswerC").innerHTML = Data[questionID - 1]["AnswerC"];
         document.getElementById("AnswerD").innerHTML = Data[questionID - 1]["AnswerD"];
+        sessionStorage.setItem("rightAnswer", Data[questionID - 1]["rightAnswer"]);
 
         document.getElementById("testQuestionNumberTextInd").innerHTML = currentQuestions;
         document.getElementById("maximumTestQuestionsTextInd").innerHTML = questionNumber;
 
         sessionStorage.setItem("currentQuestions", currentQuestions);
-        sessionStorage.setItem("rightAnswer", Data[questionID - 1]["rightAnswer"]);
         sessionStorage.setItem("rightAnswersCounter", 0);
 
         if (haveQuestionTimer == 0)
@@ -284,8 +353,10 @@ function loadTestData()
 var Timer;
 function nextQuestion()
 {
+    var testType = sessionStorage.getItem("testType");
     var haveQuestionTimer = sessionStorage.getItem("haveQuestionTimer");
     var questionTime = sessionStorage.getItem("questionTime");
+    var Grade = sessionStorage.getItem("Grade");
     var questionNumber = sessionStorage.getItem("questionNumber");
     var currentQuestions = sessionStorage.getItem("currentQuestions");
     var rightAnswer = sessionStorage.getItem("rightAnswer");
@@ -330,21 +401,45 @@ function nextQuestion()
         document.getElementById("AnswerCInput").checked = false;
         document.getElementById("AnswerDInput").checked = false;
 
-        var Data = dataList;
+        var Data, questionID;
 
         currentQuestions++;
+        
+        if (testType == "BL")
+        {
+            Data = BLdataList;
+            questionID = Math.floor((Math.random() * maxBLQuestionsNumber) + 1);
+        }
+        else if (testType == "L")
+        {
+            Data = eval("LdataList" + Grade.toString());
+            questionID = Math.floor((Math.random() * eval("maxLQuestionsNumber" + Grade.toString())) + 1);
+        }
+        else if (testType == "C")
+        {
+            var BLorL = Math.floor((Math.random() * 2) + 1);
+            if (BLorL == 1)
+            {
+                Data = eval("LdataList" + Grade.toString());
+                questionID = Math.floor((Math.random() * eval("maxLQuestionsNumber" + Grade.toString())) + 1);
+            }
+            else
+            {
+                Data = BLdataList;
+                questionID = Math.floor((Math.random() * maxBLQuestionsNumber) + 1);
+            }
+        }
 
-        var questionID = Math.floor((Math.random() * maxQuestionsNumber) + 1);
         document.getElementById("Question").innerHTML = Data[questionID - 1]["Question"];
         document.getElementById("AnswerA").innerHTML = Data[questionID - 1]["AnswerA"];
         document.getElementById("AnswerB").innerHTML = Data[questionID - 1]["AnswerB"];
         document.getElementById("AnswerC").innerHTML = Data[questionID - 1]["AnswerC"];
         document.getElementById("AnswerD").innerHTML = Data[questionID - 1]["AnswerD"];
+        sessionStorage.setItem("rightAnswer", Data[questionID - 1]["rightAnswer"]);
 
         document.getElementById("testQuestionNumberTextInd").innerHTML = currentQuestions;
 
         sessionStorage.setItem("currentQuestions", currentQuestions);
-        sessionStorage.setItem("rightAnswer", Data[questionID - 1]["rightAnswer"]);
         sessionStorage.setItem("rightAnswersCounter", rightAnswersCounter);
 
         if (currentQuestions == questionNumber) sessionStorage.setItem("canTestEnd", 1);
@@ -355,8 +450,10 @@ function clearTestData()
 {
     sessionStorage.removeItem("haveQuestionTimer");
     sessionStorage.removeItem("questionTime");
+    sessionStorage.removeItem("Grade");
     sessionStorage.removeItem("questionNumber");
     sessionStorage.removeItem("currentQuestions");
+    sessionStorage.removeItem("testType");
     sessionStorage.removeItem("rightAnswer");
     sessionStorage.removeItem("rightAnswersCounter");
     sessionStorage.removeItem("endTestTitle");

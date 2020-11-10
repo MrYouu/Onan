@@ -282,12 +282,36 @@ function loadUserData()
             }
             else
             {
-
+                // Other
             }
         }
         else
         {
             location.replace("../index.html")
+        }
+    });
+}
+
+function loadLiteratureGrade()
+{
+    firebase.auth().onAuthStateChanged(function(user)
+    {
+        if (user)
+        {
+            var userGrade;
+            cloudData.doc("users/" + user.uid).get().then(function(doc)
+            {
+                if (doc && doc.exists)
+                {
+                    const userData = doc.data();
+                    userGrade = userData.Grade;
+
+                    document.getElementById("gradeInputFieldText").value = userGrade;
+                }
+            }).catch(function(error)
+            {
+                console.log("Got an Error: " +  error);
+            })
         }
     });
 }
