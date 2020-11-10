@@ -14,6 +14,7 @@
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         
         <script type = "text/javascript" src = "../Files/Functions.js"></script>
+        <script type = "text/javascript" src = "https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
         <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
 
         <title id = "Title">Тест Резултат</title>
@@ -92,10 +93,26 @@
             if (sessionStorage.getItem("canTestEnd") != 1)
                 location.replace("../Task/bulgarianLanguage.html");
 
+            var allAnswers = sessionStorage.getItem("questionNumber");
+            var rightAnswers = sessionStorage.getItem("rightAnswersCounter");
+            var wrongAnswers = allAnswers - rightAnswers;
+
             document.getElementById("resultContentTitle").innerHTML = sessionStorage.getItem("endTestTitle").toString();
-            document.getElementById("rightAnswersText").innerHTML = sessionStorage.getItem("rightAnswersCounter").toString();
-            document.getElementById("wrongAnswersText").innerHTML = (sessionStorage.getItem("questionNumber") - sessionStorage.getItem("rightAnswersCounter")).toString();
-            document.getElementById("Mark").innerHTML = ((4 * sessionStorage.getItem("rightAnswersCounter") / sessionStorage.getItem("questionNumber")) + 2).toFixed(2).toString();
+            document.getElementById("rightAnswersText").innerHTML = rightAnswers.toString();
+            document.getElementById("wrongAnswersText").innerHTML = wrongAnswers.toString();
+            document.getElementById("Mark").innerHTML = ((4 * rightAnswers / allAnswers) + 2).toFixed(2).toString();
+
+            if (getCookie("rightAnswers") == null)
+            {
+                Cookies.set('rightAnswers', rightAnswers, { expires: 31 });
+                Cookies.set('wrongAnswers', wrongAnswers, { expires: 31 });
+            }
+            else
+            {
+                Cookies.set('rightAnswers', parseInt(Cookies.get('rightAnswers')) + parseInt(rightAnswers), { expires: 31 });
+                Cookies.set('wrongAnswers', parseInt(Cookies.get('wrongAnswers')) + parseInt(wrongAnswers), { expires: 31 });
+            }
+
 
             (function ()
             {
