@@ -16,17 +16,17 @@
         <script type = "text/javascript" src = "../Files/Functions.js"></script>
         <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
 
-        <title id = "Title">Тест по български език</title>
+        <title id = "Title">Тест по литература</title>
     </head>
 
-    <body id = "body">
+    <body id = "body" onload = "loadLiteratureGrade()">
         <!-- #region Default -->
         <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
         <script type = "text/javascript" src = "../Files/logInForm.js"></script>
 
-        <img src = "../Images/Thumbnails/taskBL.png" alt = "Link image" style = "display: none;">
+        <img src = "../Images/Thumbnails/taskL.png" alt = "Link image" style = "display: none;">
 
         <script>
             window.scroll(
@@ -93,8 +93,8 @@
                 <a href = "#" class = "sideMenuOption">Научи нещо ново</a>
                 <a onclick = "openCloseSideMenuDropdown('изпитванеList')" class = "sideMenuOption Active">Изпитване</a>
                 <div class = "sideMenuDropdown" id = "изпитванеList">
-                    <a href = "bulgarianLanguage.html" class = "sideMenuDropdownOption Active">Български език</a>
-                    <a href = "Literature.html" class = "sideMenuDropdownOption">Литература</a>
+                    <a href = "bulgarianLanguage.html" class = "sideMenuDropdownOption">Български език</a>
+                    <a href = "Literature.html" class = "sideMenuDropdownOption Active">Литература</a>
                     <a href = "commonTest.html" class = "sideMenuDropdownOption">Общо</a>
                 </div>
                 <a href = "#" class = "sideMenuOption">Купи & продай</a>
@@ -104,9 +104,9 @@
         </div>
 
         <div class = "mainTextsHolder">
-            <h1 class = "mainTitle">Тест по<br> български език</h1>
+            <h1 class = "mainTitle">Тест по<br> литература</h1>
             <p class = "mainText">
-                Помогни си с българския език като се упражняваш тук.
+                Помогни си с литературата като се упражняваш тук.
             </p>
         </div>
 
@@ -168,14 +168,14 @@
                     <label for = "name" class = "inputFieldLabel" id = "questionsTimeInputFieldLabel">Таймер в секунди</label>
                 </div>
                 <div class = "inputField" style = "width: 200px;">
+                    <input type = "number" placeholder = "Grade" class = "inputFieldText" id = "gradeInputFieldText" min = "5" max = "12">
+                    <label for = "name" class = "inputFieldLabel" id = "gradeInputFieldLabel">Клас</label>
+                </div>
+                <div class = "inputField" style = "width: 200px;">
                     <input type = "number" placeholder = "Questions number" class = "inputFieldText" id = "questionsNumberInputFieldText" min = "5" max = "30" value = "5">
                     <label for = "name" class = "inputFieldLabel" id = "questionsNumberInputFieldLabel">Брой въпроси</label>
                 </div>
-
-                <p class = "pageContentSectionText">
-                    Въпросите, включени в теста са на цялостния материал от 8-ми до 12-ти клас.
-                </p>
-                <a onclick = "startBGTest('timerBoolCheckBox', 'questionsTimeInputFieldText', 'questionsNumberInputFieldText', 'Поздравления, резултатът ти от теста по български език е следният');" class = "pageContentSectionButton">Започни</a>
+                <a onclick = "startLTest('timerBoolCheckBox', 'questionsTimeInputFieldText', 'gradeInputFieldText', 'questionsNumberInputFieldText', 'Поздравления, резултатът ти от теста по литература е следният');" class = "pageContentSectionButton">Започни</a>
             </div>
 
             <div class = "bottomBar">
