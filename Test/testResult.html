@@ -122,14 +122,20 @@
                 }
             });
 
-            cloudData.doc("users/" + Auth.currentUser.uid).set(
+            firebase.auth().onAuthStateChanged(function(user)
             {
-                rightAnswers: parseInt(oldRightAnswers + rightAnswers),
-                wrongAnswers: parseInt(oldWrongAnswers + wrongAnswers)
-            }).catch(function(error)
-            {
-                console.log("Got an Error: " + error);
-            })
+                if (user)
+                {
+                    cloudData.doc("users/" + Auth.currentUser.uid).set(
+                    {
+                        rightAnswers: parseInt(oldRightAnswers + rightAnswers),
+                        wrongAnswers: parseInt(oldWrongAnswers + wrongAnswers)
+                    }).catch(function(error)
+                    {
+                        console.log("Got an Error: " + error);
+                    })
+                }
+            });
 
             (function ()
             {
