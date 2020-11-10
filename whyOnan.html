@@ -9,24 +9,24 @@
 
         <meta charset = "utf-8">
         <meta name = "description" content = "Образователна платформа за упражнение и обучение по български език и литература. А кой е Онан? Ела да разбереш.">
-        <meta name = "keywords" content = "Български, Език, Литература, Упражнения, Уптажнение, Тест, Тестове, Изпит, Изпитване, Онан, Учи, Учене, Образование, Купи, Продай, Стари, Учебници, Стар, Учебник, Магазин, Учебна, Ученик, Акаунт">
+        <meta name = "keywords" content = "Български, Език, Литература, Упражнения, Уптажнение, Тест, Тестове, Изпит, Изпитване, Онан, Учи, Учене, Образование, Купи, Продай, Стари, Учебници, Стар, Учебник, Магазин, Учебна, Ученик">
         <meta name = "author" content = "Kristiyan Valchev">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         
-        <script type = "text/javascript" src = "Files/Functions.js"></script>
+        <script type = "text/javascript" src = "Files/Functions.js" charset = "utf-8"></script>
         <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
 
-        <title id = "Title">Онан - Акаунт</title>
+        <title id = "Title">Защо Онан?</title>
     </head>
 
-    <body id = "body" onload = "loadUserData()">
+    <body id = "body"">
         <!-- #region Default -->
         <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
         <script type = "text/javascript" src = "Files/logInForm.js"></script>
 
-        <img src = "Images/Thumbnails/Main.png" alt = "Link image" style = "display: none;">
+        <img src = "Images/Thumbnails/whyOnan.png" alt = "Link image" style = "display: none;">
 
         <script>
             window.scroll(
@@ -78,7 +78,7 @@
 
         <div class = "sideMenu" id = "sideMenu">
             <div class = "optionsList">
-                <a href = "indexAccount.html" class = "sideMenuOption Active">Начало</a>
+                <a href = "indexAccount.html" class = "sideMenuOption">Начало</a>
                 <a onclick = "openCloseSideMenuDropdown('урочноСъдържаниеList')" class = "sideMenuOption">Урочно съдържание</a>
                 <div class = "sideMenuDropdown" id = "урочноСъдържаниеList">
                     <a href = "schoolProgram/Class5.html" class = "sideMenuDropdownOption">5-ти клас</a>
@@ -98,92 +98,67 @@
                     <a href = "Task/commonTest.html" class = "sideMenuDropdownOption">Общо</a>
                 </div>
                 <a href = "#" class = "sideMenuOption">Купи & продай</a>
-                <a href = "whyOnan.html" class = "sideMenuOption">Защо Онан?</a>
+                <a href = "whyOnan.html" class = "sideMenuOption Active">Защо Онан?</a>
                 <a href = "Contacts.html" class = "sideMenuOption">Контакти</a>
             </div>
         </div>
 
         <div class = "mainTextsHolder">
-            <h1 class = "mainTitle">Акаунта на <br><name id = "mainTitleUserName">...</name></h1>
+            <h1 class = "mainTitle">Защо <br> Онан?</h1>
             <p class = "mainText">
-                Това си ти. Може да видиш успеваемостта си и да се похвалиш
-                на останалите, дори да не си с висок резултат
+                Какво е Онан и защо да го ползвам? Кой е той?
             </p>
-            <a onclick = "signOut()" class = "mainButtin">Sign out</a>
         </div>
 
-        <img src = "Images/socialUser.svg" alt = "Boy, looking at a screen" class = "mainImage">
-
-        <div class = "messageHolder">
-            <!-- Correctnesses -->
-            <div class = "correctnessHolder" id = "correctness userSighedUp">
-                <p>Successfully Signed Up!</p>
-            </div>
-            <div class = "correctnessHolder" id = "correctness userSighedIn">
-                <p>Successfully Signed In!</p>
-            </div>
-            <div class = "correctnessHolder" id = "correctness userSighedOut">
-                <p>User Signed Out.</p>
-            </div>
-            <div class = "correctnessHolder" id = "correctness userDataSaved">
-                <p>Information saved Successfully!</p>
-            </div>
-
-            <!-- Errors -->
-            <div class = "errorHolder" id = "Error invalidEmail">
-                <p>The email is invalid.</p>
-            </div>
-            <div class = "errorHolder" id = "Error existingEmail">
-                <p>This email user is already existing.</p>
-            </div>
-            <div class = "errorHolder" id = "Error invalidPassword">
-                <p>The password is invalid. It should be 6 characters long of higher.</p>
-            </div>
-            <div class = "errorHolder" id = "Error invalidFN">
-                <p>The First Name is invalid.</p>
-            </div>
-            <div class = "errorHolder" id = "Error wrongPassword">
-                <p>The password is wrong.</p>
-            </div>
-            <div class = "errorHolder" id = "Error nonExistingUser">
-                <p>There is no user found.</p>
-            </div>
-            <div class = "errorHolder" id = "Error toManyRequests">
-                <p>Access to this account has been temporarily disabled. Try again in 30 seconds.</p>
-            </div>
-            <div class = "errorHolder" id = "Error FNEmailFieladEmpty">
-                <p>You cannot leave First Name and/or Email fields empty. Also, First and Last names cannot exceed 15 characters.</p>
-            </div>
-        </div>
+        <img src = "Images/questionsImage.svg" alt = "Question mark with two humans" class = "mainImage">
 
         <div class = "pageContent">
-            <div class = "pageContentSection withButtonEnd">
-                <h1 class = "pageContentSectionTitle">Информация</h1>
+            <div class = "pageContentSection">
+                <h1 class = "pageContentSectionTitle">Какво e Onan?</h1>
+                <p class = "pageContentSectionText Indent">
+                    Онан е образователна платформа по български език и литература. Тук можете да
+                    видите списък със задължителната литература, която на теб или твоето дете ще
+                    бъде преподавана в училище. Към някои произведения има прикачено съответното
+                    резюме.
+                </p>
 
-                <div class = "inputField">
-                    <input type = "text" placeholder = "First Name" class = "inputFieldText" id = "informationFNInputFieldText">
-                    <label for = "name" class = "inputFieldLabel" id = "informationFNInputFieldLabel">First Name</label>
-                </div>
-                <div class = "inputField">
-                    <input type = "text" placeholder = "Last Name" class = "inputFieldText" id = "informationLNInputFieldText">
-                    <label for = "name" class = "inputFieldLabel" id = "informationLNInputFieldLabel">Last Name</label>
-                </div>
-                <div class = "inputField">
-                    <input type = "number" placeholder = "number" class = "inputFieldText" id = "informationGradeInputFieldText" min = "5" max = "12">
-                    <label for = "name" class = "inputFieldLabel" id = "informationGradeInputFieldLabel">Grade</label>
-                </div>
-                <div class = "inputField">
-                    <input type = "email" placeholder = "email" class = "inputFieldText" id = "informationEmailInputFieldText" disabled>
-                    <label for = "name" class = "inputFieldLabel" id = "informationEmailInputFieldLabel">Email</label>
-                </div>
+                <h1 class = "pageContentSectionTitle">Раздела "Научи нещо ново"</h1>
+                <p class = "pageContentSectionText Indent">
+                    В този раздел има полезна информация за всеки ученик. <other style = "color: red;">(Недовършено)</other>
+                </p>
 
-                <a onclick = "saveChangedUserData()" class = "pageContentSectionButton">Запази</a>
+                <h1 class = "pageContentSectionTitle">Раздела "Изпитване"</h1>
+                <p class = "pageContentSectionText Indent">
+                    В този раздел има система за тестване на знанията на ученика.
+                    Тази система представлява тест. Пред началото му, потребителят може
+                    да зададе своите изисквания като брой въпроси, време на въпрос и други.
+                    При завършване на теста се извежда броя верни и броя грешни отговота, както
+                    и оценка.
+                </p>
+
+                <h1 class = "pageContentSectionTitle">Раздела "Купи & Продай"</h1>
+                <p class = "pageContentSectionText Indent">
+                    В този раздел всеки ученик ще може да купи или продаде своите учебници.
+                    Лесно е - снимаш учебника, който искаш да продадеш, качваш снимката,
+                    пишеш името на учебника и за кой клас е, оставяш си контакти за свързване
+                    и готово. Останалите, които търсят да си купят учебник лесно могат да намерят
+                    необходимият им учебник и да се свържат с вас за установяване на покупка.
+                </p>
             </div>
-            
+
+            <div class = "pageContentSection withButtonEnd">
+                <h1 class = "pageContentSectionTitle">Кой е Онан?</h1>
+                <p class = "pageContentSectionText">
+                    Онан е непълнолетен библейски човек и втори син на Юда. Убит е от Бог.
+                    Подобно на всички ученици, той също е бил наказан <other style = "color: #11111140;">(Шега)</other>.
+                </p>
+                <a href = "https://en.wikipedia.org/wiki/Onan" class = "pageContentSectionButton" target = "_blank">Повече информация</a>
+            </div>
+
             <div class = "bottomBar">
                 <div class = "directionButton N"><a href = "indexAccount.html">Начало</a></div>
-                <div class = "directionButton Z"><a href = "#">Защо Онан?</a></div>
-                <div class = "directionButton M"><a href = "#">Контакти</a></div>
+                <div class = "directionButton Z"><a href = "whyOnan.html" class = "Active">Защо Онан?</a></div>
+                <div class = "directionButton M"><a href = "Contacts.html">Контакти</a></div>
     
                 <p class = "Credits">
                     <powerd>Site powered by <company>Mr. You Development</company>.</powerd>
