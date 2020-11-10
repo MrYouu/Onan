@@ -252,7 +252,7 @@ function loadUserData()
                         document.getElementById("mainTitleUserName").innerHTML = userFN;
                         document.getElementById("informationFNInputFieldText").value = userFN;
                         document.getElementById("informationLNInputFieldText").value = userLN;
-                        document.getElementById("informationGradeInputFieldText").value = userGrade;
+                        try {document.getElementById("informationGradeInputFieldText").value = userGrade; } catch {}
                         document.getElementById("informationEmailInputFieldText").value = userEmail;
                     }
                 }).catch(function(error)
