@@ -1,0 +1,131 @@
+<!--The HTML code is property to Mr. You (Kristiyan Valchev) and can only be viewed-->
+<!--If you want to use part of the code, please first contact me: mr.youdevelopment@gmail.com-->
+
+<html id = "html">
+    <head>
+        <link href = "https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel = "stylesheet">
+        <link type = "text/css" rel = "stylesheet" href = "../Files/Style.css">
+        <link rel = "icon" href = "../Images/Logo.png" type = "image" sizes = "16x16">
+
+        <meta charset = "utf-8">
+        <meta name = "description" content = "This is a website for ...">
+        <meta name = "keywords" content = "..., ...">
+        <meta name = "author" content = "Kristiyan Valchev">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        
+        <script type = "text/javascript" src = "../Files/Functions.js"></script>
+        <script type = "text/javascript" src = "../Files/testDatabase.js"></script>
+        <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
+
+        <title id = "Title">Тест по български език</title>
+    </head>
+
+    <body id = "body" onload = "loadUserData(); loadTestData();">
+        <!-- #region Default -->
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+        <script type = "text/javascript" src = "../Files/logInForm.js"></script>
+
+        <img src = "../Images/Thumbnails/taskBL.png" alt = "Link image" style = "display: none;">
+
+        <a id = "sideMenuButton"></a>
+        <div id = "sideMenu"></div>
+        <div id = "урочноСъдържаниеList"></div>
+        <div id = "упражненияList"></div>
+        <div id = "изпитванеList"></div>
+
+        <script>
+            window.scroll(
+            {
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+
+            if (document.addEventListener)
+            {
+                document.addEventListener('contextmenu', function(e)
+                {
+                    document.getElementById("rightClickMenu").style.display = "block";
+                    document.getElementById("rightClickMenuBox").style.top = e.clientY;
+                    document.getElementById("rightClickMenuBox").style.left = e.clientX;
+                    checkIfSelectedText();
+                    e.preventDefault();
+                }, false);
+            }
+            else
+            {
+                document.attachEvent('oncontextmenu', function()
+                {
+                    document.getElementById("rightClickMenu").style.display = "block";
+                    document.getElementById("rightClickMenuBox").style.top = event.clientY;
+                    document.getElementById("rightClickMenuBox").style.left = event.clientX;
+                    checkIfSelectedText();
+                    window.event.returnValue = false;
+                });
+            }
+		</script>
+        <!-- #endregion Default -->
+
+        <div onclick = "closeRightClickMenu()" class = "rightClickMenu" id = "rightClickMenu">
+            <div class = "rightClickMenuBox" id = "rightClickMenuBox">
+                <a href = "javascript:history.go(-1)">Back</a>
+                <a href = "javascript:history.go(+1)">Forword</a>
+                <a href = "javascript:history.go(0)">Reload</a>
+                <div class = "lineDevider"></div>
+                <a onclick = "copySelectedText()" class = "Unactive" id = "rightClickMenuCopyTextButton">Copy text</a>
+            </div>
+        </div>
+
+        <div class = "wrapper" id = "waveHolder">
+            <div class = "wave" id = "Wave"></div>
+        </div>
+
+        <div class = "bigSideBoxHolder Test" id = "bigSideBoxHolder"><div id = "bigSideBox"></div></div>
+
+        <a href = "../indexAccount.html" onclick = "clearTestData()" class = "topBarName Test" id = "topBarName"><i class = "fas fa-graduation-cap"></i> Онан</a>
+        <div class = "testQuestionCounter">
+            <p>
+                <questionNumberText id = "testQuestionNumberTextInd">0</questionNumberText> /
+                <maximumQuestionsText id = "maximumTestQuestionsTextInd">0</maximumQuestionsText>
+            </p>
+        </div>
+        <div class = "testContent">
+            <div class = "testContentQuestion">
+                <h1 class = "Question" id = "Question">Въпрос</h1>
+                <div class = "answerList">
+                    <label class = "Answer">
+                        <p id = "AnswerA">
+                            Отговор A
+                        </p>
+                        <input type = "radio" name = "Answer" id = "AnswerAInput">
+                        <span class = "checkmark"></span>
+                    </label>
+                    <label class = "Answer">
+                        <p id = "AnswerB">
+                            Отговор B
+                        </p>
+                        <input type = "radio" name = "Answer" id = "AnswerBInput">
+                        <span class = "checkmark"></span>
+                    </label>
+                    <label class = "Answer">
+                        <p id = "AnswerC">
+                            Отговор C
+                        </p>
+                        <input type = "radio" name = "Answer" id = "AnswerCInput">
+                        <span class = "checkmark"></span>
+                    </label>
+                    <label class = "Answer">
+                        <p id = "AnswerD">
+                            Отговор D
+                        </p>
+                        <input type = "radio" name = "Answer" id = "AnswerDInput">
+                        <span class = "checkmark"></span>
+                    </label>
+                </div>
+                <a onclick = "nextQuestion()" class = "testContentQuestionButton">Следващ въпрос</a>
+            </div>
+        </div>
+    </body>
+</html>

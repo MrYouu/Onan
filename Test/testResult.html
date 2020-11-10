@@ -95,7 +95,7 @@
             document.getElementById("resultContentTitle").innerHTML = sessionStorage.getItem("endTestTitle").toString();
             document.getElementById("rightAnswersText").innerHTML = sessionStorage.getItem("rightAnswersCounter").toString();
             document.getElementById("wrongAnswersText").innerHTML = (sessionStorage.getItem("questionNumber") - sessionStorage.getItem("rightAnswersCounter")).toString();
-            document.getElementById("Mark").innerHTML = ((4 * sessionStorage.getItem("rightAnswersCounter") / sessionStorage.getItem("questionNumber")) + 2).toString();
+            document.getElementById("Mark").innerHTML = ((4 * sessionStorage.getItem("rightAnswersCounter") / sessionStorage.getItem("questionNumber")) + 2).toFixed(2).toString();
 
             (function ()
             {
