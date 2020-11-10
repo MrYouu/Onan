@@ -203,21 +203,28 @@
 
         <script>
             var rightAnswers, wrongAnswers;
-            var rightAnswersP, wrongAnswersP;
 
-            if (getCookie("rightAnswers") == null)
+            firebase.auth().onAuthStateChanged(function(user)
             {
-                rightAnswersP = 0;
-                wrongAnswersP = 0;
-            }
-            else
-            {
-                rightAnswers = parseInt(Cookies.get('rightAnswers'));
-                wrongAnswers = parseInt(Cookies.get('wrongAnswers'));
-                rightAnswersP = (rightAnswers * 100) / (rightAnswers + wrongAnswers);
-                wrongAnswersP = (wrongAnswers * 100) / (rightAnswers + wrongAnswers);
-            }
+                if (user)
+                {
+                    cloudData.doc("users/" + user.uid).get().then(function(doc)
+                    {
+                        if (doc && doc.exists)
+                        {
+                            const userData = doc.data();
+                            rightAnswers = userData.rightAnswers;
+                            wrongAnswers = userData.wrongAnswers;
+                        }
+                    }).catch(function(error)
+                    {
+                        console.log("Got an Error: " +  error);
+                    })
+                }
+            });
             
+            rightAnswersP = (rightAnswers * 100) / (rightAnswers + wrongAnswers);
+            wrongAnswersP = (wrongAnswers * 100) / (rightAnswers + wrongAnswers);
             
             var rightWrongAnswersChartData =
             [
