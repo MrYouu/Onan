@@ -48,7 +48,9 @@ function signUp()
                 firstName: firstName.value,
                 lastName: "",
                 Grade: "",
-                Email: Email.value
+                Email: Email.value,
+                rightAnswers: 0,
+                wrongAnswers: 0
             }).catch(function(error)
             {
                 console.log("Got an Error: " + error);
