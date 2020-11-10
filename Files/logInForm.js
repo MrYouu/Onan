@@ -248,6 +248,8 @@ function loadUserData()
                         userLN = userData.lastName;
                         userGrade = userData.Grade;
                         userEmail = userData.Email;
+                        rightAnswers = userData.rightAnswers;
+                        wrongAnswers = userData.wrongAnswers;
 
                         document.getElementById("mainTitleUserName").innerHTML = userFN;
                         document.getElementById("informationFNInputFieldText").value = userFN;
