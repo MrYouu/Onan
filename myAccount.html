@@ -203,6 +203,7 @@
 
         <script>
             var rightAnswers, wrongAnswers;
+            var rightAnswersP, wrongAnswersP;
 
             firebase.auth().onAuthStateChanged(function(user)
             {
@@ -222,7 +223,7 @@
                     })
                 }
             });
-            
+
             rightAnswersP = (rightAnswers * 100) / (rightAnswers + wrongAnswers);
             wrongAnswersP = (wrongAnswers * 100) / (rightAnswers + wrongAnswers);
             
@@ -230,12 +231,12 @@
             [
                 {
                     title: "Правилно",
-                    value: rightAnswersP,
+                    value: parseInt(rightAnswersP),
                     color: "#604589"
                 },
                 {
                     title: "Грешно",
-                    value: wrongAnswersP,
+                    value: parseInt(wrongAnswersP),
                     color: "#fb601e"
                 }
             ]
