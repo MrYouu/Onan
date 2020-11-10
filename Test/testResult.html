@@ -102,17 +102,24 @@
             document.getElementById("wrongAnswersText").innerHTML = wrongAnswers.toString();
             document.getElementById("Mark").innerHTML = ((4 * rightAnswers / allAnswers) + 2).toFixed(2).toString();
 
-            if (getCookie("rightAnswers") == null)
+            firebase.auth().onAuthStateChanged(function(user)
             {
-                Cookies.set('rightAnswers', rightAnswers, { expires: 31 });
-                Cookies.set('wrongAnswers', wrongAnswers, { expires: 31 });
-            }
-            else
-            {
-                Cookies.set('rightAnswers', parseInt(Cookies.get('rightAnswers')) + parseInt(rightAnswers), { expires: 31 });
-                Cookies.set('wrongAnswers', parseInt(Cookies.get('wrongAnswers')) + parseInt(wrongAnswers), { expires: 31 });
-            }
-
+                if (user)
+                {
+                    cloudData.doc("users/" + user.uid).get().then(function(doc)
+                    {
+                        if (doc && doc.exists)
+                        {
+                            const userData = doc.data();
+                            rightAnswers += userData.rightAnswers;
+                            wrongAnswers += userData.wrongAnswers;
+                        }
+                    }).catch(function(error)
+                    {
+                        console.log("Got an Error: " +  error);
+                    })
+                }
+            });
 
             (function ()
             {
