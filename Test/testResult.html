@@ -102,6 +102,7 @@
             document.getElementById("wrongAnswersText").innerHTML = wrongAnswers.toString();
             document.getElementById("Mark").innerHTML = ((4 * rightAnswers / allAnswers) + 2).toFixed(2).toString();
 
+            var oldRightAnswers, oldWrongAnswers;
             firebase.auth().onAuthStateChanged(function(user)
             {
                 if (user)
@@ -111,8 +112,8 @@
                         if (doc && doc.exists)
                         {
                             const userData = doc.data();
-                            rightAnswers += userData.rightAnswers;
-                            wrongAnswers += userData.wrongAnswers;
+                            oldRightAnswers = userData.rightAnswers;
+                            oldWrongAnswers = userData.wrongAnswers;
                         }
                     }).catch(function(error)
                     {
@@ -120,6 +121,15 @@
                     })
                 }
             });
+
+            cloudData.doc("users/" + Auth.currentUser.uid).set(
+            {
+                rightAnswers: parseInt(oldRightAnswers + rightAnswers),
+                wrongAnswers: parseInt(oldWrongAnswers + wrongAnswers)
+            }).catch(function(error)
+            {
+                console.log("Got an Error: " + error);
+            })
 
             (function ()
             {
