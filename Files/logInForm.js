@@ -2,13 +2,13 @@
 //  If you want to use part of the code, please first contact me: mr.youdevelopment@gmail.com
 
 var firebaseConfig = {
-    apiKey: "AIzaSyBYtkXpEAmzNejy2EBc4j1BhuI2oi6Uu50",
-    authDomain: "onandatabase.firebaseapp.com",
-    databaseURL: "https://onandatabase.firebaseio.com",
-    projectId: "onandatabase",
-    storageBucket: "onandatabase.appspot.com",
-    messagingSenderId: "318461296930",
-    appId: "1:318461296930:web:08e54916aeef9fb933e57b"
+    apiKey: "AIzaSyCNux6RQsBoBtTZDhcAATFheKhE1rzucTs",
+    authDomain: "onandatabase-d299a.firebaseapp.com",
+    databaseURL: "https://onandatabase-d299a.firebaseio.com",
+    projectId: "onandatabase-d299a",
+    storageBucket: "onandatabase-d299a.appspot.com",
+    messagingSenderId: "520248651623",
+    appId: "1:520248651623:web:e75393524166a74bb349c2"
 };
 
 firebase.initializeApp(firebaseConfig);
