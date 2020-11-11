@@ -58,8 +58,6 @@ function signUp()
 
             document.getElementById("signUpFNInputFieldText").style.borderBottomColor = "#fefefe";
             document.getElementById("signUpFNInputFieldLabel").style.color = "#fefefe80";
-            document.getElementById("signUpCodeInputFieldText").style.borderBottomColor = "#fefefe";
-            document.getElementById("signUpCodeInputFieldLabel").style.color = "#fefefe80";
             document.getElementById("signUpEmailInputFieldText").style.borderBottomColor = "#fefefe";
             document.getElementById("signUpEmailInputFieldLabel").style.color = "#fefefe80";
             document.getElementById("signUpPasswordInputFieldText").style.borderBottomColor = "#fefefe";
