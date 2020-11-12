@@ -20,7 +20,7 @@
         <title id = "Title">Тест Резултат</title>
     </head>
 
-    <body id = "body" onload = "loadUserData();" class = "Flicker">
+    <body id = "body" onload = "loadUserData()" class = "Flicker">
         <!-- #region Default -->
         <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
@@ -102,11 +102,11 @@
             document.getElementById("wrongAnswersText").innerHTML = wrongAnswers.toString();
             document.getElementById("Mark").innerHTML = ((4 * rightAnswers / allAnswers) + 2).toFixed(2).toString();
 
-            var oldRightAnswers, oldWrongAnswers;
             firebase.auth().onAuthStateChanged(function(user)
             {
-                if (user)
+                if (user && sessionStorage.getItem("hasSavedRightWrongAnswers") === null)
                 {
+                    var oldRightAnswers, oldWrongAnswers;
                     cloudData.doc("users/" + user.uid).get().then(function(doc)
                     {
                         if (doc && doc.exists)
@@ -114,25 +114,21 @@
                             const userData = doc.data();
                             oldRightAnswers = userData.rightAnswers;
                             oldWrongAnswers = userData.wrongAnswers;
+
+                            cloudData.doc("users/" + user.uid).update(
+                            {
+                                rightAnswers: parseInt(parseInt(rightAnswers) + parseInt(oldRightAnswers)),
+                                wrongAnswers: parseInt(parseInt(wrongAnswers) + parseInt(oldWrongAnswers))
+                            }).catch(function(error)
+                            {
+                                console.log("Got an Error: " + error);
+                            });
+
+                            sessionStorage.setItem("hasSavedRightWrongAnswers", "true");
                         }
                     }).catch(function(error)
                     {
                         console.log("Got an Error: " +  error);
-                    })
-                }
-            });
-
-            firebase.auth().onAuthStateChanged(function(user)
-            {
-                if (user)
-                {
-                    cloudData.doc("users/" + Auth.currentUser.uid).set(
-                    {
-                        rightAnswers: parseInt(oldRightAnswers + rightAnswers),
-                        wrongAnswers: parseInt(oldWrongAnswers + wrongAnswers)
-                    }).catch(function(error)
-                    {
-                        console.log("Got an Error: " + error);
                     })
                 }
             });
