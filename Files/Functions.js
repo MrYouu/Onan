@@ -461,7 +461,7 @@ function clearTestData()
     sessionStorage.removeItem("hasSavedRightWrongAnswers");
 }
 
-function defaultFunction()
+function removeThis(elementID)
 {
-
+    document.getElementById(elementID).style.display = "none";
 }

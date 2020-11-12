@@ -586,7 +586,7 @@ body.Flicker
     padding-bottom: 6px;
     font-weight: 700;
     border-width: 3px;
-    border-image: linear-gradient(to right, #fb601e, #a089cd);
+    border-image: linear-gradient(to right, #fb601e, transparent);
     border-bottom: 2px solid #fefefe;
     border-top: none;
     border-left: none;
@@ -2250,58 +2250,53 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
 /*#region Media 700-600 */
 @media screen and (max-width: 700px)
 {
-    .signForm .signFormBox
+    .signForm
     {
-        width: 100%;
-        height: 50%;
-        top: auto;
-        bottom: 0;
-        left: 0;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
+        background-color: #11111100;
 
-        animation: slideUp .3s ease-out forwards;
-        transform: translateY(100%);
-        opacity: 1;
+        animation: fadeIn .15s ease-out forwards;
     }
 
-    
-    .signForm .signFormBox.Up
+    .signForm .signFormBox, .signForm .signFormBox.Up
     {
-        height: calc(50% + 80px);
-        top: auto;
-        bottom: 0;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 0;
+        transform: translateY(0px);
+
+        animation: none;
+        opacity: 1;
     }
 
     .signForm .signFormBox .signText
     {
+        width: calc(100% - 60px);
+        top: calc(50% - 120px);
+        left: 30;
         font-size: 24px;
         line-height: 24px;
     }
 
-    .signForm .signFormBox .signFormBoxText
-    {
-        top: 210;
-    }
-
     .inputField.in1
     {
-        top: 60;
+        top: calc(50% - 70px);
     }
 
     .inputField.in2
     {
-        top: 140;
+        top: calc(50% + 10px);
     }
 
     .inputField.in3
     {
-        top: 220;
+        top: calc(50% + 90px);
     }
 
     .inputField.in4
     {
-        top: 300;
+        top: calc(50% + 170px);
     }
 
     .signForm .signFormBox .signButton
