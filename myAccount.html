@@ -163,6 +163,7 @@
                 <h1 class = "pageContentSectionTitle">Статистика</h1>
                 <div class = "chart" id = "rightWrongAnswersChart">
                     <p class = "chartTitle">Успеваемост</p>
+                    <i onclick = "reloadChart()" class = "fas fa-sync-alt"></i>
                 </div>
             </div>
 
@@ -202,26 +203,15 @@
         </div>
 
         <script>
-            var rightAnswers, wrongAnswers;
+            var rightAnswers = sessionStorage.getItem("rightAnswers");
+            var wrongAnswers = sessionStorage.getItem("wrongAnswers");
+            var allAnswers = parseFloat(rightAnswers) + parseFloat(wrongAnswers);
+
             var rightAnswersP, wrongAnswersP;
 
-            console.log(rightAnswers);
-            console.log(wrongAnswers);
-            console.log("Space");
-            console.log(rightAnswersP);
-            console.log(wrongAnswersP);
-            console.log("Space");
+            rightAnswersP = (rightAnswers / allAnswers) * 100;
+            wrongAnswersP = (wrongAnswers / allAnswers) * 100;
 
-            rightAnswersP = (rightAnswers * 100) / (rightAnswers + wrongAnswers);
-            wrongAnswersP = (wrongAnswers * 100) / (rightAnswers + wrongAnswers);
-
-            console.log("Space");
-            console.log(rightAnswers);
-            console.log(wrongAnswers);
-            console.log("Space");
-            console.log(rightAnswersP);
-            console.log(wrongAnswersP);
-            
             var rightWrongAnswersChartData =
             [
                 {
@@ -231,7 +221,7 @@
                 },
                 {
                     title: "Грешно",
-                    value: parseFloat(wrongAnswersP),
+                    value:parseFloat( wrongAnswersP),
                     color: "#fb601e"
                 }
             ]
@@ -241,8 +231,34 @@
                 $("#rightWrongAnswersChart").drawDoughnutChart(rightWrongAnswersChartData);
             });
 
-            //#region Chart System
+            function reloadChart()
+            {
+                rightAnswers = sessionStorage.getItem("rightAnswers");
+                wrongAnswers = sessionStorage.getItem("wrongAnswers");
+                allAnswers = parseFloat(rightAnswers) + parseFloat(wrongAnswers);
 
+                rightAnswersP = (rightAnswers / allAnswers) * 100;
+                wrongAnswersP = (wrongAnswers / allAnswers) * 100;
+
+                rightWrongAnswersChartData =
+                [
+                    {
+                        title: "Правилно",
+                        value: parseFloat(rightAnswersP),
+                        color: "#604589"
+                    },
+                    {
+                        title: "Грешно",
+                        value:parseFloat( wrongAnswersP),
+                        color: "#fb601e"
+                    }
+                ]
+
+                document.getElementById("rightWrongAnswersChart").innerHTML = '<p class = "chartTitle">Успеваемост</p><i onclick = "reloadChart()" class = "fas fa-sync-alt"></i>';
+                $("#rightWrongAnswersChart").drawDoughnutChart(rightWrongAnswersChartData);
+            }
+            
+            //#region Chart System
             ;(function($, undefined)
             {
                 $.fn.drawDoughnutChart = function(data, options)
@@ -272,7 +288,7 @@
                         tipOffsetY: -45,
                         tipClass: "doughnutTip",
                         summaryClass: "doughnutSummary",
-                        summaryTitle: "Общо",
+                        summaryTitle: "Правилни", // Общо
                         summaryTitleClass: "doughnutSummaryTitle",
                         summaryNumberClass: "doughnutSummaryNumber",
                         beforeDraw: function() {  },
@@ -457,7 +473,10 @@
                     function drawDoughnutText(animationDecimal, segmentTotal)
                     {
                         // Total number text aplyment
-                        $summaryNumber.css({opacity: animationDecimal}).text((segmentTotal * animationDecimal).toFixed());
+                        //$summaryNumber.css({opacity: animationDecimal}).text((segmentTotal * animationDecimal).toFixed());
+
+                        // Total number text aplyment
+                        $summaryNumber.css({opacity: animationDecimal}).text((data[0].value * animationDecimal).toFixed() + "%");
                     }
 
                     function animateFrame(cnt, drawData)
@@ -510,7 +529,6 @@
                     return $this;
                 };
             })(jQuery);
-
             //#endregion
         </script>
     </body>
