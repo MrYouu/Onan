@@ -458,6 +458,7 @@ function clearTestData()
     sessionStorage.removeItem("rightAnswersCounter");
     sessionStorage.removeItem("endTestTitle");
     sessionStorage.removeItem("canTestEnd");
+    sessionStorage.removeItem("hasSavedRightWrongAnswers");
 }
 
 function defaultFunction()

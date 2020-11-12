@@ -246,14 +246,15 @@ function loadUserData()
                         userLN = userData.lastName;
                         userGrade = userData.Grade;
                         userEmail = userData.Email;
-                        rightAnswers = userData.rightAnswers;
-                        wrongAnswers = userData.wrongAnswers;
 
                         document.getElementById("mainTitleUserName").innerHTML = userFN;
                         document.getElementById("informationFNInputFieldText").value = userFN;
                         document.getElementById("informationLNInputFieldText").value = userLN;
                         document.getElementById("informationGradeInputFieldText").value = userGrade;
                         document.getElementById("informationEmailInputFieldText").value = userEmail;
+
+                        sessionStorage.setItem("rightAnswers", userData.rightAnswers);
+                        sessionStorage.setItem("wrongAnswers", userData.wrongAnswers);
                     }
                 }).catch(function(error)
                 {
@@ -282,9 +283,42 @@ function loadUserData()
                     console.log("Got an Error: " +  error);
                 })
             }
-            else
+            else if (document.getElementById("Title").innerHTML == "Тест Резултат")
             {
-                // Other
+                console.log("Can start...");
+                
+                if (sessionStorage.getItem("hasSavedRightWrongAnswers") != "true" || !sessionStorage.getItem("hasSavedRightWrongAnswers"))
+                {
+                    console.log("Starting to save information...");
+                    
+                    cloudData.doc("users/" + user.uid).get().then(function(doc)
+                    {
+                        var allAnswers = sessionStorage.getItem("questionNumber");
+                        var rightAnswers = sessionStorage.getItem("rightAnswersCounter");
+                        var wrongAnswers = allAnswers - rightAnswers;
+    
+                        if (doc && doc.exists)
+                        {
+                            const userData = doc.data();
+    
+                            cloudData.doc("users/" + Auth.currentUser.uid).update(
+                            {
+                                rightAnswers: userData.rightAnswers + rightAnswers,
+                                wrongAnswers: userData.wrongAnswers + wrongAnswers
+                            }).catch(function(error)
+                            {
+                                console.log("Got an Error: " + error);
+                            });
+    
+                            sessionStorage.setItem("hasSavedRightWrongAnswers", "true");
+                            console.log("Done");
+                            
+                        }
+                    }).catch(function(error)
+                    {
+                        console.log("Got an Error: " +  error);
+                    })
+                }
             }
         }
         else
@@ -332,12 +366,11 @@ function saveChangedUserData()
             gradeInputFieldText.value = "";
         }
 
-        cloudData.doc("users/" + Auth.currentUser.uid).set(
+        cloudData.doc("users/" + Auth.currentUser.uid).update(
         {
             firstName: FNInputFieldText.value,
             lastName: LNInputFieldText.value,
             Grade: gradeInputFieldText.value,
-            Email: emailInputFieldText.value
         }).catch(function(error)
         {
             console.log("Got an Error: " + error);

@@ -1326,6 +1326,25 @@ body.Flicker
     color: #111111a0;
 }
 
+.chart i
+{
+    float: right;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 6;
+    right: 0;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #11111180;
+}
+
+.chart i:hover
+{
+    color: #111111a0;
+}
+
 .doughnutTip
 {
     position: absolute;
@@ -1357,19 +1376,17 @@ body.Flicker
 {
     position: absolute;
     width: 100%;
-    top: 50%;
+    top: calc(50% - 60px);
     font-size: 22px;
     letter-spacing: 0.06em;
-    margin-top: -27%;
 }
 
 .doughnutSummaryNumber
 {
     position: absolute;
     width: 100%;
-    top: 50%;
+    top: calc(50% - 35px);
     font-size: 55px;
-    margin-top: -15%;
 }
 
 .chart path:hover
@@ -2359,12 +2376,15 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
 
     .doughnutSummaryTitle
     {
-        top: 25;
+        top: calc(50% - 45px);
+        font-size: 18px;
+        letter-spacing: normal;
     }
 
     .doughnutSummaryNumber
     {
-        top: 35;
+        top: calc(50% - 25px);
+        font-size: 40px;
     }
 }
 
