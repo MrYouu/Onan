@@ -1124,7 +1124,7 @@ body.Flicker
 /*#endregion List */
 
 /*#region Input field */
-.inputField
+.pageContent .inputField
 {
     position: relative;
     width: calc(100% - 60px);
@@ -1133,18 +1133,18 @@ body.Flicker
     margin-bottom: 30px;
 }
 
-.inputField.Unavailable
+.pageContent .inputField.Unavailable
 {
     opacity: .2;
 }
 
-.inputField.Outside
+.pageContent .inputField.Outside
 {
     width: calc(100% - 240px);
     left: 120;
 }
   
-.inputFieldText
+.pageContent .inputFieldText
 {
     font-family: inherit;
     width: 100%;
@@ -1158,19 +1158,19 @@ body.Flicker
     transition: border-color 0.2s;
 }
 
-.inputFieldText::placeholder
+.pageContent .inputFieldText::placeholder
 {
     color: transparent;
 }
 
-.inputFieldText:placeholder-shown ~ .inputFieldLabel
+.pageContent .inputFieldText:placeholder-shown ~ .inputFieldLabel
 {
     font-size: 1.3rem;
     cursor: text;
     top: 20px;
 }
   
-.inputFieldLabel
+.pageContent .inputFieldLabel
 {
     position: absolute;
     top: 0;
@@ -1180,7 +1180,7 @@ body.Flicker
     color: #11111180;
 }
   
-.inputFieldText:focus
+.pageContent .inputFieldText:focus
 {
     padding-bottom: 6px;
     font-weight: 700;
@@ -1193,7 +1193,7 @@ body.Flicker
     border-image-slice: 1;
 }
 
-.inputFieldText:focus ~ .inputFieldLabel
+.pageContent .inputFieldText:focus ~ .inputFieldLabel
 {
     position: absolute;
     top: -8;
@@ -1204,12 +1204,12 @@ body.Flicker
     font-weight: 700;
 }
 
-.inputFieldText:required, .inputFieldText:invalid
+.pageContent .inputFieldText:required, .inputFieldText:invalid
 {
     box-shadow: none;
 }
 
-.inputField i
+.pageContent .inputField i
 {
     float: right;
     position: absolute;
