@@ -710,6 +710,7 @@ body.Flicker
     border-radius: 30px;
     margin-bottom: 100px;
     padding-bottom: 1px;
+    overflow: hidden;
 
     animation: dropDown .5s ease-out forwards 1s;
     transform: translateY(-50px);
@@ -1123,7 +1124,7 @@ body.Flicker
 /*#endregion List */
 
 /*#region Input field */
-.pageContent .pageContentSection .inputField
+.inputField
 {
     position: relative;
     width: calc(100% - 60px);
@@ -1132,12 +1133,18 @@ body.Flicker
     margin-bottom: 30px;
 }
 
-.pageContent .pageContentSection .inputField.Unavailable
+.inputField.Unavailable
 {
     opacity: .2;
 }
+
+.inputField.Outside
+{
+    width: calc(100% - 240px);
+    left: 120;
+}
   
-.pageContent .pageContentSection .inputFieldText
+.inputFieldText
 {
     font-family: inherit;
     width: 100%;
@@ -1151,19 +1158,19 @@ body.Flicker
     transition: border-color 0.2s;
 }
 
-.pageContent .pageContentSection .inputFieldText::placeholder
+.inputFieldText::placeholder
 {
     color: transparent;
 }
 
-.pageContent .pageContentSection .inputFieldText:placeholder-shown ~ .inputFieldLabel
+.inputFieldText:placeholder-shown ~ .inputFieldLabel
 {
     font-size: 1.3rem;
     cursor: text;
     top: 20px;
 }
   
-.pageContent .pageContentSection .inputFieldLabel
+.inputFieldLabel
 {
     position: absolute;
     top: 0;
@@ -1173,7 +1180,7 @@ body.Flicker
     color: #11111180;
 }
   
-.pageContent .pageContentSection .inputFieldText:focus
+.inputFieldText:focus
 {
     padding-bottom: 6px;
     font-weight: 700;
@@ -1186,7 +1193,7 @@ body.Flicker
     border-image-slice: 1;
 }
 
-.pageContent .pageContentSection .inputFieldText:focus ~ .inputFieldLabel
+.inputFieldText:focus ~ .inputFieldLabel
 {
     position: absolute;
     top: -8;
@@ -1197,9 +1204,18 @@ body.Flicker
     font-weight: 700;
 }
 
-.pageContent .pageContentSection .inputFieldText:required, .inputFieldText:invalid
+.inputFieldText:required, .inputFieldText:invalid
 {
     box-shadow: none;
+}
+
+.inputField i
+{
+    float: right;
+    position: absolute;
+    bottom: 15;
+    right: 15;
+    color: #11111180;
 }
 /*#endregion Input field */
 
@@ -2229,6 +2245,12 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         transform: rotate(45deg);
     }
 
+    .inputField.Outside
+    {
+        width: calc(100% - 120px);
+        left: 60;
+    }
+
     .bottomBar a
     {
         font-size: 22px;
@@ -2566,6 +2588,12 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         left: 0;
     }
 
+    .inputField.Outside
+    {
+        width: calc(100% - 60px);
+        left: 30;
+    }
+
     /*#region Bottom bar */
     .bottomBar
     {
@@ -2620,6 +2648,12 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .pageContent .pageContentSection .pageContentSectionTable .pageContentSectionTableLine.Last th
     {
         padding-bottom: 30px;
+    }
+
+    .inputField.Outside
+    {
+        width: calc(100% - 30px);
+        left: 15;
     }
 }
 /*#endregion Media 500-400 */
