@@ -719,7 +719,7 @@ body.Flicker
 
 .pageContent .pageContentSection.withButtonEnd
 {
-    padding-bottom: 50px;
+    padding-bottom: 20px;
 }
 
 .pageContent .pageContentSection .pageContentSectionTitle
@@ -1410,6 +1410,95 @@ body.Flicker
     opacity: 0.65;
 }
 /*#endregion Doughnut chart */
+
+/*#region Dropdown menu */
+.droppDownMenu
+{
+    position: relative;
+    width: 300px;
+    top: 0;
+    left: 30;
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.droppDownMenu select
+{
+    display: none;
+
+    animation: dropDown .3s ease-out forwards;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.droppDownMenuSelect:after
+{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 18px;
+    right: 10px;
+    border: 6px solid transparent;
+    border-color: #111111 transparent transparent transparent;
+}
+
+.droppDownMenuSelect.select-arrow-active:after
+{
+    border-color: transparent transparent #111111 transparent;
+    top: 12px;
+}
+
+.droppDownMenuSelect
+{
+    color: #111111;
+    border: 2px solid transparent;
+    border-color: transparent transparent #111111 transparent;
+    padding: 8px 16px;
+    padding-left: 0px;
+    
+    cursor: pointer;
+    user-select: none;
+}
+
+.droppDownMenuSelectItems div
+{
+    color: #fefefe;
+    border: 2px solid transparent;
+    border-color: transparent transparent #11111120 transparent;
+    padding: 8px 16px;
+    
+    cursor: pointer;
+    user-select: none;
+}
+
+.droppDownMenuSelectItems
+{
+    position: absolute;
+    background-color: #a089cd;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 200px;
+    overflow-y: scroll;
+
+    z-index: 99;
+
+    animation: sideMenuDropdownAnimation .5s ease forwards;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+
+.droppDownMenuSelectHide
+{
+    display: none;
+}
+
+.droppDownMenuSelectItems div:hover, .same-as-selected
+{
+    background-color: #9078bc;
+}
+/*#endregion Dropdown menu */
 
 /*#endregion Page content */
 
@@ -2122,11 +2211,6 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         left: 60;
     }
 
-    .pageContent .pageContentSection.withButtonEnd
-    {
-        padding-bottom: 45px;
-    }
-
     .pageContent .pageContentSection .pageContentSectionTitle, .resultContent .resultContentTitle
     {
         font-size: 24px;
@@ -2245,7 +2329,7 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         transform: rotate(45deg);
     }
 
-    .inputField.Outside
+    .pageContent .inputField.Outside
     {
         width: calc(100% - 120px);
         left: 60;
@@ -2588,10 +2672,15 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         left: 0;
     }
 
-    .inputField.Outside
+    .pageContent .inputField.Outside
     {
         width: calc(100% - 60px);
         left: 30;
+    }
+
+    .droppDownMenu
+    {
+        width: calc(100% - 60px);
     }
 
     /*#region Bottom bar */
@@ -2650,7 +2739,7 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         padding-bottom: 30px;
     }
 
-    .inputField.Outside
+    .pageContent .inputField.Outside
     {
         width: calc(100% - 30px);
         left: 15;
