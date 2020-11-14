@@ -16,7 +16,7 @@
         <script type = "text/javascript" src = "../Files/Functions.js"></script>
         <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
 
-        <title id = "Title">Онан - Купи</title>
+        <title id = "Title">Онан - Продай</title>
     </head>
 
     <body id = "body" onload = "loadLiteratureGrade()">
@@ -105,11 +105,11 @@
         </div>
 
         <div class = "mainTextsHolder">
-            <h1 class = "mainTitle">Купи си<br> нови учебници</h1>
+            <h1 class = "mainTitle">Продай си<br> старите учебници</h1>
             <p class = "mainText">
-                Тук лесно може да намериш учебници за теб, втора ръка
+                Тук лесно може да се отървеш от вече ненужни за теб учебници
             </p>
-            <a href = "Sell.html" class = "mainButtin">Продай</a>
+            <a href = "Buy.html" class = "mainButtin">Купи</a>
         </div>
 
         <img src = "../Images/emptyCartImage.svg" alt = "Girl, sitting on books and learning" class = "mainImage">
@@ -157,8 +157,17 @@
         </div>
 
         <div class = "pageContent">
-            <div class = "pageContentSection withButtonEnd">
-                <h1 class = "pageContentSectionTitle">Какво търсиш?</h1>
+            <div class = "pageContentSection withButtonEnd" style = "display: block;">
+                <h1 class = "pageContentSectionTitle">Присъедини се към нас</h1>
+                <p class = "pageContentSectionText">
+                    За да можеш да продаваш своите учебници тук, първо трябва да имаш акаунт.
+                    Влез си в акаунта или си направи нов.
+                </p>
+                <a href = "../index.html" class = "pageContentSectionButton">Присъедини се</a>
+            </div>
+
+            <div class = "pageContentSection withButtonEnd" style = "display: none;">
+                <h1 class = "pageContentSectionTitle">Какво ще продаваш?</h1>
                 <div class = "inputField" style = "width: 200px;">
                     <input type = "number" placeholder = "Grade" class = "inputFieldText" id = "gradeInputFieldText" min = "5" max = "12">
                     <label for = "name" class = "inputFieldLabel" id = "gradeInputFieldLabel">Клас</label>
