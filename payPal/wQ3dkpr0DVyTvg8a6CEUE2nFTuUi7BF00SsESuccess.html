@@ -1,1 +1,102 @@
-wQ3dkpr0DVyTvg8a6CEUE2nFTuUi7BF00SsESuccess.html
+<!--The HTML code is property to Mr. You (Kristiyan Valchev) and can only be viewed-->
+<!--If you want to use part of the code, please first contact me: mr.youdevelopment@gmail.com-->
+
+<html id = "html">
+    <head>
+        <link href = "https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel = "stylesheet">
+        <link type = "text/css" rel = "stylesheet" href = "../Files/Style.css">
+        <link rel = "icon" href = "../Images/Logo.png" type = "image" sizes = "16x16">
+
+        <meta charset = "utf-8">
+        <meta name = "author" content = "Kristiyan Valchev">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        
+        <script type = "text/javascript" src = "../Files/Functions.js" charset = "utf-8"></script>
+        <script data-ad-client = "ca-pub-6975868406371053" async src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
+
+        <title id = "Title">Success</title>
+    </head>
+
+    <body id = "body" onload = "loadUserData();">
+        <!-- #region Default -->
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+        <script type = "text/javascript" src = "../Files/logInForm.js"></script>
+
+        <a id = "sideMenuButton"></a>
+        <div id = "sideMenu"></div>
+        <div id = "началоList"></div>
+        <div id = "урочноСъдържаниеList"></div>
+        <div id = "изпитванеList"></div>
+
+        <script>
+            window.scroll(
+            {
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+
+            if (document.addEventListener)
+            {
+                document.addEventListener('contextmenu', function(e)
+                {
+                    document.getElementById("rightClickMenu").style.display = "block";
+                    document.getElementById("rightClickMenuBox").style.top = e.clientY;
+                    document.getElementById("rightClickMenuBox").style.left = e.clientX;
+                    checkIfSelectedText();
+                    e.preventDefault();
+                }, false);
+            }
+            else
+            {
+                document.attachEvent('oncontextmenu', function()
+                {
+                    document.getElementById("rightClickMenu").style.display = "block";
+                    document.getElementById("rightClickMenuBox").style.top = event.clientY;
+                    document.getElementById("rightClickMenuBox").style.left = event.clientX;
+                    checkIfSelectedText();
+                    window.event.returnValue = false;
+                });
+            }
+		</script>
+        <!-- #endregion Default -->
+
+        <div onclick = "closeRightClickMenu()" class = "rightClickMenu" id = "rightClickMenu">
+            <div class = "rightClickMenuBox" id = "rightClickMenuBox">
+                <a href = "javascript:history.go(-1)">Back</a>
+                <a href = "javascript:history.go(+1)">Forword</a>
+                <a href = "javascript:history.go(0)">Reload</a>
+                <div class = "lineDevider"></div>
+                <a onclick = "copySelectedText()" class = "Unactive" id = "rightClickMenuCopyTextButton">Copy text</a>
+            </div>
+        </div>
+
+        <div class = "bigSideBoxHolder" id = "bigSideBoxHolder"><div id = "bigSideBox"></div></div>
+
+        <a href = "../indexAccount.html" class = "topBarName" id = "topBarName"><i class = "fas fa-graduation-cap"></i> Онан</a>
+
+        <div class = "mainTextsHolder">
+            <h1 class = "mainTitle">Вие успешно си купихте код за "Pro"</h1>
+            <p class = "mainText">
+                Вашият активационен код е: <text id = "activationCode" style = "color: #10cdff;">AAA-AAA</text>
+            </p>
+            <a href = "../accountPlans.html" class = "mainButtin">Активирай сега</a>
+        </div>
+
+        <div class = "pageContent">
+            <div class = "bottomBar">
+                <div class = "directionButton N"><a href = "../indexAccount.html">Начало</a></div>
+                <div class = "directionButton Z"><a href = "../whyOnan.html">Защо Онан?</a></div>
+                <div class = "directionButton M"><a href = "#">Контакти</a></div>
+    
+                <p class = "Credits">
+                    <powerd>Site powered by <company>Mr. You Development</company>.</powerd>
+                    <managed> Managed by <my>Kristiyan Valchecv</my></managed>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
