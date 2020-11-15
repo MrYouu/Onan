@@ -78,7 +78,12 @@
 
         <div class = "sideMenu" id = "sideMenu">
             <div class = "optionsList">
-                <a href = "../indexAccount.html" class = "sideMenuOption">Начало</a>
+                <a onclick = "openCloseSideMenuDropdown('началоList')" class = "sideMenuOption">Начало</a>
+                <div class = "sideMenuDropdown" id = "началоList">
+                    <a href = "../indexAccount.html" class = "sideMenuDropdownOption">Начало</a>
+                    <a href = "../myAccount.html" class = "sideMenuDropdownOption">Моят акаунт</a>
+                    <a href = "../accountPlans.html" class = "sideMenuDropdownOption" id = "sideMenuGetProButtton">Стани "Pro"</a>
+                </div>
                 <a onclick = "openCloseSideMenuDropdown('урочноСъдържаниеList')" class = "sideMenuOption">Урочно съдържание</a>
                 <div class = "sideMenuDropdown" id = "урочноСъдържаниеList">
                     <a href = "../schoolProgram/allClasses.html" class = "sideMenuDropdownOption">Всички класове</a>
