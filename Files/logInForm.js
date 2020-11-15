@@ -49,6 +49,7 @@ function signUp()
                 lastName: "",
                 Grade: "",
                 Email: Email.value,
+                accountPlan: Basic,
                 rightAnswers: 1,
                 wrongAnswers: 1
             }).catch(function(error)
@@ -234,7 +235,7 @@ function loadUserData()
     {
         if (user)
         {
-            var userFN, userLN, userGrade, userEmail;
+            var userFN, userLN, userGrade, userEmail, accountPlan;
             if (document.getElementById("Title").innerHTML == "Онан - Акаунт")
             {
                 cloudData.doc("users/" + user.uid).get().then(function(doc)
@@ -246,7 +247,22 @@ function loadUserData()
                         userLN = userData.lastName;
                         userGrade = userData.Grade;
                         userEmail = userData.Email;
+                        accountPlan = userData.accountPlan;
 
+                        if (accountPlan == "Basic")
+                        {
+                            document.getElementById("accountButton").style.backgroundColor = "#ffcb2b";
+                            document.getElementById("accountButton").innerHTML = '<img src = "Images/particlesBasic.png">';
+
+                            document.getElementById("statisticsSection").style.display = "none";
+                        }
+                        else if (accountPlan == "Pro")
+                        {
+                            document.getElementById("accountButton").style.backgroundColor = "#10cdff";
+                            document.getElementById("accountButton").innerHTML = '<img src = "Images/particlesPro.png">';
+                        }
+
+                        document.getElementById("accountButton").innerHTML += accountPlan;
                         document.getElementById("mainTitleUserName").innerHTML = userFN;
                         document.getElementById("informationFNInputFieldText").value = userFN;
                         document.getElementById("informationLNInputFieldText").value = userLN;
@@ -272,6 +288,16 @@ function loadUserData()
                         userLN = userData.lastName;
                         userGrade = userData.Grade;
                         userEmail = userData.Email;
+                        accountPlan = userData.accountPlan;
+
+                        if (accountPlan == "Basic")
+                        {
+                            document.getElementById("statisticsSection").style.display = "none";
+                        }
+                        else if (accountPlan == "Pro")
+                        {
+                            document.getElementById("upgradeSection").style.display = "none";
+                        }
                         
                         document.getElementById("accountButton").innerHTML = userFN;
 
@@ -283,14 +309,29 @@ function loadUserData()
                     console.log("Got an Error: " +  error);
                 })
             }
+            else if (document.getElementById("Title").innerHTML == "Тест")
+            {
+                cloudData.doc("users/" + user.uid).get().then(function(doc)
+                {
+                    if (doc && doc.exists)
+                    {
+                        const userData = doc.data();
+                        accountPlan = userData.accountPlan;
+
+                        if (accountPlan == "Basic")
+                        {
+                            location.replace("../accountPlans.html");
+                        }
+                    }
+                }).catch(function(error)
+                {
+                    console.log("Got an Error: " +  error);
+                })
+            }
             else if (document.getElementById("Title").innerHTML == "Тест Резултат")
             {
-                console.log("Can start...");
-                
                 if (sessionStorage.getItem("hasSavedRightWrongAnswers") != "true" || !sessionStorage.getItem("hasSavedRightWrongAnswers"))
                 {
-                    console.log("Starting to save information...");
-                    
                     cloudData.doc("users/" + user.uid).get().then(function(doc)
                     {
                         var allAnswers = sessionStorage.getItem("questionNumber");
@@ -311,8 +352,6 @@ function loadUserData()
                             });
     
                             sessionStorage.setItem("hasSavedRightWrongAnswers", "true");
-                            console.log("Done");
-                            
                         }
                     }).catch(function(error)
                     {
@@ -320,10 +359,61 @@ function loadUserData()
                     })
                 }
             }
+            else if (document.getElementById("Title").innerHTML == "Планове за акаунт")
+            {
+                cloudData.doc("users/" + user.uid).get().then(function(doc)
+                {
+                    var accountPlan;
+                    if (doc && doc.exists)
+                    {
+                        const userData = doc.data();
+                        accountPlan = userData.accountPlan;
+                        
+                        if (accountPlan == "Basic")
+                        {
+                            document.getElementById("alreadyProSection").style.display = "none";
+                        }
+                        else if (accountPlan == "Pro")
+                        {
+                            document.getElementById("getProButton").style.display = "none";
+                            document.getElementById("activateProSection").style.display = "none";
+                        }
+                    }
+                }).catch(function(error)
+                {
+                    console.log("Got an Error: " +  error);
+                })
+            }
+            else if (document.getElementById("Title").innerHTML == "Success")
+            {
+                if (sessionStorage.getItem("hasBoughtCode") == "true" || sessionStorage.getItem("hasBoughtCode"))
+                {
+                    cloudData.collection("activationCodes").get().then(snap =>
+                    {
+                        var codeName = "Code" + (snap.size + 1);
+                        var code = makeRandomString(6);
+
+                        cloudData.doc("activationCodes/" + codeName).set(
+                        {
+                            Value: code
+                        }).catch(function(error)
+                        {
+                            console.log("Got an Error: " + error);
+                        });
+
+                        document.getElementById("activationCode").innerHTML = code.toString();
+                        sessionStorage.removeItem("hasBoughtCode");
+                    });
+                }
+                else
+                {
+                    location.replace("../accountPlans.html");
+                }
+            }
         }
         else
         {
-            location.replace("../index.html")
+            location.replace("../index.html");
         }
     });
 }
@@ -393,6 +483,73 @@ function saveChangedUserData()
         document.getElementById("informationEmailInputFieldLabel").style.color = "red";
         document.getElementById("Error FNEmailFieladEmpty").style.display = "block";
     }
+}
+
+function activateProAccount()
+{
+    var activationCode = document.getElementById("activationCodeInputFieldText").value;
+
+    cloudData.collection("activationCodes").get().then(snap =>
+    {
+        var isDone = false;
+        for (let index = 1; index < snap.size + 1; index++)
+        {
+            var codeName = "Code" + index;
+            var checkCode;
+
+            cloudData.doc("activationCodes/" + codeName).get().then(function(doc)
+            {
+                if (doc && doc.exists)
+                {
+                    const userData = doc.data();
+                    checkCode = userData.value;
+
+                    if (checkCode.length == 6 && checkCode == activationCode)
+                    {
+                        cloudData.doc("activationCodes/" + codeName).update(
+                        {
+                            value: "used"
+                        }).catch(function(error)
+                        {
+                            console.log("Got an Error: " + error);
+                        });
+
+                        cloudData.doc("users/" + Auth.currentUser.uid).update(
+                        {
+                            accountPlan: "Pro"
+                        }).catch(function(error)
+                        {
+                            console.log("Got an Error: " + error);
+                        });
+
+                        document.getElementById("activationCodeInputFieldText").style.borderBottomColor = "#111111";
+                        document.getElementById("activationCodeInputFieldLabel").style.color = "#11111180";
+                        document.getElementById("Error invalidCode").style.display = "none";
+                        document.getElementById("correctness upgradedToPro").style.display = "block";
+                        desableElement("correctness upgradedToPro", 2.5);
+                        document.getElementById("activationCodeInputFieldText").value = "";
+
+                        window.setTimeout(function()
+                        {
+                            history.go(0);
+                        }, 1000);
+
+                        isDone = true;
+                    }
+                }
+            }).catch(function(error)
+            {
+                console.log("Got an Error: " +  error);
+            })
+        }
+
+        if (!isDone)
+        {
+            document.getElementById("activationCodeInputFieldText").style.borderBottomColor = "red";
+            document.getElementById("activationCodeInputFieldLabel").style.color = "red";
+            document.getElementById("Error invalidCode").style.display = "block";
+        }
+    });
 }
 
 function defaultFunction()

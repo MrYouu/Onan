@@ -374,6 +374,14 @@ body.Flicker
     filter: brightness(1);
 }
 
+.mainButtin img
+{
+    position: absolute;
+    width: calc(100%);
+    top: -26;
+    left: -30px;
+}
+
 .secondlyButtin
 {
     position: relative;
@@ -971,6 +979,7 @@ body.Flicker
     top: 0;
     left: 30;
     border-collapse: collapse;
+
     animation: dropDown .5s ease-out forwards 1.2s;
     transform: translateY(-50px);
     opacity: 0;
@@ -1862,6 +1871,77 @@ body.Flicker
 }
 /*#endregion Scroll section */
 
+/*#region Account plans list */
+.pageContent .pageContentSection .pageContentSectionPlans
+{
+    position: relative;
+    width: calc(100% - 60px);
+    top: 0;
+    left: 30;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    
+    animation: dropDown .5s ease-out forwards 1.2s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansLine th
+{
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 28px;
+    color: #111111a0;
+    padding: 9px;
+}
+
+.pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansLine th:nth-child(1)
+{
+    text-align: left;
+}
+
+.pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansLine.Main th
+{
+    height: 90px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #111111b0;
+}
+
+.pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansLine th.Empty
+{
+    width: 33%;
+}
+
+.pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansButton
+{
+    float: left;
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 35px;
+    color: #fefefe;
+    background-color: #10cdff;
+    border-radius: 30px;
+    margin-top: 0px;
+
+    animation: dropDown .5s ease-out forwards 1.5s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansButton:hover
+{
+    filter: brightness(.9);
+}
+/*#endregion Account plans list */
+
 /*#region Bottom bar */
 .bottomBar
 {
@@ -2267,7 +2347,8 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .pageContent .pageContentSection .pageContentSectionButton,
     .pageContent .pageContentSection .twoChoiseButtonsHolder a,
     .testContent .testContentQuestion .testContentQuestionButton,
-    .resultContent .resultContentButton
+    .resultContent .resultContentButton,
+    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansButton
     {
         font-size: 20px;
         line-height: 20px;
@@ -2349,6 +2430,18 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         bottom: 10;
         left: 15;
         font-size: 12px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionPlans
+    {
+        width: 100%;
+        left: 0;
+        margin-bottom: 0;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansLine th.Empty
+    {
+        width: 25%;
     }
 }
 /*#endregion Media 900-800 */
@@ -2437,7 +2530,8 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         left: 15;
     }
 
-    .pageContent .pageContentSection .pageContentSectionTable .pageContentSectionTableLine th
+    .pageContent .pageContentSection .pageContentSectionTable .pageContentSectionTableLine th,
+    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansLine th
     {
         font-size: 14px;
         font-weight: normal;
@@ -2445,11 +2539,24 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         padding: 7px;
     }
 
-    .pageContent .pageContentSection .pageContentSectionTable .pageContentSectionTableLine.Main th
+    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansButton
+    {
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 14px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionTable .pageContentSectionTableLine.Main th,
+    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansLine.Main th
     {
         font-size: 14px;
         font-weight: 600;
         line-height: 14px;
+    }
+
+    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansLine.Main th
+    {
+        height: 45px;
     }
 
     .pageContent .pageContentSection .pageContentSectionTable .pageContentSectionTableLine.Main th:nth-child(3)
@@ -2634,7 +2741,8 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .pageContent .pageContentSection .pageContentSectionButton,
     .pageContent .pageContentSection .twoChoiseButtonsHolder a,
     .testContent .testContentQuestion .testContentQuestionButton,
-    .resultContent .resultContentButton
+    .resultContent .resultContentButton,
+    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansButton
     {
         font-size: 16px;
         line-height: 20px;

@@ -9,8 +9,9 @@ function openCloseSideMenu()
     var firstLine = document.getElementById("firstLine");
     var secondLine = document.getElementById("secondLine");
 
-    var dropdownList01 = document.getElementById("урочноСъдържаниеList");
-    var dropdownList02 = document.getElementById("изпитванеList");
+    var dropdownList01 = document.getElementById("началоList");
+    var dropdownList02 = document.getElementById("урочноСъдържаниеList");
+    var dropdownList03 = document.getElementById("изпитванеList");
 
     if (sideMenuState == 0)
     {
@@ -41,6 +42,7 @@ function openCloseSideMenu()
 
         dropdownList01.style.display = "none";
         dropdownList02.style.display = "none";
+        dropdownList03.style.display = "none";
 
         sideMenuState = 0;
     }
@@ -66,6 +68,7 @@ window.onscroll = function(e)
     bigSideBox.style.transform = "rotate(-50deg)";
     document.getElementById("sideMenuButton").innerHTML = '<div id = "firstLine"></div><div id = "secondLine"></div>';
 
+    document.getElementById("началоList").style.display = "none";
     document.getElementById("урочноСъдържаниеList").style.display = "none";
     document.getElementById("изпитванеList").style.display = "none";
 
@@ -459,9 +462,28 @@ function clearTestData()
     sessionStorage.removeItem("endTestTitle");
     sessionStorage.removeItem("canTestEnd");
     sessionStorage.removeItem("hasSavedRightWrongAnswers");
+    sessionStorage.removeItem("hasBoughtCode");
 }
 
 function removeThis(elementID)
 {
     document.getElementById(elementID).style.display = "none";
 }
+
+function buyCode()
+{
+    sessionStorage.setItem("hasBoughtCode", "true");
+    location.replace("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DQANHJDYZ3R88");
+}
+
+function makeRandomString(Length)
+{
+    var result = "";
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+
+    for ( var i = 0; i < Length; i++ )
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    
+    return result;
+ }
