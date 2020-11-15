@@ -14,8 +14,8 @@
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         
         <script type = "text/javascript" src = "Files/Functions.js"></script>
+        <script data-ad-client = "ca-pub-6975868406371053" async src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type = "text/javascript" src = "https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
         <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
 
         <title id = "Title">Онан - Акаунт</title>
@@ -112,7 +112,8 @@
                 Това си ти. Може да видиш успеваемостта си и да се похвалиш
                 на останалите, дори да не си с висок резултат
             </p>
-            <a onclick = "signOut()" class = "mainButtin">Sign out</a>
+            <a href = "accountPlans.html" class = "mainButtin" id = "accountButton"></a>
+            <a onclick = "signOut()" class = "secondlyButtin">Sign out</a>
         </div>
 
         <img src = "Images/socialUser.svg" alt = "Boy, looking at a screen" class = "mainImage">
@@ -160,7 +161,7 @@
         </div>
 
         <div class = "pageContent">
-            <div class = "pageContentSection">
+            <div class = "pageContentSection" id = "statisticsSection">
                 <h1 class = "pageContentSectionTitle">Статистика</h1>
                 <div class = "chart" id = "rightWrongAnswersChart">
                     <p class = "chartTitle">Успеваемост</p>
