@@ -78,7 +78,12 @@
 
         <div class = "sideMenu" id = "sideMenu">
             <div class = "optionsList">
-                <a href = "../indexAccount.html" class = "sideMenuOption">Начало</a>
+                <a onclick = "openCloseSideMenuDropdown('началоList')" class = "sideMenuOption">Начало</a>
+                <div class = "sideMenuDropdown" id = "началоList">
+                    <a href = "../indexAccount.html" class = "sideMenuDropdownOption">Начало</a>
+                    <a href = "../myAccount.html" class = "sideMenuDropdownOption">Моят акаунт</a>
+                    <a href = "../accountPlans.html" class = "sideMenuDropdownOption" id = "sideMenuGetProButtton">Стани "Pro"</a>
+                </div>
                 <a onclick = "openCloseSideMenuDropdown('урочноСъдържаниеList')" class = "sideMenuOption Active">Урочно съдържание</a>
                 <div class = "sideMenuDropdown" id = "урочноСъдържаниеList">
                     <a href = "allClasses.html" class = "sideMenuDropdownOption Active">Всички класове</a>
@@ -98,7 +103,7 @@
                     <a href = "../Task/Literature.html" class = "sideMenuDropdownOption">Литература</a>
                     <a href = "../Task/commonTest.html" class = "sideMenuDropdownOption">Общо</a>
                 </div>
-                <a href = "#" class = "sideMenuOption">Купи & продай</a>
+                <a href = "../Shop/Buy.html" class = "sideMenuOption">Купи & продай</a>
                 <a href = "../whyOnan.html" class = "sideMenuOption">Защо Онан?</a>
                 <a href = "../Contacts.html" class = "sideMenuOption">Контакти</a>
             </div>
