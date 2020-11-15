@@ -9,25 +9,25 @@
 
         <meta charset = "utf-8">
         <meta name = "description" content = "Образователна платформа за упражнение и обучение по български език и литература. А кой е Онан? Ела да разбереш.">
-        <meta name = "keywords" content = "Български, Език, Литература, Упражнения, Уптажнение, Тест, Тестове, Изпит, Изпитване, Онан, Учи, Учене, Образование, Купи, Продай, Стари, Учебници, Стар, Учебник, Магазин, Учебна, Ученик">
+        <meta name = "keywords" content = "Български, Език, Литература, Упражнения, Уптажнение, Тест, Тестове, Изпит, Изпитване, Онан, Учи, Учене, Образование, Купи, Продай, Стари, Учебници, Стар, Учебник, Магазин, Учебна, Ученик, Акаунт">
         <meta name = "author" content = "Kristiyan Valchev">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         
-        <script type = "text/javascript" src = "Files/Functions.js" charset = "utf-8"></script>
+        <script type = "text/javascript" src = "Files/Functions.js"></script>
         <script data-ad-client = "ca-pub-6975868406371053" async src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
 
-        <title id = "Title">Защо Онан?</title>
+        <title id = "Title">Планове за акаунт</title>
     </head>
 
-    <body id = "body"">
+    <body id = "body" onload = "loadUserData()">
         <!-- #region Default -->
         <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
         <script type = "text/javascript" src = "Files/logInForm.js"></script>
 
-        <img src = "Images/Thumbnails/whyOnan.png" alt = "Link image" style = "display: none;">
+        <img src = "Images/Thumbnails/accountPlans.png" alt = "Link image" style = "display: none;">
 
         <script>
             window.scroll(
@@ -79,11 +79,11 @@
 
         <div class = "sideMenu" id = "sideMenu">
             <div class = "optionsList">
-                <a onclick = "openCloseSideMenuDropdown('началоList')" class = "sideMenuOption">Начало</a>
+                <a onclick = "openCloseSideMenuDropdown('началоList')" class = "sideMenuOption Active">Начало</a>
                 <div class = "sideMenuDropdown" id = "началоList">
                     <a href = "indexAccount.html" class = "sideMenuDropdownOption">Начало</a>
                     <a href = "myAccount.html" class = "sideMenuDropdownOption">Моят акаунт</a>
-                    <a href = "accountPlans.html" class = "sideMenuDropdownOption" id = "sideMenuGetProButtton">Стани "Pro"</a>
+                    <a href = "accountPlans.html" class = "sideMenuDropdownOption Active" id = "sideMenuGetProButtton">Стани "Pro"</a>
                 </div>
                 <a onclick = "openCloseSideMenuDropdown('урочноСъдържаниеList')" class = "sideMenuOption">Урочно съдържание</a>
                 <div class = "sideMenuDropdown" id = "урочноСъдържаниеList">
@@ -105,67 +105,106 @@
                     <a href = "Task/commonTest.html" class = "sideMenuDropdownOption">Общо</a>
                 </div>
                 <a href = "Shop/Buy.html" class = "sideMenuOption">Купи & продай</a>
-                <a href = "whyOnan.html" class = "sideMenuOption Active">Защо Онан?</a>
+                <a href = "whyOnan.html" class = "sideMenuOption">Защо Онан?</a>
                 <a href = "Contacts.html" class = "sideMenuOption">Контакти</a>
             </div>
         </div>
 
         <div class = "mainTextsHolder">
-            <h1 class = "mainTitle">Защо <br> Онан?</h1>
+            <h1 class = "mainTitle">Акаунт планове</h1>
             <p class = "mainText">
-                Какво е Онан и защо да го ползвам? Кой е той?
+                Разгледай какво може Онан да ти предложи и избери по-доброто за теб.
             </p>
         </div>
 
-        <img src = "Images/questionsImage.svg" alt = "Question mark with two humans" class = "mainImage">
-
-        <div class = "pageContent">
-            <div class = "pageContentSection">
-                <h1 class = "pageContentSectionTitle">Какво e Onan?</h1>
-                <p class = "pageContentSectionText Indent">
-                    Онан е образователна платформа по български език и литература. Тук можете да
-                    видите списък със задължителната литература, която на теб или твоето дете ще
-                    бъде преподавана в училище. Към някои произведения има прикачено съответното
-                    резюме.
-                </p>
-
-                <h1 class = "pageContentSectionTitle">Раздела "Научи нещо ново"</h1>
-                <p class = "pageContentSectionText Indent">
-                    В този раздел има полезна информация за всеки ученик. <other style = "color: red;">(Недовършено)</other>
-                </p>
-
-                <h1 class = "pageContentSectionTitle">Раздела "Изпитване"</h1>
-                <p class = "pageContentSectionText Indent">
-                    В този раздел има система за тестване на знанията на ученика.
-                    Тази система представлява тест. Пред началото му, потребителят може
-                    да зададе своите изисквания като брой въпроси, време на въпрос и други.
-                    При завършване на теста се извежда броя верни и броя грешни отговота, както
-                    и оценка.
-                </p>
-
-                <h1 class = "pageContentSectionTitle">Раздела "Купи & Продай"</h1>
-                <p class = "pageContentSectionText Indent">
-                    В този раздел всеки ученик ще може да купи или продаде своите учебници.
-                    Лесно е - снимаш учебника, който искаш да продадеш, качваш снимката,
-                    пишеш името на учебника и за кой клас е, оставяш си контакти за свързване
-                    и готово. Останалите, които търсят да си купят учебник лесно могат да намерят
-                    необходимият им учебник и да се свържат с вас за установяване на покупка.
-                </p>
+        <div class = "messageHolder">
+            <!-- Correctnesses -->
+            <div class = "correctnessHolder" id = "correctness upgradedToPro">
+                <p>Successfully Upgraded to Pro!</p>
             </div>
 
-            <div class = "pageContentSection withButtonEnd">
-                <h1 class = "pageContentSectionTitle">Кой е Онан?</h1>
+            <!-- Errors -->
+            <div class = "errorHolder" id = "Error invalidCode" onclick = "removeThis('Error invalidEmail')">
+                <p>invalid Code</p>
+            </div>
+        </div>
+
+        <img src = "Images/toDoListImage.svg" alt = "Boy, looking at a screen" class = "mainImage">
+
+        <div class = "pageContent">
+            <div class = "pageContentSection" style = "background-color: #10cdff;" id = "alreadyProSection">
+                <h1 class = "pageContentSectionTitle" style = "text-align: center; color: #fefefe;">
+                    Ти вече си "Pro" потребител
+                </h1>
+            </div>
+
+            <div class = "pageContentSection">
+                <table class = "pageContentSectionPlans">
+                    <tr class = "pageContentSectionPlansLine Main">
+                        <th class = "Empty"></th>
+                        <th style = "color: #ffcb2b;">Basic план</th>
+                        <th style = "color: #10cdff;">Pro план</th>
+                    </tr>
+                    <tr class = "pageContentSectionPlansLine">
+                        <th>"Купи & Продай"</th>
+                        <th style = "background-color: #d9f3d6;"><i class = "fas fa-check"></i></th>
+                        <th style = "background-color: #d9f3d6;"><i class = "fas fa-check"></i></th>
+                    </tr>
+                    <tr class = "pageContentSectionPlansLine">
+                        <th>"Бъди изпитан"</th>
+                        <th style = "background-color: #f3d6d6;"><i class = "fas fa-times"></i></th>
+                        <th style = "background-color: #d9f3d6;"><i class = "fas fa-check"></i></th>
+                    </tr>
+                    <tr class = "pageContentSectionPlansLine">
+                        <th>"Научи нещо ново"</th>
+                        <th style = "background-color: #f3d6d6;"><i class = "fas fa-times"></i></th>
+                        <th style = "background-color: #d9f3d6;"><i class = "fas fa-check"></i></th>
+                    </tr>
+                    <tr class = "pageContentSectionPlansLine">
+                        <th>Резюмета на произведенията</th>
+                        <th style = "background-color: #f3d6d6;"><i class = "fas fa-times"></i></th>
+                        <th style = "background-color: #d9f3d6;"><i class = "fas fa-check"></i></th>
+                    </tr>
+                    <tr class = "pageContentSectionPlansLine">
+                        <th>Статистика за акаунта</th>
+                        <th style = "background-color: #f3d6d6;"><i class = "fas fa-times"></i></th>
+                        <th style = "background-color: #d9f3d6;"><i class = "fas fa-check"></i></th>
+                    </tr>
+                    <tr class = "pageContentSectionPlansLine">
+                        <th>Реклами</th>
+                        <th style = "background-color: #d9f3d6;"><i class = "fas fa-check"></i></th>
+                        <th style = "background-color: #f3d6d6;"><i class = "fas fa-times"></i></th>
+                    </tr>
+                    <tr class = "pageContentSectionPlansLine">
+                        <th>Цена за една учебна година</th>
+                        <th>Безплатно</th>
+                        <th>3 <sup>90</sup> лв.</th>
+                    </tr>
+                    <tr class = "pageContentSectionPlansLine" id = "getProButton">
+                        <th></th>
+                        <th></th>
+                        <th><a onclick = "buyCode()" class = "pageContentSectionPlansButton">Стани Pro</a></th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class = "pageContentSection withButtonEnd" id = "activateProSection">
+                <h1 class = "pageContentSectionTitle">Активирай си акаунта</h1>
                 <p class = "pageContentSectionText">
-                    Онан е непълнолетен библейски човек и втори син на Юда. Убит е от Бог.
-                    Подобно на всички ученици, той също е бил наказан <other style = "color: #11111140;">(Шега)</other>.
+                    След като си закупиш код за <text style = "color: #10cdff;">"Pro"</text> акаунт,
+                    може да го въведеш тук.
                 </p>
-                <a href = "https://en.wikipedia.org/wiki/Onan" class = "pageContentSectionButton" target = "_blank">Повече информация</a>
+                <div class = "inputField">
+                    <input type = "text" placeholder = "Code" class = "inputFieldText" id = "activationCodeInputFieldText">
+                    <label for = "name" class = "inputFieldLabel" id = "activationCodeInputFieldLabel">Код</label>
+                </div>
+                <a onclick = "activateProAccount()" class = "pageContentSectionButton">Активирай</a>
             </div>
 
             <div class = "bottomBar">
                 <div class = "directionButton N"><a href = "indexAccount.html">Начало</a></div>
-                <div class = "directionButton Z"><a href = "whyOnan.html" class = "Active">Защо Онан?</a></div>
-                <div class = "directionButton M"><a href = "Contacts.html">Контакти</a></div>
+                <div class = "directionButton Z"><a href = "#">Защо Онан?</a></div>
+                <div class = "directionButton M"><a href = "#">Контакти</a></div>
     
                 <p class = "Credits">
                     <powerd>Site powered by <company>Mr. You Development</company>.</powerd>
