@@ -2436,7 +2436,6 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     {
         width: 100%;
         left: 0;
-        margin-bottom: 0;
     }
 
     .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansLine th.Empty
