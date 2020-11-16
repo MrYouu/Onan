@@ -19,14 +19,14 @@
         <title id = "Title">Онан - Продай</title>
     </head>
 
-    <body id = "body" onload = "loadLiteratureGrade()">
+    <body id = "body" onload = "loadUserData()">
         <!-- #region Default -->
         <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
         <script type = "text/javascript" src = "../Files/logInForm.js"></script>
 
-        <img src = "../Images/Thumbnails/buyAndSell.png" alt = "Link image" style = "display: none;">
+        <!--<img src = "../Images/Thumbnails/buyAndSell.png" alt = "Link image" style = "display: none;">-->
 
         <script>
             window.scroll(
@@ -121,48 +121,36 @@
 
         <div class = "messageHolder">
             <!-- Correctnesses -->
-            <div class = "correctnessHolder" id = "correctness userSighedUp">
-                <p>Successfully Signed Up!</p>
-            </div>
-            <div class = "correctnessHolder" id = "correctness userSighedIn">
-                <p>Successfully Signed In!</p>
-            </div>
-            <div class = "correctnessHolder" id = "correctness userSighedOut">
-                <p>User Signed Out.</p>
-            </div>
-            <div class = "correctnessHolder" id = "correctness userDataSaved">
-                <p>Information saved Successfully!</p>
+            <div class = "correctnessHolder" id = "correctness announcementUploaded">
+                <p>Успешно си качихте вашата обява!</p>
             </div>
 
             <!-- Errors -->
-            <div class = "errorHolder" id = "Error invalidEmail">
-                <p>The email is invalid.</p>
+            <div class = "errorHolder" id = "Error invalidType" onclick = "removeThis('Error invalidType')">
+                <p>Задайте вид на обявата</p>
             </div>
-            <div class = "errorHolder" id = "Error existingEmail">
-                <p>This email user is already existing.</p>
+            <div class = "errorHolder" id = "Error invalidSubject" onclick = "removeThis('Error invalidSubject')">
+                <p>Задайте предмет</p>
             </div>
-            <div class = "errorHolder" id = "Error invalidPassword">
-                <p>The password is invalid. It should be 6 characters long of higher.</p>
+            <div class = "errorHolder" id = "Error invalidGrade" onclick = "removeThis('Error invalidGrade')">
+                <p>Невалиден клас</p>
             </div>
-            <div class = "errorHolder" id = "Error invalidFN">
-                <p>The First Name is invalid.</p>
+            <div class = "errorHolder" id = "Error invalidPrice" onclick = "removeThis('Error invalidPrice')">
+                <p>Невалидна цена. Не може да е по-малко от 0лв. и повече от 35лв.</p>
             </div>
-            <div class = "errorHolder" id = "Error wrongPassword">
-                <p>The password is wrong.</p>
+            <div class = "errorHolder" id = "Error invalidInfo" onclick = "removeThis('Error invalidInfo')">
+                <p>Невалидна информация.</p>
             </div>
-            <div class = "errorHolder" id = "Error nonExistingUser">
-                <p>There is no user found.</p>
+            <div class = "errorHolder" id = "Error invalidPhone" onclick = "removeThis('Error invalidPhone')">
+                <p>Невалиден телефонен номер.</p>
             </div>
-            <div class = "errorHolder" id = "Error toManyRequests">
-                <p>Access to this account has been temporarily disabled. Try again in 30 seconds.</p>
-            </div>
-            <div class = "errorHolder" id = "Error FNEmailFieladEmpty">
-                <p>You cannot leave First Name and/or Email fields empty. Also, First and Last names cannot exceed 15 characters.</p>
+            <div class = "errorHolder" id = "Error invalidImage" onclick = "removeThis('Error invalidImage')">
+                <p>Невалидна снимка</p>
             </div>
         </div>
 
         <div class = "pageContent">
-            <div class = "pageContentSection withButtonEnd" style = "display: block;">
+            <div class = "pageContentSection withButtonEnd" id = "getAccountSection">
                 <h1 class = "pageContentSectionTitle">Присъедини се към нас</h1>
                 <p class = "pageContentSectionText">
                     За да можеш да продаваш своите учебници тук, първо трябва да имаш акаунт.
@@ -171,35 +159,79 @@
                 <a href = "../index.html" class = "pageContentSectionButton">Присъедини се</a>
             </div>
 
-            <div class = "pageContentSection withButtonEnd" style = "display: none;">
+            <div class = "pageContentSection withButtonEnd" id = "whatWillSellSection">
                 <h1 class = "pageContentSectionTitle">Какво ще продаваш?</h1>
-                <div class = "inputField" style = "width: 200px;">
-                    <input type = "number" placeholder = "Grade" class = "inputFieldText" id = "gradeInputFieldText" min = "5" max = "12">
-                    <label for = "name" class = "inputFieldLabel" id = "gradeInputFieldLabel">Клас</label>
+                <div class = "pageContentSectionGridHolder Two" >
+                    <div class = "gridItem" style = "background-color: transparent;">
+                        <div class = "droppDownMenu" onclick = "getDropDownMenuData(); updatePriview('Type');" id = "typeDropdownMenu">
+                            <select>
+                                <option value = "0">Избери вид</option>
+                                <option value = "1">Учебник</option>
+                                <option value = "2">Тетрадка</option>
+                                <option value = "3">Сборник</option>
+                                <option value = "4">Атлас</option>
+                                <option value = "5">Дриго</option>
+                            </select>
+                        </div>
+                        <div class = "droppDownMenu" onclick = "getDropDownMenuData(); updatePriview('Subject');" id = "subjectDropdownMenu">
+                            <select>
+                                <option value = "0">Избери предмет</option>
+                                <option value = "1">Математика</option>
+                                <option value = "2">Български език</option>
+                                <option value = "3">Литература</option>
+                                <option value = "4">Английски език</option>
+                                <option value = "5">Немски език</option>
+                                <option value = "6">Френски език</option>
+                                <option value = "7">Руски език</option>
+                                <option value = "8">Химия</option>
+                                <option value = "9">Физика</option>
+                                <option value = "10">Биологоя</option>
+                                <option value = "11">История</option>
+                                <option value = "12">География</option>
+                                <option value = "13">Изобразително изкуство</option>
+                                <option value = "14">Философия</option>
+                                <option value = "15">Информатика</option>
+                                <option value = "16">Информационни Технологии</option>
+                            </select>
+                        </div>
+                        <div class = "inputField" style = "width: 200px;" onkeyup = "updatePriview('Grade')" onclick = "updatePriview('Grade')">
+                            <input type = "number" placeholder = "Grade" class = "inputFieldText" id = "gradeInputFieldText" min = "1" max = "12">
+                            <label for = "name" class = "inputFieldLabel" id = "gradeInputFieldLabel">Клас</label>
+                        </div>
+                        <div class = "inputField" style = "width: 200px;" onkeyup = "updatePriview('Price')" onclick = "updatePriview('Price')">
+                            <input type = "number" placeholder = "Price" class = "inputFieldText" id = "priceInputFieldText">
+                            <label for = "name" class = "inputFieldLabel" id = "priceInputFieldLabel">Цена</label>
+                        </div>
+                        <div class = "inputField" onkeyup = "updatePriview('Info')">
+                            <input type = "text" placeholder = "Info" class = "inputFieldText" id = "infoInputFieldText" maxlength = "70">
+                            <label for = "name" class = "inputFieldLabel" id = "infoInputFieldLabel">Информация</label>
+                        </div>
+                        <div class = "inputField" style = "width: 200px;">
+                            <input type = "number" placeholder = "Phone Number" class = "inputFieldText" id = "phoneInputFieldText" value = "359" min = "359000000000" max = "359999999999">
+                            <label for = "name" class = "inputFieldLabel" id = "phoneInputFieldLabel">Tel.</label>
+                        </div>
+                        <div class = "pageContentSectionUploadButton">
+                            <input type = "file" id = "announcementImageUploadButton" hidden accept = "image/*" oninput = "updatePriview('Image')">
+                            <label for = "announcementImageUploadButton">Избери снимка</label>
+                            <p id = "chosenFileLabel">Няма избран файл</p>
+                        </div>
+                    </div>
+
+                    <div class = "gridItem" style = "cursor: not-allowed" title = "Примерна обява">
+                        <p style = "position: absolute; top: -30; left: 30;">Примерна обява:</p>
+                        <h1><text id = "Type">Избери вид</text>, <text id = "Subject">Избери предмет</text>, <text id = "Grade"></text>. клас</h1>
+                        <img src = "#" alt = "Снимка" id = "Image">
+                        <p id = "Info">
+                            Кратка информация
+                        </p>
+                        <p style = "margin-bottom: 40px;">
+                            Цена: <text id = "Price"></text>лв.
+                        </p>
+                        <a>Купи</a>
+                    </div>
                 </div>
-                <div class = "droppDownMenu">
-                    <select>
-                        <option value = "0">Избери предмет</option>
-                        <option value = "1">Математика</option>
-                        <option value = "2">Български език</option>
-                        <option value = "3">Литература</option>
-                        <option value = "4">Английски език</option>
-                        <option value = "5">Немски език</option>
-                        <option value = "6">Френски език</option>
-                        <option value = "7">Руски език</option>
-                        <option value = "8">Химия</option>
-                        <option value = "9">Физика</option>
-                        <option value = "10">Биологоя</option>
-                        <option value = "11">История</option>
-                        <option value = "12">География</option>
-                        <option value = "13">Изобразително изкуство</option>
-                        <option value = "14">Философия</option>
-                        <option value = "15">Информатика</option>
-                        <option value = "16">Информационни Технологии</option>
-                    </select>
-                </div>
-                <img src = "../Images/helpfulSignImage.svg" alt = "Examine image" class = "pageContentSectionImage">
-                <a class = "pageContentSectionButton Unavailable">Готово</a>
+
+                <a onclick = "uploadAnnouncement()" class = "pageContentSectionButton" id = "doneButton">Готово</a>
             </div>
 
             <div class = "bottomBar">
@@ -215,6 +247,16 @@
         </div>
 
         <script>
+            // Upload file button
+            const uploadButton = document.getElementById("announcementImageUploadButton");
+            const chosenFileLabel = document.getElementById("chosenFileLabel");
+
+            uploadButton.addEventListener('change', function()
+            {
+                chosenFileLabel.textContent = this.files[0].name;
+            });
+
+            // Dropdown menu
             var x, i, j, l, ll, selElmnt, a, b, c;
 
             x = document.getElementsByClassName("droppDownMenu");
@@ -226,6 +268,7 @@
                 ll = selElmnt.length;
                 a = document.createElement("DIV");
                 a.setAttribute("class", "droppDownMenuSelect");
+                a.setAttribute("id", "dropDownMenu");
                 a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
                 x[i].appendChild(a);
                 b = document.createElement("DIV");

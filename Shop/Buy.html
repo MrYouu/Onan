@@ -19,7 +19,7 @@
         <title id = "Title">Онан - Купи</title>
     </head>
 
-    <body id = "body" onload = "loadLiteratureGrade()">
+    <body id = "body" onload = "loadUserData(); loadLiteratureGrade()">
         <!-- #region Default -->
         <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
@@ -162,13 +162,13 @@
         </div>
 
         <div class = "pageContent">
-            <div class = "pageContentSection withButtonEnd">
+            <div class = "pageContentSection withButtonEnd" id = "whatWillBuySection">
                 <h1 class = "pageContentSectionTitle">Какво търсиш?</h1>
                 <div class = "inputField" style = "width: 200px;">
-                    <input type = "number" placeholder = "Grade" class = "inputFieldText" id = "gradeInputFieldText" min = "5" max = "12">
+                    <input type = "number" placeholder = "Grade" class = "inputFieldText" id = "gradeInputFieldText" min = "1" max = "12">
                     <label for = "name" class = "inputFieldLabel" id = "gradeInputFieldLabel">Клас</label>
                 </div>
-                <div class = "droppDownMenu">
+                <div class = "droppDownMenu" onclick = "getDropDownMenuData()">
                     <select>
                         <option value = "0">Избери предмет</option>
                         <option value = "1">Математика</option>
@@ -190,7 +190,15 @@
                     </select>
                 </div>
                 <img src = "../Images/helpfulSignImage.svg" alt = "Examine image" class = "pageContentSectionImage">
-                <a class = "pageContentSectionButton Unavailable">Готово</a>
+                <a class = "pageContentSectionButton Unavailable" id = "doneButton">Готово</a>
+            </div>
+
+            <div class = "pageContentSection withButtonEnd" style = "display: none;" id = "announcementsSection">
+                <h1 class = "pageContentSectionTitle">Обяви <icon onclick = "newSearch()"><i class = "fas fa-level-up-alt"></i></icon></h1>
+                <p class = "pageContentSectionText" id = "noAnnouncementsYet">
+                    Все още няма обяви...
+                </p>
+                <div class = "pageContentSectionGridHolder Three" id = "pageContentSectionGridHolder"></div>
             </div>
 
             <div class = "bottomBar">
@@ -217,6 +225,7 @@
                 ll = selElmnt.length;
                 a = document.createElement("DIV");
                 a.setAttribute("class", "droppDownMenuSelect");
+                a.setAttribute("id", "dropDownMenu");
                 a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
                 x[i].appendChild(a);
                 b = document.createElement("DIV");
