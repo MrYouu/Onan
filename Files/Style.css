@@ -748,6 +748,17 @@ body.Flicker
     opacity: 0;
 }
 
+.pageContent .pageContentSection .pageContentSectionTitle icon
+{
+    color: #fb601e60;
+    margin-left: 20px;
+}
+
+.pageContent .pageContentSection .pageContentSectionTitle icon:hover
+{
+    color: #fb601e;
+}
+
 .pageContent .pageContentSection .pageContentSectionText
 {
     position: relative;
@@ -1333,7 +1344,7 @@ body.Flicker
     width: 450px;
     height: 450px;
     top: 0;
-    left: 30;
+    left: calc(50% - 225px);
     padding-bottom: 50px;
     margin-bottom: 30px;
 }
@@ -1431,6 +1442,11 @@ body.Flicker
     margin-bottom: 30px;
 }
 
+.droppDownMenu.sellElementPart
+{
+    margin-top: 100px;
+}
+
 .droppDownMenu select
 {
     display: none;
@@ -1508,6 +1524,138 @@ body.Flicker
     background-color: #9078bc;
 }
 /*#endregion Dropdown menu */
+
+/*#region Grid layout */
+.pageContentSectionGridHolder
+{
+    display: grid;
+    position: relative;
+    width: calc(100% - 30px);
+    top: 0;
+    left: 30;
+    grid-template-columns: auto;
+}
+
+.pageContentSectionGridHolder.Two
+{
+    grid-template-columns: auto auto;
+}
+
+.pageContentSectionGridHolder.Three
+{
+    grid-template-columns: auto auto auto;
+}
+
+.pageContentSectionGridHolder .gridItem
+{
+    display: table-cell;
+    position: relative;
+    width: calc(100% - 30px);
+    background-color: #f1e8f5;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 24px;
+
+    animation: dropDown .5s ease-out forwards 1.2s;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.pageContentSectionGridHolder .gridItem h1
+{
+    position: relative;
+    width: calc(100% - 30px);
+    top: 0;
+    left: 15;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 26px;
+    color: #111111;
+    padding-top: 30px;
+    margin-bottom: 20px;
+}
+
+.pageContentSectionGridHolder .gridItem img
+{
+    position: relative;
+    max-width: calc(100% - 60px);
+    max-height: 340px;
+    top: 0;
+    left: 30;
+    margin-bottom: 20px;
+}
+
+.pageContentSectionGridHolder .gridItem p
+{
+    position: relative;
+    width: calc(100% - 30px);
+    top: 0;
+    left: 15;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 22px;
+    color: #111111a0;
+    margin-bottom: 20px;
+}
+
+.pageContentSectionGridHolder .gridItem a
+{
+    position: relative;
+    top: 0;
+    left: 15;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #fefefe;
+    background-color: #fb601e;
+    border-radius: 999px;
+    padding: 8px 26px;
+}
+
+.pageContentSectionGridHolder .gridItem a:hover
+{
+    filter: brightness(.9);
+}
+/*#endregion Grid layout */
+
+/*#region Upload button */
+.pageContentSectionUploadButton
+{
+    position: relative;
+    top: 0;
+    left: 30;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.pageContentSectionUploadButton label
+{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 35px;
+    color: #fefefe;
+    background-color: #fb601e;
+    border-radius: 30px;
+    margin-top: 0px;
+    padding: 0px 26px;
+}
+
+.pageContentSectionUploadButton label:hover
+{
+    filter: brightness(.9);
+}
+
+.pageContentSectionUploadButton p
+{
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    color: #11111180;
+    margin-top: 20px;
+}
+/*#endregion Upload button */
 
 /*#endregion Page content */
 
@@ -2234,7 +2382,20 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
 
 @media screen and (max-width: 1100px)
 {
+    .pageContentSectionGridHolder.Three
+    {
+        grid-template-columns: auto auto;
+    }
 
+    .pageContentSectionGridHolder.Two
+    {
+        grid-template-columns: auto;
+    }
+
+    .droppDownMenu.sellElementPart
+    {
+        margin-top: auto;
+    }
 }
 
 @media screen and (max-width: 1000px)
@@ -2291,12 +2452,19 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         left: 60;
     }
 
-    .pageContent .pageContentSection .pageContentSectionTitle, .resultContent .resultContentTitle
+    .pageContent .pageContentSection .pageContentSectionTitle,
+    .resultContent .resultContentTitle
     {
         font-size: 24px;
         line-height: 24px;
         padding-top: 20px;
         margin-bottom: 20px;
+    }
+
+    .pageContentSectionGridHolder .gridItem h1
+    {
+        font-size: 20px;
+        line-height: 22px;
     }
 
     .testContent .testContentQuestion .Question
@@ -2311,7 +2479,8 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .testContent .testContentQuestion .Answer p,
     .pageContent .pageContentSection .pageContentSectionRadioList .pageContentSectionRadioButton p,
     .resultContent .resultContentText,
-    .chart .chartTitle
+    .chart .chartTitle,
+    .pageContentSectionGridHolder .gridItem p
     {
         font-size: 16px;
         line-height: 20px;
@@ -2348,12 +2517,19 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .pageContent .pageContentSection .twoChoiseButtonsHolder a,
     .testContent .testContentQuestion .testContentQuestionButton,
     .resultContent .resultContentButton,
-    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansButton
+    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansButton,
+    .pageContentSectionUploadButton label
     {
         font-size: 20px;
         line-height: 20px;
         padding-top: 8px;
         padding-bottom: 8px;
+    }
+
+    .pageContentSectionGridHolder .gridItem a
+    {
+        font-size: 16px;
+        line-height: 16px;
     }
 
     .pageContent .pageContentSection .pageContentSectionList
@@ -2593,6 +2769,17 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
         top: calc(50% - 25px);
         font-size: 40px;
     }
+
+    .pageContentSectionGridHolder
+    {
+        width: 100%;
+        left: 15;
+    }
+
+    .pageContentSectionGridHolder.Three
+    {
+        grid-template-columns: auto;
+    }
 }
 
 @media screen and (max-width: 600px)
@@ -2741,7 +2928,9 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .pageContent .pageContentSection .twoChoiseButtonsHolder a,
     .testContent .testContentQuestion .testContentQuestionButton,
     .resultContent .resultContentButton,
-    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansButton
+    .pageContent .pageContentSection .pageContentSectionPlans .pageContentSectionPlansButton,
+    .pageContentSectionGridHolder .gridItem a,
+    .pageContentSectionUploadButton label
     {
         font-size: 16px;
         line-height: 20px;
@@ -2788,6 +2977,12 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .droppDownMenu
     {
         width: calc(100% - 60px);
+    }
+
+    .pageContentSectionGridHolder .gridItem h1
+    {
+        font-size: 18px;
+        line-height: 18px;
     }
 
     /*#region Bottom bar */

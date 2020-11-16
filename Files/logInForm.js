@@ -14,6 +14,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const Auth = firebase.auth();
 const cloudData = firebase.firestore();
+//const databaseStorage = firebase.storage();
 
 function signUp()
 {
@@ -51,7 +52,8 @@ function signUp()
                 Email: Email.value,
                 accountPlan: Basic,
                 rightAnswers: 1,
-                wrongAnswers: 1
+                wrongAnswers: 1,
+                Announcements: ["None"]
             }).catch(function(error)
             {
                 console.log("Got an Error: " + error);
@@ -233,7 +235,18 @@ function loadUserData()
 {
     firebase.auth().onAuthStateChanged(function(user)
     {
-        if (user)
+        if (document.getElementById("Title").innerHTML == "Онан - Продай")
+        {
+            if (user)
+            {
+                document.getElementById("getAccountSection").style.display = "none";
+            }
+            else
+            {
+                document.getElementById("whatWillSellSection").style.display = "none";
+            }
+        }
+        else if (user)
         {
             var userFN, userLN, userGrade, userEmail, accountPlan;
             if (document.getElementById("Title").innerHTML == "Онан - Акаунт")
@@ -550,9 +563,4 @@ function activateProAccount()
             document.getElementById("Error invalidCode").style.display = "block";
         }
     });
-}
-
-function defaultFunction()
-{
-
 }

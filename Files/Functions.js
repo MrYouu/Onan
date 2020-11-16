@@ -486,4 +486,290 @@ function makeRandomString(Length)
        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     
     return result;
- }
+}
+
+function getDropDownMenuData()
+{
+    if (document.getElementById("Title").innerHTML == "Онан - Купи")
+    {
+        var dropDownMenu = document.getElementById("dropDownMenu");
+    
+        if (dropDownMenu.innerHTML != "Избери предмет")
+        {
+            document.getElementById("doneButton").className = "pageContentSectionButton";
+            document.getElementById("doneButton").setAttribute("onclick", "printAllAnnouncements()");
+            sessionStorage.setItem("subjectSellSearch", dropDownMenu.innerHTML);
+        }
+    }
+    else if (document.getElementById("Title").innerHTML == "Онан - Продай")
+    {
+
+    }
+}
+
+function printAllAnnouncements()
+{
+    document.getElementById("whatWillBuySection").style.display = "none";
+
+    var announcementsSection = document.getElementById("announcementsSection");
+    announcementsSection.style.display = "block";
+    var pageContentSectionGridHolder = document.getElementById("pageContentSectionGridHolder");
+    var gradeSellSearch = document.getElementById("gradeInputFieldText").value;
+    var subjectSellSearch = sessionStorage.getItem("subjectSellSearch");
+    sessionStorage.removeItem("subjectSellSearch");
+    
+    cloudData.doc("Announcements/" + subjectSellSearch).get().then(function(doc)
+    {
+        var Size;
+        if (doc && doc.exists)
+        {
+            const userData = doc.data();
+            Size = userData.Size;
+
+            for (let index = 1; index < Size + 1; index++)
+            {
+                cloudData.doc("Announcements/" + subjectSellSearch + ("/announcement" + index) + "/Data").get().then(function(doc)
+                {
+                    var announcementType, announcementGrade, announcementInfo, announcementPrice, announcementSellerPhone;
+                    if (doc && doc.exists)
+                    {
+                        const userData = doc.data();
+                        announcementType = userData.Type;
+                        announcementGrade = userData.Grade;
+                        announcementInfo = userData.Info;
+                        announcementPrice = userData.Price;
+                        announcementSellerPhone = userData.phoneNumber;
+
+                        if (announcementGrade == parseInt(gradeSellSearch))
+                        {
+                            document.getElementById("noAnnouncementsYet").style.display = "none";
+                            var newAnnouncement = "";
+                            newAnnouncement += '<div class = "gridItem"><h1>';
+                            newAnnouncement += announcementType + ", " + subjectSellSearch + ", " + announcementGrade + ". клас";
+                            newAnnouncement += '</h1><img src = "../Images/test01.png" alt = "Students or Note book"><p>';
+                            newAnnouncement += announcementInfo;
+                            newAnnouncement += '</p><p style = "margin-bottom: 40px;">';
+                            newAnnouncement += "Цена: " + parseFloat(announcementPrice).toFixed(2) + " лв.";
+                            newAnnouncement += '</p><a href = "#">Купи</a></div>';
+
+                            pageContentSectionGridHolder.innerHTML += newAnnouncement;
+                        }
+                    }
+                });
+            }
+        }
+    });
+}
+
+function newSearch()
+{
+    document.getElementById("whatWillBuySection").style.display = "block";
+
+    document.getElementById("noAnnouncementsYet").style.display = "block";
+    document.getElementById("pageContentSectionGridHolder").innerHTML = "";
+
+    document.getElementById("announcementsSection").style.display = "none";
+
+    sessionStorage.setItem("subjectSellSearch", document.getElementById("dropDownMenu").innerHTML);
+}
+
+var Type, Subject, Grade, Price, Info, Imagee;
+var validType = false;
+var validSubject = false;
+var validGrade = false;
+var validPrice = false;
+var validInfo = false;
+var validPhone = false;
+var validImage = false;
+function updatePriview(elementType)
+{
+    if (elementType == "Type")
+    {
+        document.getElementById("Type").innerHTML = document.getElementsByClassName("droppDownMenuSelect")[0].innerHTML;
+        document.getElementsByClassName("droppDownMenuSelect")[0].style.borderBottomColor = "#111111";
+        document.getElementsByClassName("droppDownMenuSelect")[0].style.color = "#111111";
+        document.getElementById("Error invalidType").style.display = "none";
+        validType = true;
+        Type = document.getElementById("Type").innerHTML;
+    }
+    else if (elementType == "Subject")
+    {
+        document.getElementById("Subject").innerHTML = document.getElementsByClassName("droppDownMenuSelect")[1].innerHTML;
+        document.getElementsByClassName("droppDownMenuSelect")[1].style.borderBottomColor = "#111111";
+        document.getElementsByClassName("droppDownMenuSelect")[1].style.color = "#111111";
+        document.getElementById("Error invalidSubject").style.display = "none";
+        validSubject = true;
+        Subject = document.getElementById("Subject").innerHTML;
+    }
+    else if (elementType == "Grade")
+    {
+        document.getElementById("Grade").innerHTML = document.getElementById("gradeInputFieldText").value;
+        Grade = document.getElementById("Grade").innerHTML;
+    }
+    else if (elementType == "Price")
+    {
+        document.getElementById("Price").innerHTML = document.getElementById("priceInputFieldText").value;
+        Price = document.getElementById("Price").innerHTML;
+    }
+    else if (elementType == "Info")
+    {
+        document.getElementById("Info").innerHTML = document.getElementById("infoInputFieldText").value;
+        Info = document.getElementById("Info").innerHTML;
+    }
+    else if (elementType == "Image")
+    {
+        document.getElementById("Image").src = URL.createObjectURL(document.getElementById("announcementImageUploadButton").files[0]);
+        Imagee = document.getElementById("Image").src;
+    }
+}
+
+function uploadAnnouncement()
+{
+    //#region Errors
+    if (Type == null)
+    {
+        document.getElementsByClassName("droppDownMenuSelect")[0].style.borderBottomColor = "red";
+        document.getElementsByClassName("droppDownMenuSelect")[0].style.color = "red";
+        document.getElementById("Error invalidType").style.display = "block";
+        validType = false;
+    }
+    if (Subject == null)
+    {
+        document.getElementsByClassName("droppDownMenuSelect")[1].style.borderBottomColor = "red";
+        document.getElementsByClassName("droppDownMenuSelect")[1].style.color = "red";
+        document.getElementById("Error invalidSubject").style.display = "block";
+        validSubject = false;
+    }
+    if (Grade == null || Grade < 1 || Grade > 12)
+    {
+        document.getElementById("gradeInputFieldText").style.borderBottomColor = "red";
+        document.getElementById("gradeInputFieldLabel").style.color = "red";
+        document.getElementById("Error invalidGrade").style.display = "block";
+        validGrade = false;
+    }
+    else
+    {
+        document.getElementById("gradeInputFieldText").style.borderBottomColor = "#111111";
+        document.getElementById("gradeInputFieldLabel").style.color = "#11111180";
+        document.getElementById("Error invalidGrade").style.display = "none";
+        validGrade = true;
+    }
+    if (Price == null || Price < 0 || Price > 35)
+    {
+        document.getElementById("priceInputFieldText").style.borderBottomColor = "red";
+        document.getElementById("priceInputFieldLabel").style.color = "red";
+        document.getElementById("Error invalidPrice").style.display = "block";
+        validPrice = false;
+    }
+    else
+    {
+        document.getElementById("priceInputFieldText").style.borderBottomColor = "#111111";
+        document.getElementById("priceInputFieldLabel").style.color = "#11111180";
+        document.getElementById("Error invalidPrice").style.display = "none";
+        validPrice = true;
+    }
+    if (Info == null)
+    {
+        document.getElementById("infoInputFieldText").style.borderBottomColor = "red";
+        document.getElementById("infoInputFieldLabel").style.color = "red";
+        document.getElementById("Error invalidInfo").style.display = "block";
+        validInfo = false;
+    }
+    else
+    {
+        document.getElementById("infoInputFieldText").style.borderBottomColor = "#111111";
+        document.getElementById("infoInputFieldLabel").style.color = "#11111180";
+        document.getElementById("Error invalidInfo").style.display = "none";
+        validInfo = true;
+    }
+    if (document.getElementById("phoneInputFieldText").value == null ||
+        document.getElementById("phoneInputFieldText").value < 359000000000 ||
+        document.getElementById("phoneInputFieldText").value > 359999999999)
+    {
+        document.getElementById("phoneInputFieldText").style.borderBottomColor = "red";
+        document.getElementById("phoneInputFieldLabel").style.color = "red";
+        document.getElementById("Error invalidPhone").style.display = "block";
+        validPhone = false;
+    }
+    else
+    {
+        document.getElementById("phoneInputFieldText").style.borderBottomColor = "#111111";
+        document.getElementById("phoneInputFieldLabel").style.color = "#11111180";
+        document.getElementById("Error invalidPhone").style.display = "none";
+        validPhone = true;
+    }
+    if (Imagee == null)
+    {
+        document.getElementById("chosenFileLabel").style.color = "red";
+        document.getElementById("Error invalidImage").style.display = "block";
+        validImage = false;
+    }
+    else
+    {
+        document.getElementById("chosenFileLabel").style.color = "#11111180";
+        document.getElementById("Error invalidImage").style.display = "none";
+        validImage = true;
+    }
+    //#endregion Errors
+
+    if (validType && validSubject && validGrade && validPrice && validInfo && validPhone && validImage)
+    {
+        cloudData.doc("Announcements/" + Subject).get().then(function(doc)
+        {
+            var Size;
+            if (doc && doc.exists)
+            {
+                const userData = doc.data();
+                Size = userData.Size;
+
+                cloudData.doc("Announcements/" + Subject + ("/announcement" + (Size + 1)) + "/Data").set(
+                {
+                    Grade: Grade,
+                    Info: Info,
+                    Price: Price,
+                    Type: Type,
+                    phoneNumber: parseInt(document.getElementById("phoneInputFieldText").value)
+                }).catch(function(error)
+                {
+                    console.log("Got an Error: " + error);
+                });
+
+                cloudData.doc("Announcements/" + Subject).update(
+                {
+                    Size: parseInt(parseInt(Size) + 1)
+                }).catch(function(error)
+                {
+                    console.log("Got an Error: " + error);
+                });
+
+                cloudData.doc("users/" + Auth.currentUser.uid).get().then(function(doc)
+                {
+                    var announcementsOldArray;
+                    if (doc && doc.exists)
+                    {
+                        const userData = doc.data();
+                        announcementsOldArray = userData.Announcements;
+
+                        var announcementsName = "Announcements/" + Subject + ("/announcement" + (parseInt(Size) + 1)) + "/Data"
+                        announcementsOldArray[announcementsOldArray.length] = announcementsName;
+                        cloudData.doc("users/" + Auth.currentUser.uid).update(
+                        {
+                            Announcements: announcementsOldArray
+                        }).catch(function(error)
+                        {
+                            console.log("Got an Error: " + error);
+                        });
+                    }
+                }).catch(function(error)
+                {
+                    console.log("Got an Error: " +  error);
+                })
+            }
+        });
+
+        document.getElementById("correctness announcementUploaded").style.display = "block";
+        desableElement("correctness announcementUploaded", 2.5);
+        document.getElementById("doneButton").removeAttribute("onclick");
+        document.getElementById("doneButton").classList += " Unavailable";
+    }
+}
