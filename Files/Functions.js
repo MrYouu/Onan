@@ -530,7 +530,7 @@ function printAllAnnouncements()
             {
                 cloudData.doc("Announcements/" + subjectSellSearch + ("/announcement" + index) + "/Data").get().then(function(doc)
                 {
-                    var announcementType, announcementGrade, announcementInfo, announcementPrice, announcementSellerPhone;
+                    var announcementType, announcementGrade, announcementInfo, announcementImage, announcementPrice, announcementSellerPhone, announcementStatus;
                     if (doc && doc.exists)
                     {
                         const userData = doc.data();
@@ -539,21 +539,29 @@ function printAllAnnouncements()
                         announcementInfo = userData.Info;
                         announcementPrice = userData.Price;
                         announcementSellerPhone = userData.phoneNumber;
+                        announcementStatus = userData.Status;
 
-                        if (announcementGrade == parseInt(gradeSellSearch))
+                        var pathReference = databaseStorage.ref("/Announcements/" + subjectSellSearch + "/announcement" + index.toString() + ".jpg");
+                        pathReference.getDownloadURL().then(function(url)
                         {
-                            document.getElementById("noAnnouncementsYet").style.display = "none";
-                            var newAnnouncement = "";
-                            newAnnouncement += '<div class = "gridItem"><h1>';
-                            newAnnouncement += announcementType + ", " + subjectSellSearch + ", " + announcementGrade + ". клас";
-                            newAnnouncement += '</h1><img src = "../Images/test01.png" alt = "Students or Note book"><p>';
-                            newAnnouncement += announcementInfo;
-                            newAnnouncement += '</p><p style = "margin-bottom: 40px;">';
-                            newAnnouncement += "Цена: " + parseFloat(announcementPrice).toFixed(2) + " лв.";
-                            newAnnouncement += '</p><a href = "#">Купи</a></div>';
+                            announcementImage = url;
 
-                            pageContentSectionGridHolder.innerHTML += newAnnouncement;
-                        }
+                            if (announcementGrade == parseInt(gradeSellSearch) && announcementStatus == "Online")
+                            {
+                                document.getElementById("noAnnouncementsYet").style.display = "none";
+                                var newAnnouncement = "";
+                                newAnnouncement += '<div class = "gridItem"><h1>';
+                                newAnnouncement += announcementType + ", " + subjectSellSearch + ", " + announcementGrade + ". клас";
+                                newAnnouncement += '</h1><img src = "';
+                                newAnnouncement += announcementImage + '" alt = "Students or Note book"><p>';
+                                newAnnouncement += announcementInfo;
+                                newAnnouncement += '</p><p style = "margin-bottom: 40px;">';
+                                newAnnouncement += "Цена: " + parseFloat(announcementPrice).toFixed(2) + " лв.";
+                                newAnnouncement += '</p><a href = "#">Купи</a></div>';
+
+                                pageContentSectionGridHolder.innerHTML += newAnnouncement;
+                            }
+                        });
                     }
                 });
             }
@@ -724,15 +732,19 @@ function uploadAnnouncement()
 
                 cloudData.doc("Announcements/" + Subject + ("/announcement" + (Size + 1)) + "/Data").set(
                 {
-                    Grade: Grade,
+                    Grade: parseInt(Grade),
                     Info: Info,
-                    Price: Price,
+                    Price: parseFloat(Price),
                     Type: Type,
-                    phoneNumber: parseInt(document.getElementById("phoneInputFieldText").value)
+                    phoneNumber: parseInt(document.getElementById("phoneInputFieldText").value),
+                    Status: "Online"
                 }).catch(function(error)
                 {
                     console.log("Got an Error: " + error);
                 });
+
+                var storageRef = databaseStorage.ref("/Announcements/" + Subject + "/announcement" + (Size + 1).toString() + ".jpg");
+                var uploadTask = storageRef.put(document.getElementById("announcementImageUploadButton").files[0]);
 
                 cloudData.doc("Announcements/" + Subject).update(
                 {
@@ -771,5 +783,65 @@ function uploadAnnouncement()
         desableElement("correctness announcementUploaded", 2.5);
         document.getElementById("doneButton").removeAttribute("onclick");
         document.getElementById("doneButton").classList += " Unavailable";
+        document.getElementById("myAnnounsmentsButton").style.display = "block";
     }
+}
+
+function removeAnnouncement(announcementIndex)
+{
+    var announcementsList;
+    cloudData.doc("users/" + Auth.currentUser.uid).get().then(function(doc)
+    {
+        var Subject;
+        if (doc && doc.exists)
+        {
+            const userData = doc.data();
+            announcementsList = userData.Announcements;
+            Subject = announcementsList[announcementIndex].split("/")[1];
+
+            cloudData.doc(announcementsList[announcementIndex]).update(
+            {
+                Status: "Offline"
+            }).catch(function(error)
+            {
+                console.error("Error removing document: ", error);
+            });
+
+            for (let index = 0; index < announcementsList.length; index++)
+                if ( announcementsList[index] === announcementsList[announcementIndex])
+                    announcementsList.splice(index, 1);
+            cloudData.doc("users/" + Auth.currentUser.uid).update(
+            {
+                Announcements: announcementsList
+            }).catch(function(error)
+            {
+                console.error("Error removing document: ", error);
+            });
+
+            document.getElementById("deleatAnnouncementButton" + announcementIndex).removeAttribute("onclick");
+            setTimeout(function()
+            {
+                history.go(0);
+            }, 750);
+        }
+    });
+}
+
+function adminCodeGenerator()
+{
+    cloudData.collection("activationCodes").get().then(snap =>
+    {
+        var codeName = "Code" + (snap.size + 1);
+        var code = makeRandomString(6);
+
+        cloudData.doc("activationCodes/" + codeName).set(
+        {
+            Value: code
+        }).catch(function(error)
+        {
+            console.log("Got an Error: " + error);
+        });
+
+        document.getElementById("activationCode").innerHTML = code.toString();
+    });
 }

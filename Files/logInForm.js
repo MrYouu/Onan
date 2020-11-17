@@ -14,7 +14,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const Auth = firebase.auth();
 const cloudData = firebase.firestore();
-//const databaseStorage = firebase.storage();
+const databaseStorage = firebase.storage();
 
 function signUp()
 {
@@ -248,7 +248,7 @@ function loadUserData()
         }
         else if (user)
         {
-            var userFN, userLN, userGrade, userEmail, accountPlan;
+            var userFN, userLN, userGrade, userEmail, accountPlan, announcementsList;
             if (document.getElementById("Title").innerHTML == "Онан - Акаунт")
             {
                 cloudData.doc("users/" + user.uid).get().then(function(doc)
@@ -261,6 +261,7 @@ function loadUserData()
                         userGrade = userData.Grade;
                         userEmail = userData.Email;
                         accountPlan = userData.accountPlan;
+                        announcementsList = userData.Announcements;
 
                         if (accountPlan == "Basic")
                         {
@@ -284,11 +285,68 @@ function loadUserData()
 
                         sessionStorage.setItem("rightAnswers", userData.rightAnswers);
                         sessionStorage.setItem("wrongAnswers", userData.wrongAnswers);
+
+                        if (announcementsList.length == 1)
+                        {
+                            document.getElementById("pageContentSectionGridHolder").style.display = "none";
+                        }
+                        else
+                        {
+                            document.getElementById("onAnnouncementsYetText").style.display = "none";
+                            document.getElementById("onAnnouncementsYetButton").style.display = "none";
+
+                            for (let index = 1; index < announcementsList.length; index++)
+                            {
+                                cloudData.doc(announcementsList[index]).get().then(function(doc)
+                                {
+                                    var announcementsString = "";
+                                    var Grade, Info, Price, Type, phoneNumber, Status;
+                                    var Subject = announcementsList[index].split("/")[1];
+                                    if (doc && doc.exists)
+                                    {
+                                        const userData = doc.data();
+                                        Grade = userData.Grade;
+                                        Info = userData.Info;
+                                        Price = userData.Price;
+                                        Type = userData.Type;
+                                        phoneNumber = userData.phoneNumber;
+                                        Status = userData.Status;
+
+                                        var pathReference = databaseStorage.ref("/Announcements/" + Subject + "/" + announcementsList[index].split('/')[2].toString() + ".jpg");
+                                        pathReference.getDownloadURL().then(function(url)
+                                        {
+                                            announcementImage = url;
+                                            if (Status == "Online")
+                                            {
+                                                announcementsString += '<div class = "gridItem"><h1><text id = "Type">';
+                                                announcementsString += Type;
+                                                announcementsString +='</text>, <text id = "Subject">';
+                                                announcementsString += Subject;
+                                                announcementsString += '</text>, <text id = "Grade"></text>';
+                                                announcementsString += Grade;
+                                                announcementsString += '. клас</h1><img src = "';
+                                                announcementsString += announcementImage + '" alt = "Снимка" id = "Image"><p id = "Info">';
+                                                announcementsString += Info;
+                                                announcementsString += '</p><p style = "margin-bottom: 40px;">Цена: <text id = "Price">'
+                                                announcementsString += parseFloat(Price).toFixed(2);
+                                                announcementsString += '</text>лв.</p><a>Купи</a><i onclick = "removeAnnouncement(';
+                                                announcementsString += "'" + index + "'" + ')" class = "fas fa-trash-alt" id = "';
+                                                announcementsString += "deleatAnnouncementButton" + index + '" title = "Премахни обявата"></i></div>';
+
+                                                document.getElementById("pageContentSectionGridHolder").innerHTML += announcementsString;
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+
+                            document.getElementById("youAnnouncementsSection").innerHTML += '<a href = "Shop/Sell.html" class = "pageContentSectionButton" id = "makeAnnouncementsButton">Направи обява</a>';
+                        }
                     }
                 }).catch(function(error)
                 {
                     console.log("Got an Error: " +  error);
-                })
+                });
             }
             else if (document.getElementById("Title").innerHTML == "Онан - Начало")
             {
@@ -421,6 +479,36 @@ function loadUserData()
                 else
                 {
                     location.replace("../accountPlans.html");
+                }
+            }
+            else if (document.getElementById("Title").innerHTML == "Onan Admin")
+            {
+                if (Auth.currentUser.uid == "hMO6QPfUOAVpL3BQCfo1MLnkcXi1")
+                {
+                    cloudData.collection("users").get().then(snap =>
+                    {
+                        var usersNumber = snap.size;
+                        document.getElementById("allUsersText").innerHTML = usersNumber.toString();
+
+                        cloudData.collection("users").get().then((data) =>
+                        {
+                            var allProusersNumber = 0;
+                            const response = data.forEach((doc) =>
+                            {
+                                const userData = doc.data();
+                                if (userData.accountPlan == "Pro") allProusersNumber++;
+                            })
+                            document.getElementById("proUsersText").innerHTML = allProusersNumber.toString();
+                            document.getElementById("profitText").innerHTML = "$" + (allProusersNumber * 2 - 2).toFixed(2);
+                        }).catch(function(error)
+                        {
+                            console.log("Got an Error: " +  error);
+                        });
+                    });
+                }
+                else
+                {
+                    location.replace("../indexAccount.html");
                 }
             }
         }

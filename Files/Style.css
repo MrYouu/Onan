@@ -1617,6 +1617,22 @@ body.Flicker
 {
     filter: brightness(.9);
 }
+
+.pageContentSectionGridHolder .gridItem i
+{
+    float: right;
+    position: absolute;
+    bottom: 24;
+    right: 24;
+    font-size: 20px;
+    line-height: 20px;
+    color: #a089cd80;
+}
+
+.pageContentSectionGridHolder .gridItem i:hover
+{
+    color: #a089cd;
+}
 /*#endregion Grid layout */
 
 /*#region Upload button */
