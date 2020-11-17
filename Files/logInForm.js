@@ -603,7 +603,7 @@ function activateProAccount()
                 if (doc && doc.exists)
                 {
                     const userData = doc.data();
-                    checkCode = userData.value;
+                    checkCode = userData.Value;
 
                     if (checkCode.length == 6 && checkCode == activationCode)
                     {
