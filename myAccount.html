@@ -26,6 +26,7 @@
         <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
         <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-storage.js"></script>
         <script type = "text/javascript" src = "Files/logInForm.js"></script>
 
         <img src = "Images/Thumbnails/Main.png" alt = "Link image" style = "display: none;">
@@ -172,6 +173,15 @@
                     <p class = "chartTitle">Успеваемост</p>
                     <i onclick = "reloadChart()" class = "fas fa-sync-alt"></i>
                 </div>
+            </div>
+
+            <div class = "pageContentSection withButtonEnd" id = "youAnnouncementsSection">
+                <h1 class = "pageContentSectionTitle">Моите обяви</h1>
+                <p class = "pageContentSectionText" id = "onAnnouncementsYetText">
+                    Все още няма обяви.
+                </p>
+                <a href = "Shop/Sell.html" class = "pageContentSectionButton" id = "onAnnouncementsYetButton">Направи обява</a>
+                <div class = "pageContentSectionGridHolder Three" id = "pageContentSectionGridHolder"></div>
             </div>
 
             <div class = "pageContentSection withButtonEnd">

@@ -1,0 +1,125 @@
+<!--The HTML code is property to Mr. You (Kristiyan Valchev) and can only be viewed-->
+<!--If you want to use part of the code, please first contact me: mr.youdevelopment@gmail.com-->
+
+<html id = "html">
+    <head>
+        <link href = "https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel = "stylesheet">
+        <link type = "text/css" rel = "stylesheet" href = "Files/Style.css">
+        <link rel = "icon" href = "Images/Logo.png" type = "image" sizes = "16x16">
+
+        <meta charset = "utf-8">
+        <meta name = "description" content = "Образователна платформа за упражнение и обучение по български език и литература. А кой е Онан? Ела да разбереш.">
+        <meta name = "keywords" content = "Български, Език, Литература, Упражнения, Уптажнение, Тест, Тестове, Изпит, Изпитване, Онан, Учи, Учене, Образование, Купи, Продай, Стари, Учебници, Стар, Учебник, Магазин, Учебна, Ученик, Акаунт">
+        <meta name = "author" content = "Kristiyan Valchev">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        
+        <script type = "text/javascript" src = "Files/Functions.js"></script>
+        <script data-ad-client = "ca-pub-6975868406371053" async src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src = "https://kit.fontawesome.com/190623e0b3.js" crossorigin = "anonymous"></script>
+
+        <title id = "Title">Onan Admin</title>
+    </head>
+
+    <body id = "body" onload = "loadUserData()">
+        <!-- #region Default -->
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+        <script src = "https://www.gstatic.com/firebasejs/7.24.0/firebase-storage.js"></script>
+        <script type = "text/javascript" src = "Files/logInForm.js"></script>
+
+        <div id = "rightClickMenu" style = "display: none;"></div>
+
+        <script>
+            window.scroll(
+            {
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+		</script>
+        <!-- #endregion Default -->
+
+        <div class = "bigSideBoxHolder" id = "bigSideBoxHolder"><div id = "bigSideBox"></div></div>
+
+        <a href = "indexAccount.html" class = "topBarName" id = "topBarName"><i class = "fas fa-graduation-cap"></i> Онан</a>
+        <a onclick = "openCloseSideMenu()" class = "threeLineButton" id = "sideMenuButton"><div id = "firstLine"></div><div id = "secondLine"></div></a>
+
+        <div class = "sideMenu" id = "sideMenu">
+            <div class = "optionsList">
+                <a onclick = "openCloseSideMenuDropdown('началоList')" class = "sideMenuOption">Начало</a>
+                <div class = "sideMenuDropdown" id = "началоList">
+                    <a href = "indexAccount.html" class = "sideMenuDropdownOption">Начало</a>
+                    <a href = "myAccount.html" class = "sideMenuDropdownOption">Моят акаунт</a>
+                    <a href = "accountPlans.html" class = "sideMenuDropdownOption" id = "sideMenuGetProButtton">Стани "Pro"</a>
+                </div>
+                <a onclick = "openCloseSideMenuDropdown('урочноСъдържаниеList')" class = "sideMenuOption">Урочно съдържание</a>
+                <div class = "sideMenuDropdown" id = "урочноСъдържаниеList">
+                    <a href = "schoolProgram/allClasses.html" class = "sideMenuDropdownOption">Всички класове</a>
+                    <a href = "schoolProgram/Class5.html" class = "sideMenuDropdownOption">5-ти клас</a>
+                    <a href = "schoolProgram/Class6.html" class = "sideMenuDropdownOption">6-ти клас</a>
+                    <a href = "schoolProgram/Class7.html" class = "sideMenuDropdownOption">7-ми клас</a>
+                    <a href = "schoolProgram/Class8.html" class = "sideMenuDropdownOption">8-ми клас</a>
+                    <a href = "schoolProgram/Class9.html" class = "sideMenuDropdownOption">9-ти клас</a>
+                    <a href = "schoolProgram/Class10.html" class = "sideMenuDropdownOption">10-ти клас</a>
+                    <a href = "schoolProgram/Class11.html" class = "sideMenuDropdownOption">11-ти клас</a>
+                    <a href = "schoolProgram/Class12.html" class = "sideMenuDropdownOption">12-ти клас</a>
+                </div>
+                <a href = "#" class = "sideMenuOption">Научи нещо ново</a>
+                <a onclick = "openCloseSideMenuDropdown('изпитванеList')" class = "sideMenuOption">Изпитване</a>
+                <div class = "sideMenuDropdown" id = "изпитванеList">
+                    <a href = "Task/bulgarianLanguage.html" class = "sideMenuDropdownOption">Български език</a>
+                    <a href = "Task/Literature.html" class = "sideMenuDropdownOption">Литература</a>
+                    <a href = "Task/commonTest.html" class = "sideMenuDropdownOption">Общо</a>
+                </div>
+                <a href = "Shop/Buy.html" class = "sideMenuOption">Купи & продай</a>
+                <a href = "whyOnan.html" class = "sideMenuOption">Защо Онан?</a>
+                <a href = "Contacts.html" class = "sideMenuOption">Контакти</a>
+            </div>
+        </div>
+
+        <div class = "mainTextsHolder">
+            <h1 class = "mainTitle">Abmin</h1>
+            <p class = "mainText">
+                All admin settings are here. <text style = "color: red;">Access prohibited!</text>
+            </p>
+        </div>
+
+        <img src = "Images/socialUser.svg" alt = "Boy, looking at a screen" class = "mainImage">
+
+        <div class = "pageContent">
+            <div class = "pageContentSection">
+                <h1 class = "pageContentSectionTitle">Statistics</h1>
+                <p class = "pageContentSectionText">
+                    All users: <text id = "allUsersText">0</text>
+                </p>
+                <p class = "pageContentSectionText" style = "color: #10cdff;">
+                    Pro users: <text id = "proUsersText">0</text>
+                </p>
+                <p class = "pageContentSectionText">
+                    Profit: <text id = "profitText">$0.00</text>
+                </p>
+            </div>
+
+            <div class = "pageContentSection withButtonEnd">
+                <h1 class = "pageContentSectionTitle">Generate <text style = "color: #10cdff;">"Pro"</text> code</h1>
+                <p class = "pageContentSectionText">
+                    Activation code is: <text id = "activationCode" style = "color: #10cdff;"></text>
+                </p>
+                <a onclick = "adminCodeGenerator()" class = "pageContentSectionButton">Generate</a>
+            </div>
+            
+            <div class = "bottomBar">
+                <div class = "directionButton N"><a href = "indexAccount.html">Начало</a></div>
+                <div class = "directionButton Z"><a href = "#">Защо Онан?</a></div>
+                <div class = "directionButton M"><a href = "#">Контакти</a></div>
+    
+                <p class = "Credits">
+                    <powerd>Site powered by <company>Mr. You Development</company>.</powerd>
+                    <managed> Managed by <my>Kristiyan Valchecv</my></managed>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
