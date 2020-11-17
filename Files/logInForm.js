@@ -609,7 +609,7 @@ function activateProAccount()
                     {
                         cloudData.doc("activationCodes/" + codeName).update(
                         {
-                            value: "used"
+                            Value: "used"
                         }).catch(function(error)
                         {
                             console.log("Got an Error: " + error);
