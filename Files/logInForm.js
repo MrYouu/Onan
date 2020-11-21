@@ -368,6 +368,7 @@ function loadUserData()
                         else if (accountPlan == "Pro")
                         {
                             document.getElementById("upgradeSection").style.display = "none";
+                            document.getElementById("getTestedSectionTitle").innerHTML = "Бъди изпитан";
                         }
                         
                         document.getElementById("accountButton").innerHTML = userFN;

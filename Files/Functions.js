@@ -557,7 +557,8 @@ function printAllAnnouncements()
                                 newAnnouncement += announcementInfo;
                                 newAnnouncement += '</p><p style = "margin-bottom: 40px;">';
                                 newAnnouncement += "Цена: " + parseFloat(announcementPrice).toFixed(2) + " лв.";
-                                newAnnouncement += '</p><a href = "#">Купи</a></div>';
+                                newAnnouncement += '</p><a href = "tel: ';
+                                newAnnouncement += announcementSellerPhone + '">Купи</a></div>';
 
                                 pageContentSectionGridHolder.innerHTML += newAnnouncement;
                             }

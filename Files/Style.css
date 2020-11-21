@@ -707,6 +707,11 @@ body.Flicker
     background-color: transparent;
 }
 
+.pageContent.Up
+{
+    top: 500;
+}
+
 .pageContent .pageContentSection
 {
     position: relative;
@@ -2262,6 +2267,11 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     transition: ease .3s;
 }
 
+spaser
+{
+    padding-left: 30px;
+}
+
 /*#region Animations */
 @keyframes flikerAnimation
 {
@@ -2906,6 +2916,11 @@ p, div, h1, h2, h3, h4, h5, h6, i, img, tr, th, label, input, span
     .pageContent
     {
         top: 840;
+    }
+
+    .pageContent.Up
+    {
+        top: 360;
     }
 
     .pageContent .pageContentSection,
