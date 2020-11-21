@@ -50,7 +50,7 @@ function signUp()
                 lastName: "",
                 Grade: "",
                 Email: Email.value,
-                accountPlan: Basic,
+                accountPlan: "Basic",
                 rightAnswers: 1,
                 wrongAnswers: 1,
                 Announcements: ["None"]
